@@ -1,16 +1,21 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
+from Clothes import *
+from Constants import *
+from CspSolver import *
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    temperature = input("What is the temperature today?")
+    while not temperature.isdecimal() or not (-5 <= float(temperature) <= 35):
+        temperature = input(
+            "Should be a number between [-5,35], please try again")
+    formality = input(
+        "form 0 to 10 how much does this event demands formal dress:")
+    while not formality.isdecimal() or not (0 <= float(formality) <= 10):
+        formality = input(
+            "input should be a number between 0-10, please try again")
+    res_db_shirts = filter_db(int(temperature), int(formality), db_shirts)
+    res_db_pants = filter_db(int(temperature), int(formality), db_pants)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    problem = Problem()
+    createCspSolver(problem,res_db_shirts,res_db_pants)
+    # for shirt,pants in problem.getSolutions()
