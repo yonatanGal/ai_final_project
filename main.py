@@ -2,8 +2,7 @@ from Clothes import *
 from Constants import *
 from CspSolver import *
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
+def main():
     temperature = input("What is the temperature today?")
     while not temperature.isdecimal() or not (-5 <= float(temperature) <= 35):
         temperature = input(
@@ -17,7 +16,18 @@ if __name__ == '__main__':
     res_db_pants = filter_db(int(temperature), int(formality), db_pants)
 
     problem = Problem()
-    createCspSolver(problem,res_db_shirts,res_db_pants)
+    try:
+        createCspSolver(problem, res_db_shirts, res_db_pants)
+    except(ValueError):
+        print("error! the filtered data base is empty")
+        return
+    solutions = problem.getSolutions()
+    if solutions == None:
+        print("there is no solution for given senario")
+        return
+
+if __name__ == '__main__':
+    main()
 
     # todo: if there is no solution, let the user know!
     # for shirt,pants in problem.getSolutions()
