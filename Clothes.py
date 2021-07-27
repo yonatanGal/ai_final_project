@@ -1,5 +1,4 @@
 import numpy as np
-import Constants
 # colors = {"black", "white", "grey", "blue", "yellow", "red", "green", "orange", "brown", "pink", "purple"}
 FORMALITY_IDX = 0
 TEMPERATURE_RANGE_IDX = 1
@@ -62,12 +61,3 @@ def filter_db(temperturre_curr, formality_curr,db):
 	res_db = filter_from_formality(formality_curr,curr_db)
 	return res_db
 
-
-if __name__ == '__main__':
-	temperature = input("What is the temperature today?")
-	while not temperature.isdecimal() or not (-5<=float(temperature)<=35):
-			temperature = input("Should be a number between [-5,35], please try again")
-	formality = input("form 0 to 10 how much does this event demands formal dress:")
-	while not formality.isdecimal() or not (0<=float(formality)<=10):
-		formality = input("input should be a number between 0-10, please try again")
-	res_db = filter_db(int(temperature),int(formality),Constants.db_shirts)
