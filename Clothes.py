@@ -71,3 +71,19 @@ def filter_from_formality(current_formality, db):
 		if current_formality - 1 <= db[key][FORMALITY_IDX] <= current_formality + 1:
 			filltered_db[key] = db[key]
 	return filltered_db
+
+def filter_db(temperturre_curr, formality_curr,db):
+	curr_db = filter_from_temperature(temperturre_curr,db)
+	res_db = filter_from_formality(formality_curr,curr_db)
+	return res_db
+
+
+if __name__ == '__main__':
+	temperature = input("What is the temperature today?")
+	while not temperature.isdecimal() or not (-5<=float(temperature)<=35):
+			temperature = input("Should be a number between [-5,35], please try again")
+	formality = input("form 0 to 10 how much does this event demands formal dress:")
+	while not formality.isdecimal() or not (0<=float(formality)<=10):
+		formality = input("input should be a number between 0-10, please try again")
+
+	res_db = filter_db(temperature,formality,db_shirts)
