@@ -12,6 +12,7 @@ def createCspSolver(problem,db_shirts,db_pants):
     problem.addVariable("bottom", db_pants)
 
     # colors constraints
+    problem.addConstraint(areColorsMatch, ("top", "bottom"))
     for top in db_shirts:
         for bottom in db_pants:
             problem.addConstraint(areColorsMatch, ("top", "bottom"))
