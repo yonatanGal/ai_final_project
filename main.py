@@ -18,4 +18,6 @@ if __name__ == '__main__':
 
     problem = Problem()
     createCspSolver(problem,res_db_shirts,res_db_pants)
+
+    # todo: if there is no solution, let the user know!
     # for shirt,pants in problem.getSolutions()
