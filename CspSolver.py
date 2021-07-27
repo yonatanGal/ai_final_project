@@ -33,4 +33,3 @@ if __name__ == '__main__':
             problem.addConstraint(areColorsMatch, ("top", "bottom"))
 
     print(problem.getSolutions())
-    b=2
