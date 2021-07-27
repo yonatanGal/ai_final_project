@@ -42,19 +42,19 @@ class Pants(Item):
 
 
 def filter_from_temperature(current_temperature, db):
-	filltered_db = {}
-	for key in db.keys():
-		if db[key][TEMPERATURE_RANGE_IDX][MIN_TEMPERATURE_IDX] - 5 <= current_temperature <= db[key][
+	filltered_db = []
+	for item in db:
+		if item.get_as_np_array()[TEMPERATURE_RANGE_IDX][MIN_TEMPERATURE_IDX] - 5 <= current_temperature <= item.get_as_np_array()[
 			TEMPERATURE_RANGE_IDX][MAX_TEMPERATURE_IDX] + 5:
-			filltered_db[key] = db[key]
+			filltered_db.append(item)
 	return filltered_db
 
 
 def filter_from_formality(current_formality, db):
-	filltered_db = {}
-	for key in db.keys():
-		if current_formality - 1 <= db[key][FORMALITY_IDX] <= current_formality + 1:
-			filltered_db[key] = db[key]
+	filltered_db = []
+	for item in db:
+		if current_formality - 1 <= item.get_as_np_array()[FORMALITY_IDX] <= current_formality + 1:
+			filltered_db.append(item)
 	return filltered_db
 
 def filter_db(temperturre_curr, formality_curr,db):
@@ -70,5 +70,4 @@ if __name__ == '__main__':
 	formality = input("form 0 to 10 how much does this event demands formal dress:")
 	while not formality.isdecimal() or not (0<=float(formality)<=10):
 		formality = input("input should be a number between 0-10, please try again")
-
-	res_db = filter_db(temperature,formality,db_shirts)
+	res_db = filter_db(int(temperature),int(formality),Constants.db_shirts)
