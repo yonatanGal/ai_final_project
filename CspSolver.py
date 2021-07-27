@@ -4,19 +4,26 @@ import Clothes
 
 
 def areColorsMatch(cloth1, cloth2):
+    """
+    this function is used in the csp "addConstraint" method. it checks if
+    the pair of clothes are in a constraint
+    :param cloth1:
+    :param cloth2:
+    :return:
+    """
     return not ((cloth1.color, cloth2.color) in UNMATCHINGCOLORS or (
-    cloth2.color, cloth1.color) in UNMATCHINGCOLORS)
+        cloth2.color, cloth1.color) in UNMATCHINGCOLORS)
 
-def createCspSolver(problem,db_shirts,db_pants):
-    problem.addVariable("top", db_shirts)
-    problem.addVariable("bottom", db_pants)
 
+def createCspSolver(problem, db_shirts, db_pants):
+    try:
+        problem.addVariable("shirt", db_shirts)
+        problem.addVariable("pants", db_pants)
+    except(ValueError):
+        print("error! the filtered data base is empty")
+        return
     # colors constraints
-    for top in db_shirts:
-        for bottom in db_pants:
-            problem.addConstraint(areColorsMatch, ("top", "bottom"))
-
-
+    problem.addConstraint(areColorsMatch, ("shirt", "pants"))
 
 ## example
 # problem = Problem()
