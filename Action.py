@@ -14,3 +14,6 @@ class Action:
     def get_wants_to_wear(self):
         return self.to_wear
 
+    def get_action(self):
+        (int(self.get_wants_to_wear()),self.get_item())
+
