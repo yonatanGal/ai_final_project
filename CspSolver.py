@@ -19,12 +19,9 @@ def areColorsMatch(cloth1, cloth2):
     return True
 
 def createCspSolver(problem, db_shirts, db_pants):
-    try:
-        problem.addVariable("shirt", db_shirts)
-        problem.addVariable("pants", db_pants)
-    except(ValueError):
-        print("error! the filtered data base is empty")
-        return
+
+    problem.addVariable("shirt", db_shirts)
+    problem.addVariable("pants", db_pants)
     # colors constraints
     problem.addConstraint(areColorsMatch, ("shirt", "pants"))
     k = problem.getSolution()

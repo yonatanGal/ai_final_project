@@ -31,14 +31,16 @@ class Shirt(Item):
 				 color):
 		super().__init__(name, formality, temperature_range, color)
 		self.type = "Shirt"
-
+	def getType(self):
+		return self.type
 
 class Pants(Item):
 	def __init__(self, name: str, formality: int, temperature_range: tuple,
 				 color):
 		super().__init__(name, formality, temperature_range, color)
 		self.type = "Pants"
-
+	def getType(self):
+		return self.type
 
 def filter_from_temperature(current_temperature, db):
 	filltered_db = []
