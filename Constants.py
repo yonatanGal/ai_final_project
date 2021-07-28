@@ -4,7 +4,7 @@ import numpy as np
 from Clothes import *
 from Action import Action
 THRESHOLD = 1
-
+from Good_Outfit import Good_Outfit
 
 class Color():
     #     BLUE = 'blue'
@@ -131,3 +131,15 @@ db_pants = [Pants("jeans_long", 5, (-5, 25), Color.BLACK),
             Pants("short skirt", 7, (18, 35), Color.WHITE),
             Pants("business casual pants", 6, (10, 30), Color.YELLOW),
             Pants("thermal pants", 3, (-5, 13), Color.ORANGE)]
+
+db_good_outfit = [Good_Outfit(Shirt("cool button shirt",formality=6,temperature_range=(5,25),color=Color.BLACK),
+                              Pants("tights black pants", formality=5 , temperature_range= (8,28),color= Color.BLACK)),
+                  Good_Outfit(Shirt("pyjama shirt", formality=0,temperature_range=(15,28),color=Color.BLACK),
+                              Pants("pyjama pants", formality=0,temperature_range=(15,28),color=Color.BLACK)),
+                  Good_Outfit(Shirt("black sport hoodie", formality=2, temperature_range=(2, 20), color=Color.BLACK),
+                              Pants("black sport training", formality=2, temperature_range=(2, 20), color=Color.BLACK)),
+                  Good_Outfit(Shirt("silk shirt", formality=9, temperature_range=(10, 28), color=Color.BLACK),
+                              Pants("silk tailored pants", formality=9, temperature_range=(10, 28), color=Color.BLACK)),
+                  Good_Outfit(Shirt("cotton black shirt", formality=3, temperature_range=(5, 18), color=Color.BLACK),
+                              Pants("black jeans pants", formality=4, temperature_range=(5, 18), color=Color.BLACK))
+                  ]
