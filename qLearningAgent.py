@@ -25,7 +25,6 @@ class QLearningAgent():
     def __init__(self, learningRate,epsilon,gamma,numTraining):
         "You can initialize Q-values here..."
 
-        "*** YOUR CODE HERE ***"
         self.qValue = util.Counter()
         self.learningRate = float(learningRate)
         self.epsilon = float(epsilon)
@@ -38,7 +37,6 @@ class QLearningAgent():
           Should return 0.0 if we never seen
           a state or (state,action) tuple
         """
-        "*** YOUR CODE HERE ***"
         return self.qValue[(state, action)]
 
     def getValue(self, state):
@@ -48,9 +46,8 @@ class QLearningAgent():
           there are no legal actions, which is the case at the
           terminal state, you should return a value of 0.0.
         """
-        "*** YOUR CODE HERE ***"
         actions = self.getLegalActions(state)
-        if (not actions):
+        if not actions:
             return 0.0
         maxAction = max(actions, key=lambda a: self.getQValue(state, a))
         return self.getQValue(state, maxAction)
@@ -61,7 +58,6 @@ class QLearningAgent():
           are no legal actions, which is the case at the terminal state,
           you should return None.
         """
-        "*** YOUR CODE HERE ***"
         actions = self.getLegalActions(state)
         if (not actions):
             return None
@@ -70,10 +66,23 @@ class QLearningAgent():
 
     def getLegalActions(self,state):
         # todo: checks for all possible actions regarding the given state
+        shirt = state.getState()[0]
+        pants = state.getState()[1]
+        if (shirt is None):
+            if (pants is None):
+                # get all actions of putting
+            else:
+                # get all shirts putting and pants removing
+        elif (pants is None):
+            #get all pants puting and shirts removing
+        else:
+            # get all removing
+
     def getReward(self,state,goodOutfit):
         # todo:
 
     def apply_action(self,state,action):
+        # todo:
     def getAction(self, state):
         """
           Compute the action to take in the current state.  With
@@ -105,10 +114,9 @@ class QLearningAgent():
           NOTE: You should never call this function,
           it will be called on your behalf
         """
-        "*** YOUR CODE HERE ***"
 
         self.qValue[(state, action)] = self.qValue[
-                                           (state, action)] + self.alpha * (
+                                           (state, action)] + self.learningRate * (
                                                reward + self.discount * self.getValue(
                                            nextState) - self.qValue[
                                                    (state, action)])
