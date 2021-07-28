@@ -82,11 +82,19 @@ class QLearningAgent():
     def getReward(self,state,goodOutfit):
         # todo:
     def apply_action(self,state,action):
-        # todo:
         isWear = action.get_wants_to_wear()
-        itemType = action.get_item().
-        if action.get_wants_to_wear():
-            if action.get_item().
+        itemType = action.get_item().getType()
+        if isWear:
+            if itemType == "Shirts":
+                state.set_shirt(action.get_item())
+            elif itemType == "Pants":
+                state.set_pants(action.get_item())
+        else:
+            if itemType == "Shirts":
+                state.set_shirt(None)
+            elif itemType == "Pants":
+                state.set_pants(None)
+
     def getAction(self, state):
         """
           Compute the action to take in the current state.  With
