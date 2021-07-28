@@ -11,99 +11,99 @@ import inspect
 import heapq, random
 
 
-"""
- Data structures useful for implementing SearchAgents
-"""
-
-class Stack:
-  "A container with a last-in-first-out (LIFO) queuing policy."
-  def __init__(self):
-    self.list = []
-    
-  def push(self,item):
-    "Push 'item' onto the stack"
-    self.list.append(item)
-
-  def pop(self):
-    "Pop the most recently pushed item from the stack"
-    return self.list.pop()
-
-  def isEmpty(self):
-    "Returns true if the stack is empty"
-    return len(self.list) == 0
-
-class Queue:
-  "A container with a first-in-first-out (FIFO) queuing policy."
-  def __init__(self):
-    self.list = []
-  
-  def push(self,item):
-    "Enqueue the 'item' into the queue"
-    self.list.insert(0,item)
-
-  def pop(self):
-    """
-      Dequeue the earliest enqueued item still in the queue. This
-      operation removes the item from the queue.
-    """
-    return self.list.pop()
-
-  def isEmpty(self):
-    "Returns true if the queue is empty"
-    return len(self.list) == 0
-  
-class PriorityQueue:
-  """
-    Implements a priority queue data structure. Each inserted item
-    has a priority associated with it and the client is usually interested
-    in quick retrieval of the lowest-priority item in the queue. This
-    data structure allows O(1) access to the lowest-priority item.
-    
-    Note that this PriorityQueue does not allow you to change the priority
-    of an item.  However, you may insert the same item multiple times with
-    different priorities.
-  """  
-  def  __init__(self):  
-    self.heap = []
-    self.init = False
-    
-  def push(self, item, priority):
-    if not self.init:
-      self.init = True
-      try:
-        item < item
-      except:
-        item.__class__.__lt__ =  lambda x, y:  (True)        
-    pair = (priority,item)     
-    heapq.heappush(self.heap,pair)
-
-  def pop(self):
-      (priority,item) = heapq.heappop(self.heap)
-      return item
-  
-  def isEmpty(self):
-    return len(self.heap) == 0
-
-class PriorityQueueWithFunction(PriorityQueue):
-  """
-  Implements a priority queue with the same push/pop signature of the
-  Queue and the Stack classes. This is designed for drop-in replacement for
-  those two classes. The caller has to provide a priority function, which
-  extracts each item's priority.
-  """  
-  def  __init__(self, priorityFunction):
-    "priorityFunction (item) -> priority"
-    self.priorityFunction = priorityFunction      # store the priority function
-    PriorityQueue.__init__(self)        # super-class initializer
-    
-  def push(self, item):
-    "Adds an item to the queue with priority from the priority function"
-    PriorityQueue.push(self, item, self.priorityFunction(item))
-
-    
-def manhattanDistance( xy1, xy2 ):
-  "Returns the Manhattan distance between points xy1 and xy2"
-  return abs( xy1[0] - xy2[0] ) + abs( xy1[1] - xy2[1] )
+# """
+#  Data structures useful for implementing SearchAgents
+# """
+#
+# class Stack:
+#   "A container with a last-in-first-out (LIFO) queuing policy."
+#   def __init__(self):
+#     self.list = []
+#
+#   def push(self,item):
+#     "Push 'item' onto the stack"
+#     self.list.append(item)
+#
+#   def pop(self):
+#     "Pop the most recently pushed item from the stack"
+#     return self.list.pop()
+#
+#   def isEmpty(self):
+#     "Returns true if the stack is empty"
+#     return len(self.list) == 0
+#
+# class Queue:
+#   "A container with a first-in-first-out (FIFO) queuing policy."
+#   def __init__(self):
+#     self.list = []
+#
+#   def push(self,item):
+#     "Enqueue the 'item' into the queue"
+#     self.list.insert(0,item)
+#
+#   def pop(self):
+#     """
+#       Dequeue the earliest enqueued item still in the queue. This
+#       operation removes the item from the queue.
+#     """
+#     return self.list.pop()
+#
+#   def isEmpty(self):
+#     "Returns true if the queue is empty"
+#     return len(self.list) == 0
+#
+# class PriorityQueue:
+#   """
+#     Implements a priority queue data structure. Each inserted item
+#     has a priority associated with it and the client is usually interested
+#     in quick retrieval of the lowest-priority item in the queue. This
+#     data structure allows O(1) access to the lowest-priority item.
+#
+#     Note that this PriorityQueue does not allow you to change the priority
+#     of an item.  However, you may insert the same item multiple times with
+#     different priorities.
+#   """
+#   def  __init__(self):
+#     self.heap = []
+#     self.init = False
+#
+#   def push(self, item, priority):
+#     if not self.init:
+#       self.init = True
+#       try:
+#         item < item
+#       except:
+#         item.__class__.__lt__ =  lambda x, y:  (True)
+#     pair = (priority,item)
+#     heapq.heappush(self.heap,pair)
+#
+#   def pop(self):
+#       (priority,item) = heapq.heappop(self.heap)
+#       return item
+#
+#   def isEmpty(self):
+#     return len(self.heap) == 0
+#
+# class PriorityQueueWithFunction(PriorityQueue):
+#   """
+#   Implements a priority queue with the same push/pop signature of the
+#   Queue and the Stack classes. This is designed for drop-in replacement for
+#   those two classes. The caller has to provide a priority function, which
+#   extracts each item's priority.
+#   """
+#   def  __init__(self, priorityFunction):
+#     "priorityFunction (item) -> priority"
+#     self.priorityFunction = priorityFunction      # store the priority function
+#     PriorityQueue.__init__(self)        # super-class initializer
+#
+#   def push(self, item):
+#     "Adds an item to the queue with priority from the priority function"
+#     PriorityQueue.push(self, item, self.priorityFunction(item))
+#
+#
+# def manhattanDistance( xy1, xy2 ):
+#   "Returns the Manhattan distance between points xy1 and xy2"
+#   return abs( xy1[0] - xy2[0] ) + abs( xy1[1] - xy2[1] )
 
 """
   Data structures and functions useful for various course projects
@@ -323,62 +323,62 @@ class Counter(dict):
       addend[key] = -1 * y[key]
     return addend
     
-def raiseNotDefined():
-  print("Method not implemented: %s" % inspect.stack()[1][3])   
-  sys.exit(1)
-
-def normalize(vectorOrCounter):
-  """
-  normalize a vector or counter by dividing each value by the sum of all values
-  """
-  normalizedCounter = Counter()
-  if type(vectorOrCounter) == type(normalizedCounter):
-    counter = vectorOrCounter
-    total = float(counter.totalCount())
-    if total == 0: return counter
-    for key in counter.keys():
-      value = counter[key]
-      normalizedCounter[key] = value / total
-    return normalizedCounter
-  else:
-    vector = vectorOrCounter
-    s = float(sum(vector))
-    if s == 0: return vector
-    return [el / s for el in vector]
+# def raiseNotDefined():
+#   print("Method not implemented: %s" % inspect.stack()[1][3])
+#   sys.exit(1)
+#
+# def normalize(vectorOrCounter):
+#   """
+#   normalize a vector or counter by dividing each value by the sum of all values
+#   """
+#   normalizedCounter = Counter()
+#   if type(vectorOrCounter) == type(normalizedCounter):
+#     counter = vectorOrCounter
+#     total = float(counter.totalCount())
+#     if total == 0: return counter
+#     for key in counter.keys():
+#       value = counter[key]
+#       normalizedCounter[key] = value / total
+#     return normalizedCounter
+#   else:
+#     vector = vectorOrCounter
+#     s = float(sum(vector))
+#     if s == 0: return vector
+#     return [el / s for el in vector]
                 
-def nSample(distribution, values, n):
-  if sum(distribution) != 1:
-    distribution = normalize(distribution)
-  rand = [random.random() for i in range(n)]
-  rand.sort()
-  samples = []
-  samplePos, distPos, cdf = 0,0, distribution[0]
-  while samplePos < n:
-    if rand[samplePos] < cdf:
-      samplePos += 1
-      samples.append(values[distPos])
-    else:
-      distPos += 1
-      cdf += distribution[distPos]
-  return samples
-    
-def sample(distribution, values = None):
-  if type(distribution) == Counter: 
-    items = distribution.items()
-    distribution = [i[1] for i in items] 
-    values = [i[0] for i in items] 
-  if sum(distribution) != 1:
-    distribution = normalize(distribution)
-  choice = random.random()
-  i, total= 0, distribution[0]
-  while choice > total:
-    i += 1
-    total += distribution[i]
-  return values[i]
-
-def sampleFromCounter(ctr):
-  items = ctr.items()
-  return sample([v for k,v in items], [k for k,v in items])
+# def nSample(distribution, values, n):
+#   if sum(distribution) != 1:
+#     distribution = normalize(distribution)
+#   rand = [random.random() for i in range(n)]
+#   rand.sort()
+#   samples = []
+#   samplePos, distPos, cdf = 0,0, distribution[0]
+#   while samplePos < n:
+#     if rand[samplePos] < cdf:
+#       samplePos += 1
+#       samples.append(values[distPos])
+#     else:
+#       distPos += 1
+#       cdf += distribution[distPos]
+#   return samples
+#
+# def sample(distribution, values = None):
+#   if type(distribution) == Counter:
+#     items = distribution.items()
+#     distribution = [i[1] for i in items]
+#     values = [i[0] for i in items]
+#   if sum(distribution) != 1:
+#     distribution = normalize(distribution)
+#   choice = random.random()
+#   i, total= 0, distribution[0]
+#   while choice > total:
+#     i += 1
+#     total += distribution[i]
+#   return values[i]
+#
+# def sampleFromCounter(ctr):
+#   items = ctr.items()
+#   return sample([v for k,v in items], [k for k,v in items])
 
 def getProbability(value, distribution, values):
   """
@@ -395,107 +395,108 @@ def flipCoin( p ):
   r = random.random()
   return r < p 
 
-def chooseFromDistribution( distribution ):
-  "Takes either a counter or a list of (prob, key) pairs and samples"
-  if type(distribution) == dict or type(distribution) == Counter:
-    return sample(distribution)
-  r = random.random()
-  base = 0.0
-  for prob, element in distribution:
-    base += prob
-    if r <= base: return element
-    
-def nearestPoint( pos ):
-  """
-  Finds the nearest grid point to a position (discretizes).
-  """
-  ( current_row, current_col ) = pos
-
-  grid_row = int( current_row + 0.5 ) 
-  grid_col = int( current_col + 0.5 ) 
-  return ( grid_row, grid_col )     
-
-def sign( x ):
-  """
-  Returns 1 or -1 depending on the sign of x
-  """
-  if( x >= 0 ):
-    return 1
-  else:
-    return -1
-
-def arrayInvert(array):
-  """
-  Inverts a matrix stored as a list of lists.
-  """
-  result = [[] for i in array]
-  for outer in array:
-    for inner in range(len(outer)):
-      result[inner].append(outer[inner])
-  return result
-
-def matrixAsList( matrix, value = True ):
-  """
-  Turns a matrix into a list of coordinates matching the specified value
-  """
-  rows, cols = len( matrix ), len( matrix[0] )
-  cells = []
-  for row in range( rows ):
-    for col in range( cols ):
-      if matrix[row][col] == value:
-        cells.append( ( row, col ) )
-  return cells
-
-def lookup(name, namespace):
-  """
-  Get a method or class from any imported module from its name.
-  Usage: lookup(functionName, globals())
-  """
-  dots = name.count('.')
-  if dots > 0:
-    moduleName, objName = '.'.join(name.split('.')[:-1]), name.split('.')[-1]
-    module = __import__(moduleName)
-    return getattr(module, objName)
-  else:
-    modules = [obj for obj in namespace.values() if str(type(obj)) == "<type 'module'>"]
-    options = [getattr(module, name) for module in modules if name in dir(module)]
-    options += [obj[1] for obj in namespace.items() if obj[0] == name ]
-    if len(options) == 1: return options[0]
-    if len(options) > 1: raise Exception('Name conflict for %s')
-    raise Exception('%s not found as a method or class' % name)
-
-def pause():
-  """
-  Pauses the output stream awaiting user feedback.
-  """
-  print("<Press enter/return to continue>")
-  input()
-  
-  
+# def chooseFromDistribution( distribution ):
+#   "Takes either a counter or a list of (prob, key) pairs and samples"
+#   if type(distribution) == dict or type(distribution) == Counter:
+#     return sample(distribution)
+#   r = random.random()
+#   base = 0.0
+#   for prob, element in distribution:
+#     base += prob
+#     if r <= base: return element
+#
+# def nearestPoint( pos ):
+#   """
+#   Finds the nearest grid point to a position (discretizes).
+#   """
+#   ( current_row, current_col ) = pos
+#
+#   grid_row = int( current_row + 0.5 )
+#   grid_col = int( current_col + 0.5 )
+#   return ( grid_row, grid_col )
+#
+# def sign( x ):
+#   """
+#   Returns 1 or -1 depending on the sign of x
+#   """
+#   if( x >= 0 ):
+#     return 1
+#   else:
+#     return -1
+#
+# def arrayInvert(array):
+#   """
+#   Inverts a matrix stored as a list of lists.
+#   """
+#   result = [[] for i in array]
+#   for outer in array:
+#     for inner in range(len(outer)):
+#       result[inner].append(outer[inner])
+#   return result
+#
+# def matrixAsList( matrix, value = True ):
+#   """
+#   Turns a matrix into a list of coordinates matching the specified value
+#   """
+#   rows, cols = len( matrix ), len( matrix[0] )
+#   cells = []
+#   for row in range( rows ):
+#     for col in range( cols ):
+#       if matrix[row][col] == value:
+#         cells.append( ( row, col ) )
+#   return cells
+#
+# def lookup(name, namespace):
+#   """
+#   Get a method or class from any imported module from its name.
+#   Usage: lookup(functionName, globals())
+#   """
+#   dots = name.count('.')
+#   if dots > 0:
+#     moduleName, objName = '.'.join(name.split('.')[:-1]), name.split('.')[-1]
+#     module = __import__(moduleName)
+#     return getattr(module, objName)
+#   else:
+#     modules = [obj for obj in namespace.values() if str(type(obj)) == "<type 'module'>"]
+#     options = [getattr(module, name) for module in modules if name in dir(module)]
+#     options += [obj[1] for obj in namespace.items() if obj[0] == name ]
+#     if len(options) == 1: return options[0]
+#     if len(options) > 1: raise Exception('Name conflict for %s')
+#     raise Exception('%s not found as a method or class' % name)
+#
+# def pause():
+#   """
+#   Pauses the output stream awaiting user feedback.
+#   """
+#   print("<Press enter/return to continue>")
+#   input()
+#
+#
 ## code to handle timeouts
 import signal
-class TimeoutFunctionException(Exception):
-    """Exception to raise on a timeout"""
-    pass
+# class TimeoutFunctionException(Exception):
+#     """Exception to raise on a timeout"""
+#     pass
+#
+# class TimeoutFunction:
+#
+#     def __init__(self, function, timeout):
+#         "timeout must be at least 1 second. WHY??"
+#         self.timeout = timeout
+#         self.function = function
+#
+#     def handle_timeout(self, signum, frame):
+#         raise TimeoutFunctionException()
+#
+#     def __call__(self, *args):
+#         if not 'SIGALRM' in dir(signal):
+#             return self.function(*args)
+#         old = signal.signal(signal.SIGALRM, self.handle_timeout)
+#         signal.alarm(self.timeout)
+#         try:
+#             result = self.function(*args)
+#         finally:
+#             signal.signal(signal.SIGALRM, old)
+#         signal.alarm(0)
+#         return result
 
-class TimeoutFunction:
-
-    def __init__(self, function, timeout):
-        "timeout must be at least 1 second. WHY??"
-        self.timeout = timeout
-        self.function = function
-
-    def handle_timeout(self, signum, frame):
-        raise TimeoutFunctionException()
-
-    def __call__(self, *args):
-        if not 'SIGALRM' in dir(signal):
-            return self.function(*args)
-        old = signal.signal(signal.SIGALRM, self.handle_timeout)
-        signal.alarm(self.timeout)
-        try:
-            result = self.function(*args)
-        finally:
-            signal.signal(signal.SIGALRM, old)
-        signal.alarm(0)
-        return result
