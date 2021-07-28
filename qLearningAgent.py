@@ -71,6 +71,7 @@ class QLearningAgent():
         if (shirt is None):
             if (pants is None):
                 # get all actions of putting
+
             else:
                 # get all shirts putting and pants removing
         elif (pants is None):
@@ -80,9 +81,9 @@ class QLearningAgent():
 
     def getReward(self,state,goodOutfit):
         # todo:
-
     def apply_action(self,state,action):
         # todo:
+        if action.get
     def getAction(self, state):
         """
           Compute the action to take in the current state.  With
