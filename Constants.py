@@ -2,7 +2,7 @@ import math
 from enum import Enum
 import numpy as np
 from Clothes import *
-
+from Action import Action
 THRESHOLD = 1
 
 
@@ -116,12 +116,6 @@ UNMATCHINGCOLORS = {Color.BLUE: {Color.RED,
 
                     Color.WHITE: {}
                     }
-
-
-def colors_distance(color1, color2):
-    (r1, g1, b1) = color1
-    (r2, g2, b2) = color2
-    return np.sqrt((r1 - r2) ^ 2 + (g1 - g2) ^ 2 + (b1 - b2) ^ 2)
 
 
 db_shirts = [Shirt("my_black_T_shirt", 3, (18, 30), Color.BLACK),
