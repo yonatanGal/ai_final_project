@@ -1,6 +1,7 @@
 from constraint import *
 from Constants import *
 import Clothes
+from util import *
 
 
 def areColorsMatch(cloth1, cloth2):
