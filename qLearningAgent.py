@@ -1,5 +1,6 @@
 import util
 import random
+import numpy as np
 class QLearningAgent():
     """
       Q-Learning Agent
@@ -80,7 +81,12 @@ class QLearningAgent():
             # get all removing
 
     def getReward(self,state,goodOutfit):
-        # todo:
+        # todo: make sure this implementation is good (maybe change calculations to do sqrt of squares, etc.
+        formalityReward = util.formalDistance(state,goodOutfit)
+        weatherDistance = util.weatherDistance(state,goodOutfit)
+        color_Distance = util.colorDistanceWrapperLearning(state,goodOutfit)
+        return formalityReward + weatherDistance + color_Distance
+
     def apply_action(self,state,action):
         isWear = action.get_wants_to_wear()
         itemType = action.get_item().getType()

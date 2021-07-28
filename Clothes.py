@@ -24,7 +24,11 @@ class Item:
 	def __str__(self):
 		return "{0}: {1}, {2} - {3}, {4}".format(self.name, self.formality, self.temperature_range[
 			MIN_TEMPERATURE_IDX], self.temperature_range[ MAX_TEMPERATURE_IDX], self.color)
+	def getTemperture(self):
+		return self.temperature_range
 
+	def getColor(self):
+		return self.color
 
 class Shirt(Item):
 	def __init__(self, name: str, formality: int, temperature_range: tuple,
