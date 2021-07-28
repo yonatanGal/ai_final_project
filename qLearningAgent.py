@@ -83,7 +83,10 @@ class QLearningAgent():
         # todo:
     def apply_action(self,state,action):
         # todo:
-        if action.get
+        isWear = action.get_wants_to_wear()
+        itemType = action.get_item().
+        if action.get_wants_to_wear():
+            if action.get_item().
     def getAction(self, state):
         """
           Compute the action to take in the current state.  With
