@@ -9,6 +9,28 @@
 import sys
 import inspect
 import heapq, random
+import numpy as np
+from Action import Action
+
+
+def colors_distance(color1, color2):
+    (r1, g1, b1) = color1
+    (r2, g2, b2) = color2
+    return np.sqrt((r1 - r2) ^ 2 + (g1 - g2) ^ 2 + (b1 - b2) ^ 2)
+
+
+def get_all_actions(db):
+    all_pos_actions = []
+    for item in db:
+        action = Action(item, True)
+        all_pos_actions.append(Action())
+        all_pos_actions.append(Action(item,True))
+    return all_pos_actions
+
+
+
+
+
 
 
 """
