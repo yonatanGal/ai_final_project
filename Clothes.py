@@ -19,7 +19,7 @@ class Item:
 		self.color = color
 
 	def get_as_np_array(self):
-		return np.array([self.formality, self.temperature_range, self.color])
+		return np.asarray([self.formality, self.temperature_range, self.color],dtype=object)
 
 	def __str__(self):
 		return "{0}: {1}, {2} - {3}, {4}".format(self.name, self.formality, self.temperature_range[

@@ -11,9 +11,12 @@ def areColorsMatch(cloth1, cloth2):
     :param cloth2:
     :return:
     """
-    return not ((cloth1.color, cloth2.color) in UNMATCHINGCOLORS or (
-        cloth2.color, cloth1.color) in UNMATCHINGCOLORS)
-
+    for color in  color_lst:
+        if colors_distance(cloth1.color,color) <= THRESHOLD:
+            for forbidden_color in UNMATCHINGCOLORS[color]:
+                if  colors_distance(cloth2.color,forbidden_color) <= THRESHOLD:
+                    return False
+    return True
 
 def createCspSolver(problem, db_shirts, db_pants):
 
@@ -21,6 +24,8 @@ def createCspSolver(problem, db_shirts, db_pants):
     problem.addVariable("pants", db_pants)
     # colors constraints
     problem.addConstraint(areColorsMatch, ("shirt", "pants"))
+    k = problem.getSolution()
+    T=1
 
 ## example
 # problem = Problem()
