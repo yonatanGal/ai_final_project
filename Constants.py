@@ -118,20 +118,6 @@ UNMATCHINGCOLORS = {Color.BLUE: {Color.RED,
                     }
 
 
-def colors_distance(color1, color2):
-    (r1, g1, b1) = color1
-    (r2, g2, b2) = color2
-    return np.sqrt((r1 - r2) ^ 2 + (g1 - g2) ^ 2 + (b1 - b2) ^ 2)
-
-
-def get_all_actions(db):
-    all_pos_actions = []
-    for item in db:
-        action = Action(item, True)
-        all_pos_actions.append(Action())
-        all_pos_actions.append(Action(item,True))
-    return all_pos_actions
-
 db_shirts = [Shirt("my_black_T_shirt", 3, (18, 30), Color.BLACK),
              Shirt("button long shirt", 5, (5, 20), Color.GREEN),
              Shirt("blouse", 7, (15, 35), Color.WHITE),
