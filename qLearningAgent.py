@@ -28,24 +28,22 @@ class QLearningAgent():
           for a state
     """
 
-    def __init__(self, db_shirts, db_pants,
+    def __init__(self, db_shirts, db_pants,possibleSolutions,
                  goodOutFit: State, gamma=0.8, learningRate=1, epsilon=0.3,
                  numTraining=100):
         "You can initialize Q-values here..."
 
         self.qValue = util.Counter()
         # self.qValue = util.initQvalues(db_shirts, db_pants, dict())
-
         self.learningRate = float(learningRate)
         self.epsilon = float(epsilon)
         self.discount = float(gamma)
         self.numTraining = int(numTraining)
         self.allActions = util.get_all_actions(db_shirts + db_pants)
         self.goodOutFit = goodOutFit
-
+        self.possibleSolutions = possibleSolutions
 
     def isTerminalState(self, state):
-        # todo: think about it
         if (state.getShirt() and state.getPants()):
             return True
         return False
@@ -68,7 +66,7 @@ class QLearningAgent():
         """
         actions = self.getLegalActions(state)
         if not actions:
-            return 1  # todo: maybe change to 1? because the only state where you have no legal action to take is a terminal state
+            return 1  # because the only state where you have no legal action to make is a terminal state
         # maxAction = max(actions, key=lambda a: self.getQValue(state, a))
         maxAction = self.findMaxAction(actions, state)
 
@@ -88,7 +86,8 @@ class QLearningAgent():
         return maxAction
 
     def getLegalActions(self, state):
-        # todo: checks for all possible actions regarding the given state
+        # todo: add only the actions that do not violate the csp constraints!
+
         shirt = state.getState()[0]
         pants = state.getState()[1]
         legalActions = []
@@ -100,7 +99,7 @@ class QLearningAgent():
             else:
                 # get all shirts putting and one pants removing
                 for action in self.allActions:
-                    if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear():
+                    if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear() and (action.get_item(),state.getPants()) in self.possibleSolutions:
                         legalActions.append(action)
                     elif action.get_item() == state.getPants() and not action.get_wants_to_wear():
                         legalActions.append(action)
@@ -108,7 +107,7 @@ class QLearningAgent():
         elif (pants is None):
             # get all pants puting and one shirt removing
             for action in self.allActions:
-                if action.get_item().getType() == consts.PANTS and action.get_wants_to_wear():
+                if action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and (state.getShirt(),action.get_item()) in self.possibleSolutions:
                     legalActions.append(action)
                 elif action.get_item() == state.getShirt() and not action.get_wants_to_wear():
                     legalActions.append(action)
@@ -119,8 +118,7 @@ class QLearningAgent():
                     legalActions.append(action)
         return legalActions
 
-    def getReward(self, state, goodOutfit,action):
-        # todo: make sure this implementation is good (maybe change calculations to do sqrt of squares, etc.
+    def getReward(self, state, goodOutfit, action):
         if (self.isTerminalState(state)):
             return 1
         if (not action.get_wants_to_wear()):
@@ -182,16 +180,15 @@ class QLearningAgent():
                 reward + self.discount * self.getValue(
             nextState) - self.qValue[key])
 
-
     def learn(self):
         for epoch in range(self.numTraining):
             s = State.State(None, None)
             # counter = 0
-            while (not self.isTerminalState(s)):  # change to termoninal state?
+            while (not self.isTerminalState(s)):
                 a = self.getAction(s)
                 nextState = self.apply_action(s, a)
                 self.update(s, a, nextState,
-                            self.getReward(nextState, self.goodOutFit,a))
+                            self.getReward(nextState, self.goodOutFit, a))
                 s = nextState
                 # counter += 1
 

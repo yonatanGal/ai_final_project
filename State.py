@@ -26,14 +26,14 @@ class State:
     def is_state_terminal(self):
         return self.getShirt() is not None and self.getPants() is not None
 
-    def __eq__(self, other):
-        if (other == None):
-            return False
-        return (
-                self.getShirt() == other.getShirt() and self.getPants() == other.getPants())
-
-    def __hash__(self):
-        return id(self)
+    # def __eq__(self, other):
+    #     if (other == None):
+    #         return False
+    #     return (
+    #             self.getShirt() == other.getShirt() and self.getPants() == other.getPants())
+    #
+    # def __hash__(self):
+    #     return id(self)
 
     def __str__(self):
         if (self.getShirt() is None):

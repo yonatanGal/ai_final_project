@@ -29,13 +29,13 @@ def formalDistance(state1: State, state2: State):
             shirtsReward = 1 / float((
                                                  formal1_shirt.getFormality() - formal2_shirt.getFormality()) ** 2)
         except ZeroDivisionError:
-            shirtsReward = 5 # todo: i want to increase reward when the formality is the same
+            shirtsReward = 5 # i want to increase reward when the formality is the same
     if formal1_pants:
         try:
             pantsReward = 1 / float((
                                                 formal1_pants.getFormality() - formal2_pants.getFormality()) ** 2)
         except ZeroDivisionError:
-            pantsReward = 5 # todo: i want to increase reward when the formality is the same
+            pantsReward = 5 # i want to increase reward when the formality is the same
     return shirtsReward + pantsReward
 
 
@@ -68,13 +68,12 @@ def itemWeatherDistance(temp1, temp2):
         minSize = min(size_temp1, size_temp2)
         return float(sizeIntersection) / minSize
     else:
-        avgDiff = 0
         avgTemp1 = (temp1[0] + temp1[1]) / 2
         avgTemp2 = (temp2[0] + temp2[1]) / 2
     try:
         avgDiff = 1 / abs(float(avgTemp1) - avgTemp2)
     except ZeroDivisionError:
-        avgDiff = 5 # todo: i want to increase reward when the weather is the same
+        avgDiff = 5 # i want to increase reward when the weather is the same
     return avgDiff
 
 
@@ -84,76 +83,82 @@ def colorDistanceWrapperLearning(state1, state2):
     if (state1.getShirt()):
         shirt1_color = state1.getShirt().getColor()
         shirt2_color = state2.getShirt().getColor()
-        shirts_distance = colors_distance(shirt1_color, shirt2_color)
+        shirts_distance = colors_distance_for_qLearning(shirt1_color, shirt2_color)
     if (state1.getPants()):
         pants1_color = state1.getPants().getColor()
         pants2_color = state2.getPants().getColor()
-        pants_distance = colors_distance(pants1_color, pants2_color)
+        pants_distance = colors_distance_for_qLearning(pants1_color, pants2_color)
 
     return shirts_distance + pants_distance
 
 
-def colors_distance(color1, color2):
+def colors_distance_for_qLearning(color1, color2):
     (r1, g1, b1) = color1
     (r2, g2, b2) = color2
-    colorDiff = 0
     try:
         colorDiff = 1 / float((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2)
     except ZeroDivisionError:
-        colorDiff = 5 # todo: i want to increase reward when the color is the same
+        colorDiff = 5 # i want to increase reward when the color is the same
     return colorDiff
 
+def colors_distance_for_cspSolver(color1, color2):
+    (r1, g1, b1) = color1
+    (r2, g2, b2) = color2
+    return np.sqrt((r1 - r2) ^ 2 + (g1 - g2) ^ 2 + (b1 - b2) ^ 2)
 
 def get_all_actions(db):
+    """
+    returns all the possible actions regarding the given dataBase
+    :param db: list of shirts and pants
+    :return:
+    """
     all_pos_actions = []
     for item in db:
         all_pos_actions.append(Action(item, False))
         all_pos_actions.append(Action(item, True))
     return all_pos_actions
 
-def initQvalues(db_shirts, db_pants, all_states: dict):
-    allActions = get_all_actions(db_shirts+db_pants)
-    db_shirts = [None] + db_shirts
-    db_pants = [None] + db_pants
-    for shirt in db_shirts:
-        for pants in db_pants:
-            state = State.State(shirt,pants)
-            for action in getLegalActions(state,allActions):
-                all_states[(state,action)] = 0
-    return all_states
-    # def chooseFromDistribution( distribution ):
+# def initQvalues(db_shirts, db_pants, all_states: dict):
+#     allActions = get_all_actions(db_shirts+db_pants)
+#     db_shirts = [None] + db_shirts
+#     db_pants = [None] + db_pants
+#     for shirt in db_shirts:
+#         for pants in db_pants:
+#             state = State.State(shirt,pants)
+#             for action in getLegalActions(state,allActions):
+#                 all_states[(state,action)] = 0
+#     return all_states
 
-def getLegalActions(state,allActions):
-    # todo: checks for all possible actions regarding the given state
-    shirt = state.getState()[0]
-    pants = state.getState()[1]
-    legalActions = []
-    if (shirt is None):
-        if (pants is None):
-            for action in allActions:
-                if action.get_wants_to_wear():
-                    legalActions.append(action)
-        else:
-            # get all shirts putting and one pants removing
-            for action in allActions:
-                if action.get_item().getType() == Constants.SHIRT and action.get_wants_to_wear():
-                    legalActions.append(action)
-                elif action.get_item() == state.getPants() and not action.get_wants_to_wear():
-                    legalActions.append(action)
-
-    elif (pants is None):
-        # get all pants puting and one shirt removing
-        for action in allActions:
-            if action.get_item().getType() == Constants.PANTS and action.get_wants_to_wear():
-                legalActions.append(action)
-            elif action.get_item() == state.getShirt() and not action.get_wants_to_wear():
-                legalActions.append(action)
-    else:
-        # get all removing
-        for action in allActions:
-            if action.get_item() == state.getShirt() or action.get_item() == state.getPants():
-                legalActions.append(action)
-    return legalActions
+# def getLegalActions(state,allActions):
+#     shirt = state.getState()[0]
+#     pants = state.getState()[1]
+#     legalActions = []
+#     if (shirt is None):
+#         if (pants is None):
+#             for action in allActions:
+#                 if action.get_wants_to_wear():
+#                     legalActions.append(action)
+#         else:
+#             # get all shirts putting and one pants removing
+#             for action in allActions:
+#                 if action.get_item().getType() == Constants.SHIRT and action.get_wants_to_wear():
+#                     legalActions.append(action)
+#                 elif action.get_item() == state.getPants() and not action.get_wants_to_wear():
+#                     legalActions.append(action)
+#
+#     elif (pants is None):
+#         # get all pants puting and one shirt removing
+#         for action in allActions:
+#             if action.get_item().getType() == Constants.PANTS and action.get_wants_to_wear():
+#                 legalActions.append(action)
+#             elif action.get_item() == state.getShirt() and not action.get_wants_to_wear():
+#                 legalActions.append(action)
+#     else:
+#         # get all removing
+#         for action in allActions:
+#             if action.get_item() == state.getShirt() or action.get_item() == state.getPants():
+#                 legalActions.append(action)
+#     return legalActions
 
 
 class Counter(dict):
@@ -443,107 +448,3 @@ def flipCoin(p):
     r = random.random()
     return r < p
 
-
-#   "Takes either a counter or a list of (prob, key) pairs and samples"
-#   if type(distribution) == dict or type(distribution) == Counter:
-#     return sample(distribution)
-#   r = random.random()
-#   base = 0.0
-#   for prob, element in distribution:
-#     base += prob
-#     if r <= base: return element
-#
-# def nearestPoint( pos ):
-#   """
-#   Finds the nearest grid point to a position (discretizes).
-#   """
-#   ( current_row, current_col ) = pos
-#
-#   grid_row = int( current_row + 0.5 )
-#   grid_col = int( current_col + 0.5 )
-#   return ( grid_row, grid_col )
-#
-# def sign( x ):
-#   """
-#   Returns 1 or -1 depending on the sign of x
-#   """
-#   if( x >= 0 ):
-#     return 1
-#   else:
-#     return -1
-#
-# def arrayInvert(array):
-#   """
-#   Inverts a matrix stored as a list of lists.
-#   """
-#   result = [[] for i in array]
-#   for outer in array:
-#     for inner in range(len(outer)):
-#       result[inner].append(outer[inner])
-#   return result
-#
-# def matrixAsList( matrix, value = True ):
-#   """
-#   Turns a matrix into a list of coordinates matching the specified value
-#   """
-#   rows, cols = len( matrix ), len( matrix[0] )
-#   cells = []
-#   for row in range( rows ):
-#     for col in range( cols ):
-#       if matrix[row][col] == value:
-#         cells.append( ( row, col ) )
-#   return cells
-#
-# def lookup(name, namespace):
-#   """
-#   Get a method or class from any imported module from its name.
-#   Usage: lookup(functionName, globals())
-#   """
-#   dots = name.count('.')
-#   if dots > 0:
-#     moduleName, objName = '.'.join(name.split('.')[:-1]), name.split('.')[-1]
-#     module = __import__(moduleName)
-#     return getattr(module, objName)
-#   else:
-#     modules = [obj for obj in namespace.values() if str(type(obj)) == "<type 'module'>"]
-#     options = [getattr(module, name) for module in modules if name in dir(module)]
-#     options += [obj[1] for obj in namespace.items() if obj[0] == name ]
-#     if len(options) == 1: return options[0]
-#     if len(options) > 1: raise Exception('Name conflict for %s')
-#     raise Exception('%s not found as a method or class' % name)
-#
-# def pause():
-#   """
-#   Pauses the output stream awaiting user feedback.
-#   """
-#   print("<Press enter/return to continue>")
-#   input()
-#
-#
-## code to handle timeouts
-import signal
-# class TimeoutFunctionException(Exception):
-#     """Exception to raise on a timeout"""
-#     pass
-#
-# class TimeoutFunction:
-#
-#     def __init__(self, function, timeout):
-#         "timeout must be at least 1 second. WHY??"
-#         self.timeout = timeout
-#         self.function = function
-#
-#     def handle_timeout(self, signum, frame):
-#         raise TimeoutFunctionException()
-#
-#     def __call__(self, *args):
-#         if not 'SIGALRM' in dir(signal):
-#             return self.function(*args)
-#         old = signal.signal(signal.SIGALRM, self.handle_timeout)
-#         signal.alarm(self.timeout)
-#         try:
-#             result = self.function(*args)
-#         finally:
-#             signal.signal(signal.SIGALRM, old)
-#         signal.alarm(0)
-#         return result
