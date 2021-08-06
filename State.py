@@ -1,6 +1,6 @@
 from constraint import *
 from Constants import *
-import Clothes
+import Item
 
 
 class State:
@@ -8,22 +8,41 @@ class State:
         self.shirt = shirt_
         self.pants = pants_
 
-    def get_shirt(self):
+    def getShirt(self):
         return self.shirt
 
-    def get_pants(self):
+    def getPants(self):
         return self.pants
 
-    def set_shirt(self, new_shirt: Shirt):
+    def setShirt(self, new_shirt: Shirt):
         self.shirt = new_shirt
 
-    def set_pants(self, new_pants: Pants):
+    def setPants(self, new_pants: Pants):
         self.pants = new_pants
 
-    def get_state(self):
+    def getState(self):
         return self.shirt, self.pants
 
     def is_state_terminal(self):
         return self.getShirt() is not None and self.getPants() is not None
 
+    def __eq__(self, other):
+        if (other == None):
+            return False
+        return (
+                self.getShirt() == other.getShirt() and self.getPants() == other.getPants())
+
+    def __hash__(self):
+        return id(self)
+
+    def __str__(self):
+        if (self.getShirt() is None):
+            if (self.getPants() is None):
+                return "None#None"
+            else:
+                return "None#" + self.getPants().__str__()
+        elif (self.getPants() is None):
+            return self.getShirt().__str__() + "#None"
+        else:
+            return self.getShirt().__str__() + "#" + self.getPants().__str__()
 
