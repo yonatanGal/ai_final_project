@@ -46,17 +46,17 @@ class Item():
     def getName(self):
         return self.name
 
-    def __eq__(self, other):
-        if other == None:
-            return False
-        return (
-                self.name == other.getName() and self.formality == other.getFormality() and
-                self.temperature_range[0] == other.getTemperture()[0] and
-                self.temperature_range[1] == other.getTemperture()[
-                    1] and self.color == other.getColor())
-
-    def __hash__(self):
-        return id(self)
+    # def __eq__(self, other):
+    #     if other == None:
+    #         return False
+    #     return (
+    #             self.name == other.getName() and self.formality == other.getFormality() and
+    #             self.temperature_range[0] == other.getTemperture()[0] and
+    #             self.temperature_range[1] == other.getTemperture()[
+    #                 1] and self.color == other.getColor())
+    #
+    # def __hash__(self):
+    #     return id(self)
 
 
 class Shirt(Item):
@@ -65,17 +65,20 @@ class Shirt(Item):
         super().__init__(name, formality, temperature_range, color)
         self.type = consts.SHIRT
 
-    def __eq__(self, other):
-        if other == None:
-            return False
-        return (
-                self.name == other.getName() and self.formality == other.getFormality() and
-                self.temperature_range[0] == other.getTemperture()[0] and
-                self.temperature_range[1] == other.getTemperture()[
-                    1] and self.color == other.getColor() and self.type == other.getType())
-
-    def __hash__(self):
-        return id(self)
+    # def __eq__(self, other):
+    #     if not other:
+    #         return False
+    #     try:
+    #         return (
+    #                 self.name == other.getName() and self.formality == other.getFormality() and
+    #                 self.temperature_range[0] == other.getTemperture()[0] and
+    #                 self.temperature_range[1] == other.getTemperture()[
+    #                     1] and self.color == other.getColor() and self.type == other.getType())
+    #     except:
+    #         print("couldnt compare Unassigned Variable")
+    #
+    # def __hash__(self):
+    #     return id(self)
 
     def __str__(self):
         return "{0},{1},({2},{3}),{4},{5}".format(self.name, self.formality,
@@ -93,17 +96,20 @@ class Pants(Item):
         super().__init__(name, formality, temperature_range, color)
         self.type = consts.PANTS
 
-    def __eq__(self, other):
-        if other == None:
-            return False
-        return (
-                self.name == other.getName() and self.formality == other.getFormality() and
-                self.temperature_range[0] == other.getTemperture()[0] and
-                self.temperature_range[1] == other.getTemperture()[
-                    1] and self.color == other.getColor() and self.type == other.getType())
-
-    def __hash__(self):
-        return id(self)
+    # def __eq__(self, other):
+    #     if other == None:
+    #         return False
+    #     try:
+    #         return (
+    #                 self.name == other.getName() and self.formality == other.getFormality() and
+    #                 self.temperature_range[0] == other.getTemperture()[0] and
+    #                 self.temperature_range[1] == other.getTemperture()[
+    #                     1] and self.color == other.getColor() and self.type == other.getType())
+    #     except:
+    #         print("couldnt compare Unassigned Variable")
+    #
+    # def __hash__(self):
+    #     return id(self)
 
     def getType(self):
         return self.type
