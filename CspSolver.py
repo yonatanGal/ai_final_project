@@ -1,6 +1,6 @@
 from constraint import *
 from Constants import *
-import Clothes
+import Item
 from util import *
 
 

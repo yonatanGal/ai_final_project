@@ -1,10 +1,10 @@
 from constraint import *
 from Constants import *
-import Clothes
+import Item
 
 
 class Good_Outfit:
-    def __init__(self, shirt_: Shirt, pants_: Pants):
+    def __init__(self, shirt_, pants_):
         self.shirt = shirt_
         self.pants = pants_
 

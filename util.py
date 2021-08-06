@@ -12,6 +12,7 @@ import heapq, random
 import numpy as np
 from Action import Action
 import State
+import Constants
 
 
 def formalDistance(state1: State, state2: State):
@@ -21,165 +22,138 @@ def formalDistance(state1: State, state2: State):
     formal2_shirt = state2.getShirt()
     formal2_pants = state2.getPants()
 
-    return (formal1_shirt - formal2_shirt) ** 2 + (
-                formal1_pants - formal2_pants) ** 2
+    shirtsReward = 0
+    pantsReward = 0
+    if formal1_shirt:
+        try:
+            shirtsReward = 1 / float((
+                                                 formal1_shirt.getFormality() - formal2_shirt.getFormality()) ** 2)
+        except ZeroDivisionError:
+            shirtsReward = 5 # todo: i want to increase reward when the formality is the same
+    if formal1_pants:
+        try:
+            pantsReward = 1 / float((
+                                                formal1_pants.getFormality() - formal2_pants.getFormality()) ** 2)
+        except ZeroDivisionError:
+            pantsReward = 5 # todo: i want to increase reward when the formality is the same
+    return shirtsReward + pantsReward
 
 
+def weatherDistance(state1: State, state2):
+    shirts_distance = 0
+    pants_distance = 0
 
-def weatherDistance(state1:State, state2):
-    temp1_shirt_range = state1.getShirt().getTemperture()
-    temp1_pants_range = state1.getPants().getTemperture()
-
-    temp2_shirt_range = state2.getShirt().getTemperture()
-    temp2_pants_range = state2.getPants().getTemperture()
-
-    shirts_distance = itemWeatherDistance(temp1_shirt_range,temp2_shirt_range)
-    pants_distance = itemWeatherDistance(temp1_pants_range, temp2_pants_range)
+    if (state1.getShirt()):
+        temp1_shirt_range = state1.getShirt().getTemperture()
+        temp2_shirt_range = state2.getShirt().getTemperture()
+        shirts_distance = itemWeatherDistance(temp1_shirt_range,
+                                              temp2_shirt_range)
+    if (state1.getPants()):
+        temp1_pants_range = state1.getPants().getTemperture()
+        temp2_pants_range = state2.getPants().getTemperture()
+        pants_distance = itemWeatherDistance(temp1_pants_range,
+                                             temp2_pants_range)
 
     return shirts_distance + pants_distance
 
+
 def itemWeatherDistance(temp1, temp2):
+    temp1_set = set(np.arange(temp1[0], temp1[1] + 1))
+    temp2_set = set(np.arange(temp2[0], temp2[1] + 1))
+    size_temp1 = len(temp1_set)
+    size_temp2 = len(temp2_set)
+    intersection = temp1_set.intersection(temp2_set)
+    if (intersection):
+        sizeIntersection = len(intersection)
+        minSize = min(size_temp1, size_temp2)
+        return float(sizeIntersection) / minSize
+    else:
+        avgDiff = 0
+        avgTemp1 = (temp1[0] + temp1[1]) / 2
+        avgTemp2 = (temp2[0] + temp2[1]) / 2
+    try:
+        avgDiff = 1 / abs(float(avgTemp1) - avgTemp2)
+    except ZeroDivisionError:
+        avgDiff = 5 # todo: i want to increase reward when the weather is the same
+    return avgDiff
 
-  temp1_set = set(np.arange(temp1[0], temp1[1] + 1))
-  temp2_set = set(np.arange(temp2[0], temp2[1] + 1))
-  size_temp1 = len(temp1_set)
-  size_temp2 = len(temp2_set)
-  intersection = temp1_set.intersection(temp2_set)
-  if (intersection):
-    sizeIntersection = len(intersection)
-    minSize = min(size_temp1, size_temp2)
-    return sizeIntersection / minSize
-  else:
-    avgTemp1 = (temp1[0] + temp1[1]) / 2
-    avgTemp2 = (temp2[0] + temp2[1]) / 2
-    return abs(1/(avgTemp1-avgTemp2))
 
-def colorDistanceWrapperLearning(state1,state2):
-  shirt1_color = state1.getShirt().getColor()
-  shirt2_color = state2.getShirt().getColor()
+def colorDistanceWrapperLearning(state1, state2):
+    shirts_distance = 0
+    pants_distance = 0
+    if (state1.getShirt()):
+        shirt1_color = state1.getShirt().getColor()
+        shirt2_color = state2.getShirt().getColor()
+        shirts_distance = colors_distance(shirt1_color, shirt2_color)
+    if (state1.getPants()):
+        pants1_color = state1.getPants().getColor()
+        pants2_color = state2.getPants().getColor()
+        pants_distance = colors_distance(pants1_color, pants2_color)
 
-  pants1_color = state1.getpants().getColor()
-  pants2_color = state2.getpants().getColor()
+    return shirts_distance + pants_distance
 
-  shirts_distance = colors_distance(shirt1_color,shirt2_color)
-  pants_distance = colors_distance(pants1_color, pants2_color)
-
-  return shirts_distance + pants_distance
 
 def colors_distance(color1, color2):
     (r1, g1, b1) = color1
     (r2, g2, b2) = color2
-    return (r1 - r2)**2 + (g1 - g2)**2 + (b1 - b2)**2
+    colorDiff = 0
+    try:
+        colorDiff = 1 / float((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2)
+    except ZeroDivisionError:
+        colorDiff = 5 # todo: i want to increase reward when the color is the same
+    return colorDiff
 
 
 def get_all_actions(db):
     all_pos_actions = []
     for item in db:
-        action = Action(item, True)
-        all_pos_actions.append(Action())
+        all_pos_actions.append(Action(item, False))
         all_pos_actions.append(Action(item, True))
     return all_pos_actions
 
+def initQvalues(db_shirts, db_pants, all_states: dict):
+    allActions = get_all_actions(db_shirts+db_pants)
+    db_shirts = [None] + db_shirts
+    db_pants = [None] + db_pants
+    for shirt in db_shirts:
+        for pants in db_pants:
+            state = State.State(shirt,pants)
+            for action in getLegalActions(state,allActions):
+                all_states[(state,action)] = 0
+    return all_states
+    # def chooseFromDistribution( distribution ):
 
-# """
-#  Data structures useful for implementing SearchAgents
-# """
-#
-# class Stack:
-#   "A container with a last-in-first-out (LIFO) queuing policy."
-#   def __init__(self):
-#     self.list = []
-#
-#   def push(self,item):
-#     "Push 'item' onto the stack"
-#     self.list.append(item)
-#
-#   def pop(self):
-#     "Pop the most recently pushed item from the stack"
-#     return self.list.pop()
-#
-#   def isEmpty(self):
-#     "Returns true if the stack is empty"
-#     return len(self.list) == 0
-#
-# class Queue:
-#   "A container with a first-in-first-out (FIFO) queuing policy."
-#   def __init__(self):
-#     self.list = []
-#
-#   def push(self,item):
-#     "Enqueue the 'item' into the queue"
-#     self.list.insert(0,item)
-#
-#   def pop(self):
-#     """
-#       Dequeue the earliest enqueued item still in the queue. This
-#       operation removes the item from the queue.
-#     """
-#     return self.list.pop()
-#
-#   def isEmpty(self):
-#     "Returns true if the queue is empty"
-#     return len(self.list) == 0
-#
-# class PriorityQueue:
-#   """
-#     Implements a priority queue data structure. Each inserted item
-#     has a priority associated with it and the client is usually interested
-#     in quick retrieval of the lowest-priority item in the queue. This
-#     data structure allows O(1) access to the lowest-priority item.
-#
-#     Note that this PriorityQueue does not allow you to change the priority
-#     of an item.  However, you may insert the same item multiple times with
-#     different priorities.
-#   """
-#   def  __init__(self):
-#     self.heap = []
-#     self.init = False
-#
-#   def push(self, item, priority):
-#     if not self.init:
-#       self.init = True
-#       try:
-#         item < item
-#       except:
-#         item.__class__.__lt__ =  lambda x, y:  (True)
-#     pair = (priority,item)
-#     heapq.heappush(self.heap,pair)
-#
-#   def pop(self):
-#       (priority,item) = heapq.heappop(self.heap)
-#       return item
-#
-#   def isEmpty(self):
-#     return len(self.heap) == 0
-#
-# class PriorityQueueWithFunction(PriorityQueue):
-#   """
-#   Implements a priority queue with the same push/pop signature of the
-#   Queue and the Stack classes. This is designed for drop-in replacement for
-#   those two classes. The caller has to provide a priority function, which
-#   extracts each item's priority.
-#   """
-#   def  __init__(self, priorityFunction):
-#     "priorityFunction (item) -> priority"
-#     self.priorityFunction = priorityFunction      # store the priority function
-#     PriorityQueue.__init__(self)        # super-class initializer
-#
-#   def push(self, item):
-#     "Adds an item to the queue with priority from the priority function"
-#     PriorityQueue.push(self, item, self.priorityFunction(item))
-#
-#
-# def manhattanDistance( xy1, xy2 ):
-#   "Returns the Manhattan distance between points xy1 and xy2"
-#   return abs( xy1[0] - xy2[0] ) + abs( xy1[1] - xy2[1] )
+def getLegalActions(state,allActions):
+    # todo: checks for all possible actions regarding the given state
+    shirt = state.getState()[0]
+    pants = state.getState()[1]
+    legalActions = []
+    if (shirt is None):
+        if (pants is None):
+            for action in allActions:
+                if action.get_wants_to_wear():
+                    legalActions.append(action)
+        else:
+            # get all shirts putting and one pants removing
+            for action in allActions:
+                if action.get_item().getType() == Constants.SHIRT and action.get_wants_to_wear():
+                    legalActions.append(action)
+                elif action.get_item() == state.getPants() and not action.get_wants_to_wear():
+                    legalActions.append(action)
 
-"""
-  Data structures and functions useful for various course projects
-  
-  The search project should not need anything below this line.
-"""
+    elif (pants is None):
+        # get all pants puting and one shirt removing
+        for action in allActions:
+            if action.get_item().getType() == Constants.PANTS and action.get_wants_to_wear():
+                legalActions.append(action)
+            elif action.get_item() == state.getShirt() and not action.get_wants_to_wear():
+                legalActions.append(action)
+    else:
+        # get all removing
+        for action in allActions:
+            if action.get_item() == state.getShirt() or action.get_item() == state.getPants():
+                legalActions.append(action)
+    return legalActions
 
 
 class Counter(dict):
@@ -468,8 +442,6 @@ def getProbability(value, distribution, values):
 def flipCoin(p):
     r = random.random()
     return r < p
-
-    # def chooseFromDistribution( distribution ):
 
 
 #   "Takes either a counter or a list of (prob, key) pairs and samples"
