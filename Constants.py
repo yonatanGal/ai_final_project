@@ -145,6 +145,21 @@ UNMATCHINGCOLORS = {Color.BLUE: {Color.RED,
                     Color.WHITE: {}
                     }
 
+db_shoes = [Shoes("Black Sneakers", 5, (7, 30), Color.BLACK),
+            Shoes("Winter Boots", 4, (-5, 12), Color.GREEN),
+            Shoes("Nike Sports Shoes", 2, (8, 30), Color.WHITE),
+            Shoes("Slippers", 2, (22, 36), Color.BLUE),
+            Shoes("Home Slippers", 1, (3, 22), Color.PINK),
+            Shoes("Oxford Shoes", 10, (2, 29), Color.BROWN),
+            Shoes("High Heels Shoes", 9, (12, 30), Color.RED),
+            Shoes("Blundstone", 4, (2, 29), Color.BROWN),
+            Shoes("Shoresh Sandals", 3, (20, 32), Color.PURPLE),
+            Shoes("Elegant Sandals", 8, (22, 35), Color.BLACK),
+            Shoes("Elegant Sandals", 8, (22, 35), Color.WHITE),
+            Shoes("Blue Sneakers", 5, (7, 30), Color.BLUE),
+            Shoes("Nike Air", 5, (7, 30), Color.WHITE),
+            ]
+
 
 db_shirts = [Shirt("Black T Shirt", 3, (18, 30), Color.BLACK),
              Shirt("Buttoned Long Shirt", 5, (5, 20), Color.GREEN),
