@@ -127,7 +127,9 @@ db_shirts = [Shirt("my_black_T_shirt", 3, (18, 30), Color.BLACK),
              Shirt("blouse", 7, (15, 35), Color.WHITE),
              Shirt("sport_tshirt", 1, (15, 40), Color.BLUE),
              Shirt("pyjama", 0, (12, 22), Color.PINK),
-             Shirt("thermal shirt", 3, (-5, 12), Color.BLACK)]
+             Shirt("thermal shirt", 3, (-5, 12), Color.BLACK),
+             Shirt("thermal shirt", 3, (-5, 12), Color.BLACK),
+             ]
 
 
 db_pants = [Pants("jeans_long", 5, (-5, 25), Color.BLACK),
