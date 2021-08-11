@@ -8,7 +8,7 @@ import State
 import Good_Outfit
 import qLearningAgent
 
-def learnAndPredict(db_shirts, db_pants, possibleSolutions, goodOutfit):
+def learnAndPredict(db_shirts, db_pants, db_shoes,possibleSolutions, goodOutfit):
     """
     create and train a qLearning agent to suggest an outfit that is:
     1. in the possibleSolutions extracted from the CSP solver
@@ -20,10 +20,10 @@ def learnAndPredict(db_shirts, db_pants, possibleSolutions, goodOutfit):
     :param goodOutfit:
     :return:
     """
-    qLearner = qLearningAgent.QLearningAgent(db_shirts, db_pants,
+    qLearner = qLearningAgent.QLearningAgent(db_shirts, db_pants,db_shoes,
                                              possibleSolutions, goodOutfit)
     qLearner.learn()
-    s = State.State(None, None)
+    s = State.State(None, None,None)
     while not qLearner.isTerminalState(s):
         action1 = qLearner.getPolicy(s)
         s = qLearner.apply_action(s, action1)
@@ -52,7 +52,7 @@ def main():
     # solve the csp problem to get all possible solutions that fulfill the constraints and the user needs
     problem = Problem()
     try:
-        createCspSolver(problem, res_db_shirts, res_db_pants)
+        createCspSolver(problem, res_db_shirts, res_db_pants,res_db_shoes)
     except ValueError as e:
         print("Error! \n" + str(e))
         return

@@ -197,99 +197,101 @@ class QLearningAgent():
         return legalActions
 
 
-def getReward(self, state, goodOutfit, action):
-    # if (self.isTerminalState(state)):
-    #     return 1
-    if (not action.get_wants_to_wear()):
-        return -10
-    formalityReward = util.formalDistance(state, goodOutfit)
-    weatherDistance = util.weatherDistance(state, goodOutfit)
-    color_Distance = util.colorDistanceWrapperLearning(state, goodOutfit)
-    return formalityReward + weatherDistance + color_Distance
+    def getReward(self, state, goodOutfit, action):
+        # if (self.isTerminalState(state)):
+        #     return 1
+        if (not action.get_wants_to_wear()):
+            return -10
+        formalityReward = util.formalDistance(state, goodOutfit)
+        weatherDistance = util.weatherDistance(state, goodOutfit)
+        color_Distance = util.colorDistanceWrapperLearning(state, goodOutfit)
+        return formalityReward + weatherDistance + color_Distance
 
 
-def apply_action(self, state, action):
-    isWear = action.get_wants_to_wear()
-    itemType = action.get_item().getType()
-    state = copy.deepcopy(state)
-    if isWear:
-        if itemType == consts.SHIRT:
-            state.setShirt(action.get_item())
-        elif itemType == consts.PANTS:
-            state.setPants(action.get_item())
+    def apply_action(self, state, action):
+        isWear = action.get_wants_to_wear()
+        itemType = action.get_item().getType()
+        state = copy.deepcopy(state)
+        if isWear:
+            if itemType == consts.SHIRT:
+                state.setShirt(action.get_item())
+            elif itemType == consts.PANTS:
+                state.setPants(action.get_item())
+            else:
+                state.setShoes(action.get_item())
         else:
-            state.setShoes(action.get_item())
-    else:
-        if itemType == consts.SHIRT:
-            state.setShirt(None)
-        elif itemType == consts.PANTS:
-            state.setPants(None)
+            if itemType == consts.SHIRT:
+                state.setShirt(None)
+            elif itemType == consts.PANTS:
+                state.setPants(None)
+            else:
+                state.setShoes(None)
+
+        return state
+
+
+    def getAction(self, state):
+        """
+          Compute the action to take in the current state.  With
+          probability self.epsilon, we should take a random action and
+          take the best policy action otherwise.  Note that if there are
+          no legal actions, which is the case at the terminal state, you
+          should choose None as the action.
+
+          HINT: You might want to use util.flipCoin(prob)
+          HINT: To pick randomly from a list, use random.choice(list)
+        """
+        # Pick Action
+        legalActions = self.getLegalActions(state)
+        action = None
+        if (not legalActions):
+            return action
+        if (util.flipCoin(self.epsilon)):
+            action = random.choice(legalActions)
         else:
-            state.setShoes(None)
-
-    return state
-
-
-def getAction(self, state):
-    """
-      Compute the action to take in the current state.  With
-      probability self.epsilon, we should take a random action and
-      take the best policy action otherwise.  Note that if there are
-      no legal actions, which is the case at the terminal state, you
-      should choose None as the action.
-
-      HINT: You might want to use util.flipCoin(prob)
-      HINT: To pick randomly from a list, use random.choice(list)
-    """
-    # Pick Action
-    legalActions = self.getLegalActions(state)
-    action = None
-    if (not legalActions):
+            action = self.getPolicy(state)
         return action
-    if (util.flipCoin(self.epsilon)):
-        action = random.choice(legalActions)
-    else:
-        action = self.getPolicy(state)
-    return action
 
 
-def update(self, state, action, nextState, reward):
-    """
-      The parent class calls this to observe a
-      state = action => nextState and reward transition.
-      You should do your Q-Value update here
+    def update(self, state, action, nextState, reward):
+        """
+          The parent class calls this to observe a
+          state = action => nextState and reward transition.
+          You should do your Q-Value update here
 
-      NOTE: You should never call this function,
-      it will be called on your behalf
-    """
-    key = self.stateActionToKey(state, action)
-    self.qValue[key] = self.qValue[key] + self.learningRate * (
-            reward + self.discount * self.getValue(
-        nextState) - self.qValue[key])
-
-
-def learn(self):
-    for epoch in range(self.numTraining):
-        s = State.State(None, None, None)
-        # counter = 0
-        while (not self.isTerminalState(s)):
-            a = self.getAction(s)
-            nextState = self.apply_action(s, a)
-            self.update(s, a, nextState,
-                        self.getReward(nextState, self.goodOutFit, a))
-            s = nextState
-            # counter += 1
+          NOTE: You should never call this function,
+          it will be called on your behalf
+        """
+        key = self.stateActionToKey(state, action)
+        self.qValue[key] = self.qValue[key] + self.learningRate * (
+                reward + self.discount * self.getValue(
+            nextState) - self.qValue[key])
 
 
-def findMaxAction(self, actions, state):
-    maxQValue = -np.inf
-    maxAction = None
-    for a in actions:
-        if self.getQValue(state, a) > maxQValue:
-            maxQValue = self.getQValue(state, a)
-            maxAction = a
-    return maxAction
+    def learn(self):
+        for epoch in range(self.numTraining):
+            s = State.State(None, None, None)
+            # counter = 0
+            while (not self.isTerminalState(s)):
+                a = self.getAction(s)
+                if (a is None):
+                    return
+                nextState = self.apply_action(s, a)
+                self.update(s, a, nextState,
+                            self.getReward(nextState, self.goodOutFit, a))
+                s = nextState
+                # counter += 1
 
 
-def stateActionToKey(self, state, action):
-    return state.__str__() + "#" + action.__str__()
+    def findMaxAction(self, actions, state):
+        maxQValue = -np.inf
+        maxAction = None
+        for a in actions:
+            if self.getQValue(state, a) > maxQValue:
+                maxQValue = self.getQValue(state, a)
+                maxAction = a
+        return maxAction
+
+
+    def stateActionToKey(self, state, action):
+        return state.__str__() + "#" + action.__str__()

@@ -23,7 +23,7 @@ def createCspSolver(problem, db_shirts, db_pants,db_shoes):
 
     problem.addVariable("shirt", db_shirts)
     problem.addVariable("pants", db_pants)
-    problem.addConstraint("shoes", db_shoes)
+    problem.addVariable("shoes", db_shoes)
     # colors constraints
     problem.addConstraint(areColorsMatch, ("shirt", "pants"))
     problem.addConstraint(areColorsMatch, ("shirt", "shoes"))

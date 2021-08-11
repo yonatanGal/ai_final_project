@@ -1,7 +1,7 @@
 import math
 from enum import Enum
 import numpy as np
-from Item import Shirt,Pants
+from Item import Shirt, Pants, Shoes
 from Action import Action
 from Good_Outfit import Good_Outfit
 import State
@@ -10,6 +10,7 @@ THRESHOLD = 1
 SHIRT = "shirt"
 PANTS = "pants"
 SHOES = "shoes"
+
 
 class Color():
     #     BLUE = 'blue'
@@ -39,29 +40,49 @@ class Color():
     WHITE = (255, 255, 255)
 
 
-color_lst = [Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.BROWN, Color.ORANGE, Color.PINK, Color.PURPLE,
+color_lst = [Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.BROWN,
+             Color.ORANGE, Color.PINK, Color.PURPLE,
              Color.GRAY, Color.BLACK, Color.WHITE]
 
-CELEBS = {'Justin Bieber': State.State(Shirt("Kind of long shirt", 4, (5, 24), Color.WHITE),
-                                       Pants("Long loose pants", 4, (-5, 25), Color.RED)),
-          'Noa Kirel': State.State(Shirt("Fila sports shirt", 3, (15, 35), Color.BLACK),
-                                   Pants("Short sports pants", 3, (20, 35), Color.BLACK)),
-          'Yuval Kaspit': State.State(Shirt("Loose long sleeves", 6, (15, 30), Color.YELLOW),
-                                      Pants("Loose long pants", 6, (20, 30), Color.WHITE)),
-          'Barack Obama': State.State(Shirt("formal suite", 10, (8, 25), Color.BLUE),
-                                      Pants("formal suite pants", 10, (8, 25), Color.BLUE)),
-          'Ofer Shechter': State.State(Shirt("casual T shirt", 5, (12, 30), Color.BLUE),
-                                       Pants("casual jeans", 6, (13, 28), Color.GRAY)),
-          'Gal Gadot': State.State(Shirt("Jeans Tank top", 7, (15, 30), Color.BLUE),
-                                   Pants("Short jeans", 6, (13, 32), Color.BLUE)),
-          'Morgan Freeman': State.State(Shirt("Buttoned shirt", 9, (9, 27), Color.GRAY),
-                                        Pants("Tailored pants", 9, (9, 27), Color.BLACK)),
-          'Arthur Read': State.State(Shirt("Sweater", 9, (9, 27), Color.YELLOW),
-                                     Pants("Jeans", 9, (9, 27), Color.BLUE)),
+CELEBS = {'Justin Bieber': State.State(
+    Shirt("Kind of long shirt", 4, (5, 24), Color.WHITE),
+    Pants("Long loose pants", 4, (-5, 25), Color.RED),
+    Shoes("shoes", 6, (12, 30), Color.BLACK)),
+          'Noa Kirel': State.State(
+              Shirt("Fila sports shirt", 3, (15, 35), Color.BLACK),
+              Pants("Short sports pants", 3, (20, 35), Color.BLACK),
+              Shoes("shoes", 6, (12, 30), Color.BLACK)),
+          'Yuval Kaspit': State.State(
+              Shirt("Loose long sleeves", 6, (15, 30), Color.YELLOW),
+              Pants("Loose long pants", 6, (20, 30), Color.WHITE),
+              Shoes("shoes", 6, (12, 30), Color.BLACK)),
+          'Barack Obama': State.State(
+              Shirt("formal suite", 10, (8, 25), Color.BLUE),
+              Pants("formal suite pants", 10, (8, 25), Color.BLUE),
+              Shoes("shoes", 6, (12, 30), Color.BLACK)),
+          'Ofer Shechter': State.State(
+              Shirt("casual T shirt", 5, (12, 30), Color.BLUE),
+              Pants("casual jeans", 6, (13, 28), Color.GRAY),
+              Shoes("shoes", 6, (12, 30), Color.BLACK)),
+          'Gal Gadot': State.State(
+              Shirt("Jeans Tank top", 7, (15, 30), Color.BLUE),
+              Pants("Short jeans", 6, (13, 32), Color.BLUE),
+              Shoes("shoes", 6, (12, 30), Color.BLACK)),
+          'Morgan Freeman': State.State(
+              Shirt("Buttoned shirt", 9, (9, 27), Color.GRAY),
+              Pants("Tailored pants", 9, (9, 27), Color.BLACK),
+              Shoes("shoes", 6, (12, 30), Color.BLACK)),
+          'Arthur Read': State.State(
+              Shirt("Sweater", 9, (9, 27), Color.YELLOW),
+              Pants("Jeans", 9, (9, 27), Color.BLUE),
+              Shoes("shoes", 6, (12, 30), Color.BLACK)),
           'Or Shpitz': State.State(Shirt("T shirt", 5, (12, 30), Color.PINK),
-                                   Pants("Loose Pants", 7, (9, 27), Color.WHITE)),
+                                   Pants("Loose Pants", 7, (9, 27),
+                                         Color.WHITE),
+                                   Shoes("shoes", 6, (12, 30), Color.BLACK)),
           'Assi Azar': State.State(Shirt("Sweater", 5, (8, 25), Color.PURPLE),
-                                   Pants("Jeans", 7, (9, 29), Color.BLUE)),
+                                   Pants("Jeans", 7, (9, 29), Color.BLUE),
+                                   Shoes("shoes", 6, (12, 30), Color.BLACK)),
 
           }
 
@@ -160,7 +181,6 @@ db_shoes = [Shoes("Black Sneakers", 5, (7, 30), Color.BLACK),
             Shoes("Nike Air", 5, (7, 30), Color.WHITE),
             ]
 
-
 db_shirts = [Shirt("Black T Shirt", 3, (18, 30), Color.BLACK),
              Shirt("Buttoned Long Shirt", 5, (5, 20), Color.GREEN),
              Shirt("Blouse", 7, (15, 35), Color.WHITE),
@@ -171,10 +191,9 @@ db_shirts = [Shirt("Black T Shirt", 3, (18, 30), Color.BLACK),
              Shirt("Jeans Tank Top", 7, (15, 30), Color.BLUE),
              Shirt("American T Shirt", 4, (5, 28), Color.PURPLE),
              Shirt("Buttoned Short Shirt", 6, (21, 35), Color.ORANGE),
-             Shirt("Sweater", 3, (-5,15), Color.YELLOW),
-             Shirt("Formal Suite Shirt", 10, (8,25), Color.BLUE)
+             Shirt("Sweater", 3, (-5, 15), Color.YELLOW),
+             Shirt("Formal Suite Shirt", 10, (8, 25), Color.BLUE)
              ]
-
 
 db_pants = [Pants("Long Jeans", 5, (-5, 25), Color.BLACK),
             Pants("Tailored Pants", 9, (-5, 25), Color.BROWN),
@@ -182,7 +201,7 @@ db_pants = [Pants("Long Jeans", 5, (-5, 25), Color.BLACK),
             Pants("Short Skirt", 7, (18, 35), Color.WHITE),
             Pants("Business Casual Pants", 6, (10, 30), Color.YELLOW),
             Pants("Thermal Pants", 3, (-5, 13), Color.ORANGE),
-            Pants("Formal Suite Shirt", 10, (8,25), Color.BLUE),
+            Pants("Formal Suite Shirt", 10, (8, 25), Color.BLUE),
             Pants("Long loose pants", 4, (-5, 25), Color.RED),
             Pants("Casual Jeans", 6, (13, 28), Color.GRAY),
             Pants("Short Jeans", 6, (13, 32), Color.BLUE),
