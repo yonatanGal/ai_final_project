@@ -31,13 +31,13 @@ def learnAndPredict(db_shirts, db_pants, possibleSolutions, goodOutfit):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--temperature", help="what is the temperature today?",
-                        default=10, type=int, choices=range(-5, 36))
+                        default=35, type=int, choices=range(-5, 36))
     parser.add_argument("--formality",
                         help="rate the formality of the occasion, between 1-10.",
-                        default=5, type=int, choices=range(1, 11))
+                        default=8, type=int, choices=range(1, 11))
     parser.add_argument("--dressLike",
                         help=f"Like who would like to dress today? {CELEBS.keys()}",
-                        default="Justin Bieber", type=str, choices=CELEBS.keys())
+                        default="Barack Obama", type=str, choices=CELEBS.keys())
 
     args = parser.parse_args()
     temperature = args.temperature

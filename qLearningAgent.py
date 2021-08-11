@@ -119,8 +119,8 @@ class QLearningAgent():
         return legalActions
 
     def getReward(self, state, goodOutfit, action):
-        if (self.isTerminalState(state)):
-            return 1
+        # if (self.isTerminalState(state)):
+        #     return 1
         if (not action.get_wants_to_wear()):
             return -10
         formalityReward = util.formalDistance(state, goodOutfit)
