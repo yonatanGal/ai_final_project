@@ -35,10 +35,14 @@ def main():
     parser.add_argument("--formality",
                         help="rate the formality of the occasion, between 1-10.",
                         default=5, type=int, choices=range(1, 11))
+    parser.add_argument("--dressLike",
+                        help=f"Like who would like to dress today? {CELEBS.keys()}",
+                        default="Justin Bieber", type=str, choices=CELEBS.keys())
 
     args = parser.parse_args()
     temperature = args.temperature
     formality = args.formality
+    dressLike = args.dressLike
 
     # filter the outfits that meet the temperature and the formality the user has chosen
     res_db_shirts = Item.filter_db(int(temperature), int(formality), db_shirts)
@@ -57,9 +61,10 @@ def main():
         solutions_list.append((sol['shirt'], sol['pants']))
 
     # an example for a good out fit to dress like
-    goodOutfit = State.State(
-        Shirt("kind of long shirt", 3, (5, 20), Color.GREEN),
-        Pants("jeans_long", 5, (-5, 25), Color.BLACK))
+    # goodOutfit = State.State(
+    #     Shirt("kind of long shirt", 3, (5, 20), Color.GREEN),
+    #     Pants("jeans_long", 5, (-5, 25), Color.BLACK))
+    goodOutfit  = CELEBS[dressLike]
     # train the qLearner and suggest a solution meeting all constraints and as close as it can to the "good" outfit
     finalState = learnAndPredict(res_db_shirts, res_db_pants, solutions_list,
                                  goodOutfit)
