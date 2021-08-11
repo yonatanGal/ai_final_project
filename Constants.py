@@ -61,6 +61,9 @@ CELEBS = {'Justin Bieber': State.State(Shirt("Kind of long shirt", 4, (5, 24), C
                                      Pants("Jeans", 9, (9, 27), Color.BLUE)),
           'Or Shpitz': State.State(Shirt("T shirt", 5, (12, 30), Color.PINK),
                                    Pants("Loose Pants", 7, (9, 27), Color.WHITE)),
+          'Assi Azar': State.State(Shirt("Sweater", 5, (8, 25), Color.PURPLE),
+                                   Pants("Jeans", 7, (9, 29), Color.BLUE)),
+
           }
 
 UNMATCHINGCOLORS = {Color.BLUE: {Color.RED,
