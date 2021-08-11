@@ -122,22 +122,28 @@ UNMATCHINGCOLORS = {Color.BLUE: {Color.RED,
                     }
 
 
-db_shirts = [Shirt("my_black_T_shirt", 3, (18, 30), Color.BLACK),
-             Shirt("button long shirt", 5, (5, 20), Color.GREEN),
-             Shirt("blouse", 7, (15, 35), Color.WHITE),
-             Shirt("sport_tshirt", 1, (15, 40), Color.BLUE),
-             Shirt("pyjama", 0, (12, 22), Color.PINK),
-             Shirt("thermal shirt", 3, (-5, 12), Color.BLACK),
-             Shirt("thermal shirt", 3, (-5, 12), Color.BLACK),
+db_shirts = [Shirt("Black T Shirt", 3, (18, 30), Color.BLACK),
+             Shirt("Buttoned Long Shirt", 5, (5, 20), Color.GREEN),
+             Shirt("Blouse", 7, (15, 35), Color.WHITE),
+             Shirt("Sport T Shirt", 2, (15, 36), Color.BLUE),
+             Shirt("Pyjama", 1, (12, 22), Color.PINK),
+             Shirt("Thermal Shirt", 3, (-5, 12), Color.BLACK),
+             Shirt("Casual T Shirt", 5, (12, 30), Color.BLUE),
+             Shirt("Jeans Tank Top", 7, (15, 30), Color.BLUE),
+             Shirt("American T Shirt", 4, (5, 28), Color.PURPLE),
+             Shirt("Buttoned Short Shirt", 6, (21, 35), Color.ORANGE),
+             Shirt("Sweater", 3, (-5,15), Color.YELLOW),
+             Shirt("Formal Suite Shirt", 10, (8,25), Color.BLUE)
              ]
 
 
-db_pants = [Pants("jeans_long", 5, (-5, 25), Color.BLACK),
-            Pants("tailored pants", 9, (-5, 25), Color.BROWN),
+db_pants = [Pants("Long Jeans", 5, (-5, 25), Color.BLACK),
+            Pants("Tailored Pants", 9, (-5, 25), Color.BROWN),
             Pants("tights", 2, (2, 27), Color.GRAY),
             Pants("short skirt", 7, (18, 35), Color.WHITE),
             Pants("business casual pants", 6, (10, 30), Color.YELLOW),
-            Pants("thermal pants", 3, (-5, 13), Color.ORANGE)]
+            Pants("thermal pants", 3, (-5, 13), Color.ORANGE),
+            Pants("Formal Suite Shirt", 10, (8,25), Color.BLUE)]
 
 # db_shirts = [Shirt("my_black_T_shirt", 3, (18, 30), Color.BLACK),
 #              Shirt("button long shirt", 5, (5, 20), Color.GREEN),
