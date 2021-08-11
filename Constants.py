@@ -181,14 +181,14 @@ db_pants = [Pants("Long Jeans", 5, (-5, 25), Color.BLACK),
 #             Pants("tailored pants", 9, (-5, 25), Color.BROWN),
 #             Pants("tights", 2, (2, 27), Color.GRAY)]
 
-db_good_outfit = [Good_Outfit(Shirt("cool button shirt", formality=6, temperature_range=(5, 25), color=Color.BLACK),
-                              Pants("tights black pants", formality=5, temperature_range= (8, 28), color= Color.BLACK)),
-                  Good_Outfit(Shirt("pyjama shirt", formality=0, temperature_range=(15, 28), color=Color.BLACK),
-                              Pants("pyjama pants", formality=0, temperature_range=(15, 28), color=Color.BLACK)),
-                  Good_Outfit(Shirt("black sport hoodie", formality=2, temperature_range=(2, 20), color=Color.BLACK),
-                              Pants("black sport training", formality=2, temperature_range=(2, 20), color=Color.BLACK)),
-                  Good_Outfit(Shirt("silk shirt", formality=9, temperature_range=(10, 28), color=Color.BLACK),
-                              Pants("silk tailored pants", formality=9, temperature_range=(10, 28), color=Color.BLACK)),
-                  Good_Outfit(Shirt("cotton black shirt", formality=3, temperature_range=(5, 18), color=Color.BLACK),
-                              Pants("black jeans pants", formality=4, temperature_range=(5, 18), color=Color.BLACK))
-                  ]
+# db_good_outfit = [Good_Outfit(Shirt("cool button shirt", formality=6, temperature_range=(5, 25), color=Color.BLACK),
+#                               Pants("tights black pants", formality=5, temperature_range= (8, 28), color= Color.BLACK)),
+#                   Good_Outfit(Shirt("pyjama shirt", formality=0, temperature_range=(15, 28), color=Color.BLACK),
+#                               Pants("pyjama pants", formality=0, temperature_range=(15, 28), color=Color.BLACK)),
+#                   Good_Outfit(Shirt("black sport hoodie", formality=2, temperature_range=(2, 20), color=Color.BLACK),
+#                               Pants("black sport training", formality=2, temperature_range=(2, 20), color=Color.BLACK)),
+#                   Good_Outfit(Shirt("silk shirt", formality=9, temperature_range=(10, 28), color=Color.BLACK),
+#                               Pants("silk tailored pants", formality=9, temperature_range=(10, 28), color=Color.BLACK)),
+#                   Good_Outfit(Shirt("cotton black shirt", formality=3, temperature_range=(5, 18), color=Color.BLACK),
+#                               Pants("black jeans pants", formality=4, temperature_range=(5, 18), color=Color.BLACK))
+#                   ]

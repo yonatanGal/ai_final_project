@@ -1,4 +1,5 @@
 # from Item import *
+from constraint import *
 from Constants import *
 from CspSolver import *
 import argparse
