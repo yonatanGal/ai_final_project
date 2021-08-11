@@ -4,7 +4,7 @@ import numpy as np
 from Item import Shirt,Pants
 from Action import Action
 from Good_Outfit import Good_Outfit
-
+import State
 
 THRESHOLD = 1
 SHIRT = "shirt"
@@ -162,11 +162,16 @@ db_shirts = [Shirt("Black T Shirt", 3, (18, 30), Color.BLACK),
 
 db_pants = [Pants("Long Jeans", 5, (-5, 25), Color.BLACK),
             Pants("Tailored Pants", 9, (-5, 25), Color.BROWN),
-            Pants("tights", 2, (2, 27), Color.GRAY),
-            Pants("short skirt", 7, (18, 35), Color.WHITE),
-            Pants("business casual pants", 6, (10, 30), Color.YELLOW),
-            Pants("thermal pants", 3, (-5, 13), Color.ORANGE),
-            Pants("Formal Suite Shirt", 10, (8,25), Color.BLUE)]
+            Pants("Tights", 2, (2, 27), Color.GRAY),
+            Pants("Short Skirt", 7, (18, 35), Color.WHITE),
+            Pants("Business Casual Pants", 6, (10, 30), Color.YELLOW),
+            Pants("Thermal Pants", 3, (-5, 13), Color.ORANGE),
+            Pants("Formal Suite Shirt", 10, (8,25), Color.BLUE),
+            Pants("Long loose pants", 4, (-5, 25), Color.RED),
+            Pants("Casual Jeans", 6, (13, 28), Color.GRAY),
+            Pants("Short Jeans", 6, (13, 32), Color.BLUE),
+            Pants("Short sports pants", 3, (20, 35), Color.BLACK)
+            ]
 
 # db_shirts = [Shirt("my_black_T_shirt", 3, (18, 30), Color.BLACK),
 #              Shirt("button long shirt", 5, (5, 20), Color.GREEN),
