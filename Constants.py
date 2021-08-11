@@ -41,6 +41,29 @@ class Color():
 color_lst = [Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.BROWN, Color.ORANGE, Color.PINK, Color.PURPLE,
              Color.GRAY, Color.BLACK, Color.WHITE]
 
+CELEBS = {'Justin Bieber': State.State(Shirt("Kind of long shirt", 4, (5, 24), Color.WHITE),
+                                       Pants("Long loose pants", 4, (-5, 25), Color.RED)),
+          'Noa Kirel': State.State(Shirt("Fila sports shirt", 3, (15, 35), Color.BLACK),
+                                   Pants("Short sports pants", 3, (20, 35), Color.BLACK)),
+          'Yuval Kaspit': State.State(Shirt("Loose long sleeves", 6, (15, 30), Color.YELLOW),
+                                      Pants("Loose long pants", 6, (20, 30), Color.WHITE)),
+          'Barack Obama': State.State(Shirt("formal suite", 10, (8, 25), Color.BLUE),
+                                      Pants("formal suite pants", 10, (8, 25), Color.BLUE)),
+          'Ofer Shechter': State.State(Shirt("casual T shirt", 5, (12, 30), Color.BLUE),
+                                       Pants("casual jeans", 6, (13, 28), Color.GRAY)),
+          'Gal Gadot': State.State(Shirt("Jeans Tank top", 7, (15, 30), Color.BLUE),
+                                   Pants("Short jeans", 6, (13, 32), Color.BLUE)),
+          'Morgan Freeman': State.State(Shirt("Buttoned shirt", 9, (9, 27), Color.GRAY),
+                                        Pants("Tailored pants", 9, (9, 27), Color.BLACK)),
+          'Arthur Read': State.State(Shirt("Sweater", 9, (9, 27), Color.YELLOW),
+                                     Pants("Jeans", 9, (9, 27), Color.BLUE)),
+          'Or Shpitz': State.State(Shirt("T shirt", 5, (12, 30), Color.PINK),
+                                   Pants("Loose Pants", 7, (9, 27), Color.WHITE)),
+          'Assi Azar': State.State(Shirt("Sweater", 5, (8, 25), Color.PURPLE),
+                                   Pants("Jeans", 7, (9, 29), Color.BLUE)),
+
+          }
+
 UNMATCHINGCOLORS = {Color.BLUE: {Color.RED,
                                  Color.YELLOW,
                                  Color.GREEN,
