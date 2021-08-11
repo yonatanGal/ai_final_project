@@ -18,30 +18,43 @@ import Constants
 def formalDistance(state1: State, state2: State):
     formal1_shirt = state1.getShirt()
     formal1_pants = state1.getPants()
+    formal1_shoes = state1.getShoes()
 
     formal2_shirt = state2.getShirt()
     formal2_pants = state2.getPants()
+    formal2_shoes = state2.getShoes()
 
     shirtsReward = 0
     pantsReward = 0
+    shoesReward = 0
+
     if formal1_shirt:
         try:
             shirtsReward = 1 / float((
-                                                 formal1_shirt.getFormality() - formal2_shirt.getFormality()) ** 2)
+                                             formal1_shirt.getFormality() - formal2_shirt.getFormality()) ** 2)
         except ZeroDivisionError:
-            shirtsReward = 5 # i want to increase reward when the formality is the same
+            shirtsReward = 5  # i want to increase reward when the formality is the same
     if formal1_pants:
         try:
             pantsReward = 1 / float((
-                                                formal1_pants.getFormality() - formal2_pants.getFormality()) ** 2)
+                                            formal1_pants.getFormality() - formal2_pants.getFormality()) ** 2)
         except ZeroDivisionError:
-            pantsReward = 5 # i want to increase reward when the formality is the same
-    return shirtsReward + pantsReward
+            pantsReward = 5  # i want to increase reward when the formality is the same
+
+    if formal1_shoes:
+        try:
+            shoesReward = 1 / float((
+                                            formal1_shoes.getFormality() - formal2_shoes.getFormality()) ** 2)
+        except ZeroDivisionError:
+            shoesReward = 5  # i want to increase reward when the formality is the same
+
+    return shirtsReward + pantsReward + shoesReward
 
 
 def weatherDistance(state1: State, state2):
     shirts_distance = 0
     pants_distance = 0
+    shoes_distance = 0
 
     if (state1.getShirt()):
         temp1_shirt_range = state1.getShirt().getTemperture()
@@ -53,8 +66,13 @@ def weatherDistance(state1: State, state2):
         temp2_pants_range = state2.getPants().getTemperture()
         pants_distance = itemWeatherDistance(temp1_pants_range,
                                              temp2_pants_range)
+    if (state1.getShoes()):
+        temp1_shoes_range = state1.getShoes().getTemperture()
+        temp2_shoes_range = state2.getShoes().getTemperture()
+        shoes_distance = itemWeatherDistance(temp1_shoes_range,
+                                             temp2_shoes_range)
 
-    return shirts_distance + pants_distance
+    return shirts_distance + pants_distance + shoes_distance
 
 
 def itemWeatherDistance(temp1, temp2):
@@ -73,23 +91,32 @@ def itemWeatherDistance(temp1, temp2):
     try:
         avgDiff = 1 / abs(float(avgTemp1) - avgTemp2)
     except ZeroDivisionError:
-        avgDiff = 5 # i want to increase reward when the weather is the same
+        avgDiff = 5  # i want to increase reward when the weather is the same
     return avgDiff
 
 
 def colorDistanceWrapperLearning(state1, state2):
     shirts_distance = 0
     pants_distance = 0
+    shoes_distance = 0
+
     if (state1.getShirt()):
         shirt1_color = state1.getShirt().getColor()
         shirt2_color = state2.getShirt().getColor()
-        shirts_distance = colors_distance_for_qLearning(shirt1_color, shirt2_color)
+        shirts_distance = colors_distance_for_qLearning(shirt1_color,
+                                                        shirt2_color)
     if (state1.getPants()):
         pants1_color = state1.getPants().getColor()
         pants2_color = state2.getPants().getColor()
-        pants_distance = colors_distance_for_qLearning(pants1_color, pants2_color)
+        pants_distance = colors_distance_for_qLearning(pants1_color,
+                                                       pants2_color)
+    if (state1.getShoes()):
+        shoes1_color = state1.getShoes().getColor()
+        shoes2_color = state2.getShoes().getColor()
+        shoes_distance = colors_distance_for_qLearning(shoes1_color,
+                                                       shoes2_color)
 
-    return shirts_distance + pants_distance
+    return shirts_distance + pants_distance + shoes_distance
 
 
 def colors_distance_for_qLearning(color1, color2):
@@ -98,13 +125,15 @@ def colors_distance_for_qLearning(color1, color2):
     try:
         colorDiff = 1 / float((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2)
     except ZeroDivisionError:
-        colorDiff = 5 # i want to increase reward when the color is the same
+        colorDiff = 5  # i want to increase reward when the color is the same
     return colorDiff
+
 
 def colors_distance_for_cspSolver(color1, color2):
     (r1, g1, b1) = color1
     (r2, g2, b2) = color2
     return np.sqrt((r1 - r2) ^ 2 + (g1 - g2) ^ 2 + (b1 - b2) ^ 2)
+
 
 def get_all_actions(db):
     """
@@ -117,6 +146,7 @@ def get_all_actions(db):
         all_pos_actions.append(Action(item, False))
         all_pos_actions.append(Action(item, True))
     return all_pos_actions
+
 
 # def initQvalues(db_shirts, db_pants, all_states: dict):
 #     allActions = get_all_actions(db_shirts+db_pants)
@@ -447,4 +477,3 @@ def getProbability(value, distribution, values):
 def flipCoin(p):
     r = random.random()
     return r < p
-

@@ -48,7 +48,7 @@ def main():
     # filter the outfits that meet the temperature and the formality the user has chosen
     res_db_shirts = Item.filter_db(int(temperature), int(formality), db_shirts)
     res_db_pants = Item.filter_db(int(temperature), int(formality), db_pants)
-
+    res_db_shoes = Item.filter_db(int(temperature), int(formality), db_shoes) #todo: take from constants
     # solve the csp problem to get all possible solutions that fulfill the constraints and the user needs
     problem = Problem()
     try:
@@ -57,17 +57,22 @@ def main():
         print("Error! \n" + str(e))
         return
     solutions_dictionary_list = problem.getSolutions()
-    solutions_list = []
+    shirtAndPantsTuples = []
+    shirtAndShoesTuples = []
+    pantsAndShoesTuples = []
     for sol in solutions_dictionary_list:
-        solutions_list.append((sol['shirt'], sol['pants']))
-
+        # solutions_list.append((sol['shirt'], sol['pants']))
+        shirtAndPantsTuples.append((sol['shirt'], sol['pants']))
+        shirtAndShoesTuples.append((sol['shirt'], sol['shoes']))
+        pantsAndShoesTuples.append((sol['pants'], sol['shoes']))
+    solutions_list = shirtAndPantsTuples + shirtAndShoesTuples + pantsAndShoesTuples
     # an example for a good out fit to dress like
     # goodOutfit = State.State(
     #     Shirt("kind of long shirt", 3, (5, 20), Color.GREEN),
     #     Pants("jeans_long", 5, (-5, 25), Color.BLACK))
     goodOutfit  = CELEBS[dressLike]
     # train the qLearner and suggest a solution meeting all constraints and as close as it can to the "good" outfit
-    finalState = learnAndPredict(res_db_shirts, res_db_pants, solutions_list,
+    finalState = learnAndPredict(res_db_shirts, res_db_pants,res_db_shoes, solutions_list,
                                  goodOutfit)
     print(finalState)
 

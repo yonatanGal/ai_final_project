@@ -9,6 +9,7 @@ import State
 THRESHOLD = 1
 SHIRT = "shirt"
 PANTS = "pants"
+SHOES = "shoes"
 
 class Color():
     #     BLUE = 'blue'
