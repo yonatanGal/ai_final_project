@@ -29,7 +29,7 @@ class QLearningAgent():
     """
 
     def __init__(self, db_shirts, db_pants, db_shoes, possibleSolutions,
-                 goodOutFit: State, gamma=0.8, learningRate=1, epsilon=0.3,
+                 goodOutFits: list, gamma=0.8, learningRate=1, epsilon=0.3,
                  numTraining=100):
         "You can initialize Q-values here..."
 
@@ -40,7 +40,7 @@ class QLearningAgent():
         self.discount = float(gamma)
         self.numTraining = int(numTraining)
         self.allActions = util.get_all_actions(db_shirts + db_pants + db_shoes)
-        self.goodOutFit = goodOutFit
+        self.goodOutFits = goodOutFits
         self.possibleSolutions = possibleSolutions
 
     def isTerminalState(self, state):
@@ -197,15 +197,20 @@ class QLearningAgent():
         return legalActions
 
 
-    def getReward(self, state, goodOutfit, action):
+    def getReward(self, state, goodOutfits, action):
         # if (self.isTerminalState(state)):
         #     return 1
         if (not action.get_wants_to_wear()):
             return -10
-        formalityReward = util.formalDistance(state, goodOutfit)
-        weatherDistance = util.weatherDistance(state, goodOutfit)
-        color_Distance = util.colorDistanceWrapperLearning(state, goodOutfit)
-        return formalityReward + weatherDistance + color_Distance
+        maxReward = -np.inf
+        for outfit in goodOutfits:
+            formalityReward = util.formalDistance(state, outfit)
+            weatherDistance = util.weatherDistance(state, outfit)
+            color_Distance = util.colorDistanceWrapperLearning(state, outfit)
+            sum  = formalityReward + weatherDistance + color_Distance
+            if (sum>maxReward):
+                maxReward = sum
+        return maxReward
 
 
     def apply_action(self, state, action):
@@ -278,7 +283,7 @@ class QLearningAgent():
                     return
                 nextState = self.apply_action(s, a)
                 self.update(s, a, nextState,
-                            self.getReward(nextState, self.goodOutFit, a))
+                            self.getReward(nextState, self.goodOutFits, a))
                 s = nextState
                 # counter += 1
 

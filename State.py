@@ -62,3 +62,25 @@ class State:
             return self.getShirt().__str__() + "#" + self.getPants().__str__() + "#None"
         else:
             return self.getShirt().__str__() + "#" + self.getPants().__str__() + "#" + self.getShoes().__str__()
+
+
+class CelebState(State):
+    def __init__(self, shirt_: Shirt, pants_: Pants, shoes_: Item.Shoes,
+                 celeb_: str):
+        super().__init__(shirt_, pants_, shoes_)
+        self.celeb = celeb_
+
+
+def filter_from_temperature(current_temperature, states):
+    filltered_states = []
+    for state in states:
+        if (state.getShirt().getTemperture()[0] - 5 <= current_temperature <=
+            state.getShirt().getTemperture()[1] + 5) and (
+                state.getPants().getTemperture()[
+                    0] - 5 <= current_temperature <=
+                state.getPants().getTemperture()[1] + 5) and (
+                state.getShoes().getTemperture()[
+                    0] - 5 <= current_temperature <=
+                state.getShoes().getTemperture()[1] + 5):
+            filltered_states.append(state)
+    return filltered_states
