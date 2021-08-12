@@ -1,4 +1,4 @@
-from constraint import *
+# from constraint import *
 from Constants import *
 import Item
 from util import *
@@ -19,12 +19,15 @@ def areColorsMatch(cloth1, cloth2):
                     return False
     return True
 
-def createCspSolver(problem, db_shirts, db_pants):
+def createCspSolver(problem, db_shirts, db_pants,db_shoes):
 
     problem.addVariable("shirt", db_shirts)
     problem.addVariable("pants", db_pants)
+    problem.addVariable("shoes", db_shoes)
     # colors constraints
     problem.addConstraint(areColorsMatch, ("shirt", "pants"))
+    problem.addConstraint(areColorsMatch, ("shirt", "shoes"))
+    problem.addConstraint(areColorsMatch, ("pants", "shoes"))
 
 
 ## example
