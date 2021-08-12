@@ -154,9 +154,9 @@ def filter_from_temperature(current_temperature, db):
     filltered_db = []
     for item in db:
         if item.get_as_np_array()[TEMPERATURE_RANGE_IDX][
-            MIN_TEMPERATURE_IDX] - 5 <= current_temperature <= \
+            MIN_TEMPERATURE_IDX] - 3 <= current_temperature <= \
                 item.get_as_np_array()[
-                    TEMPERATURE_RANGE_IDX][MAX_TEMPERATURE_IDX] + 5:
+                    TEMPERATURE_RANGE_IDX][MAX_TEMPERATURE_IDX] + 3:
             filltered_db.append(item)
     return filltered_db
 
@@ -164,8 +164,9 @@ def filter_from_temperature(current_temperature, db):
 def filter_from_formality(current_formality, db):
     filltered_db = []
     for item in db:
-        if current_formality - 1 <= item.get_as_np_array()[
-            FORMALITY_IDX] <= current_formality + 1:
+        # if current_formality - 1 <= item.get_as_np_array()[
+        #     FORMALITY_IDX] <= current_formality + 1:
+        if current_formality == item.getFormality():
             filltered_db.append(item)
     return filltered_db
 
