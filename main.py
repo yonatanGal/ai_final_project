@@ -26,19 +26,20 @@ def learnAndPredict(db_shirts, db_pants, db_shoes,possibleSolutions, goodOutfit)
     s = State.State(None, None,None)
     while not qLearner.isTerminalState(s):
         action1 = qLearner.getPolicy(s)
-        s = qLearner.apply_action(s, action1)
+        if (not action1 is None):
+            s = qLearner.apply_action(s, action1)
     return s
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--temperature", help="what is the temperature today?",
-                        default=35, type=int, choices=range(-5, 36))
+                        default=15, type=int, choices=range(-5, 36))
     parser.add_argument("--formality",
                         help="rate the formality of the occasion, between 1-10.",
-                        default=8, type=int, choices=range(1, 11))
+                        default=2, type=int, choices=range(1, 11))
     parser.add_argument("--dressLike",
                         help=f"Like who would like to dress today? {CELEBS.keys()}",
-                        default="Barack Obama", type=str, choices=CELEBS.keys())
+                        default="Noa Kirel", type=str, choices=CELEBS.keys())
 
     args = parser.parse_args()
     temperature = args.temperature
@@ -62,9 +63,9 @@ def main():
     pantsAndShoesTuples = []
     for sol in solutions_dictionary_list:
         # solutions_list.append((sol['shirt'], sol['pants']))
-        shirtAndPantsTuples.append((sol['shirt'], sol['pants']))
-        shirtAndShoesTuples.append((sol['shirt'], sol['shoes']))
-        pantsAndShoesTuples.append((sol['pants'], sol['shoes']))
+        shirtAndPantsTuples.append({sol['shirt'], sol['pants']})
+        shirtAndShoesTuples.append({sol['shirt'], sol['shoes']})
+        pantsAndShoesTuples.append({sol['pants'], sol['shoes']})
     solutions_list = shirtAndPantsTuples + shirtAndShoesTuples + pantsAndShoesTuples
     # an example for a good out fit to dress like
     # goodOutfit = State.State(

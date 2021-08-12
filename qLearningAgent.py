@@ -102,14 +102,14 @@ class QLearningAgent():
                 else:
                     # get all shirts putting, pants putting and one shoes removing
                     for action in self.allActions:
-                        if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear() and (
+                        if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear() and {
                                 action.get_item(),
-                                shoes) in self.possibleSolutions:
+                                shoes} in self.possibleSolutions:
                             legalActions.append(action)
 
-                        elif action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and (
+                        elif action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and {
                                 action.get_item(),
-                                shoes) in self.possibleSolutions:
+                                shoes} in self.possibleSolutions:
                             legalActions.append(action)
                         elif (
                                 action.get_item() == shoes and not action.get_wants_to_wear()):
@@ -117,14 +117,14 @@ class QLearningAgent():
             elif (shoes is None):
                 # get all shirts putting, one pants removing and all shoes putting
                 for action in self.allActions:
-                    if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear() and (
+                    if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear() and {
                             action.get_item(),
-                            pants) in self.possibleSolutions:
+                            pants} in self.possibleSolutions:
                         legalActions.append(action)
                     elif (
-                            action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and (
+                            action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and {
                             action.get_item(),
-                            pants) in self.possibleSolutions):
+                            pants} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
                             action.get_item() == pants and not action.get_wants_to_wear()):
@@ -133,11 +133,11 @@ class QLearningAgent():
                 # get all shirts putting, one pants removing and one shoes removing
                 for action in self.allActions:
                     if (
-                            action.get_item().getType == consts.SHIRT and action.get_wants_to_wear() and (
+                            action.get_item().getType == consts.SHIRT and action.get_wants_to_wear() and {
                             action.get_item(),
-                            pants) in self.possibleSolutions and (
+                            pants} in self.possibleSolutions and {
                             action.get_item(),
-                            shoes) in self.possibleSolutions):
+                            shoes} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
                             action.get_item() == shoes and not action.get_wants_to_wear()):
@@ -148,12 +148,12 @@ class QLearningAgent():
                 # get one shirt removing, all pants putting and all shoes putting
                 for action in self.allActions:
                     if (
-                            action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and (
-                    action.get_item(), shirt) in self.possibleSolutions):
+                            action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and {
+                    action.get_item(), shirt} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
-                            action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and (
-                    action.get_item(), shirt) in self.possibleSolutions):
+                            action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and {
+                    action.get_item(), shirt} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
                             action.get_item() == shirt and not action.get_wants_to_wear()):
@@ -162,9 +162,9 @@ class QLearningAgent():
                 # get one shirt removing, all pants putting and one shoes removing
                 for action in self.allActions:
                     if (
-                            action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and (
-                    action.get_item(), shirt) in self.possibleSolutions and (
-                    action.get_item(), shoes) in self.possibleSolutions):
+                            action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and {
+                    action.get_item(), shirt} in self.possibleSolutions and {
+                    action.get_item(), shoes} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (action.get_item()==shirt and not action.get_wants_to_wear()):
                         legalActions.append(action)
@@ -174,9 +174,9 @@ class QLearningAgent():
         # get one shirt removing, one pants removing and all shoes putting
             for action in self.allActions:
                 if (
-                        action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and (
-                        action.get_item(), shirt) in self.possibleSolutions and (
-                        action.get_item(), pants) in self.possibleSolutions):
+                        action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and {
+                        action.get_item(), shirt} in self.possibleSolutions and {
+                        action.get_item(), pants} in self.possibleSolutions):
                     legalActions.append(action)
                 elif (
                         action.get_item() == shirt and not action.get_wants_to_wear()):

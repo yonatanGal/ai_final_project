@@ -51,7 +51,7 @@ CELEBS = {'Justin Bieber': State.State(
           'Noa Kirel': State.State(
               Shirt("Fila sports shirt", 3, (15, 35), Color.BLACK),
               Pants("Short sports pants", 3, (20, 35), Color.BLACK),
-              Shoes("shoes", 6, (12, 30), Color.BLACK)),
+              Shoes("Nike Sports Shoes", 2, (8, 30), Color.WHITE)),
           'Yuval Kaspit': State.State(
               Shirt("Loose long sleeves", 6, (15, 30), Color.YELLOW),
               Pants("Loose long pants", 6, (20, 30), Color.WHITE),
