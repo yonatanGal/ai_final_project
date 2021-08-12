@@ -63,6 +63,13 @@ class State:
         else:
             return self.getShirt().__str__() + "#" + self.getPants().__str__() + "#" + self.getShoes().__str__()
 
+    def stateToResult(self):
+        shirt = "Shirt: " + self.getShirt().getName() + ", Temp: " + str(self.getShirt().getTemperture()) + "\n"
+        pants = "Pants: " + self.getPants().getName() + ", Temp: " + str(self.getPants().getTemperture()) + "\n"
+        shoes = "Shoes: " + self.getShoes().getName() + ", Temp: " + str(self.getShoes().getTemperture())
+        return shirt + pants + shoes
+
+
 
 class CelebState(State):
     def __init__(self, shirt_: Shirt, pants_: Pants, shoes_: Item.Shoes,
@@ -70,6 +77,15 @@ class CelebState(State):
         super().__init__(shirt_, pants_, shoes_)
         self.celeb = celeb_
 
+    def getCeleb(self):
+        return self.celeb
+
+    def stateToResult(self):
+        celeb = self.getCeleb()
+        shirt = "Shirt: " + self.getShirt().getName() + ", Temp: " + str(self.getShirt().getTemperture()) + "\n"
+        pants = "Pants: " + self.getPants().getName() + ", Temp: " + str(self.getPants().getTemperture()) + "\n"
+        shoes = "Shoes: " + self.getShoes().getName() + ", Temp: " + str(self.getShoes().getTemperture())
+        return celeb +":\n" +shirt + pants + shoes
 
 def filter_from_temperature(current_temperature, states):
     filltered_states = []

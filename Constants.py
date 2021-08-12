@@ -3,13 +3,14 @@ from enum import Enum
 import numpy as np
 from Item import Shirt, Pants, Shoes
 from Action import Action
-from Good_Outfit import Good_Outfit
 import State
 
 THRESHOLD = 1
 SHIRT = "shirt"
 PANTS = "pants"
 SHOES = "shoes"
+
+CSP_AND_QLEARNING = 1
 
 HOME = 1
 SPORT = 2
