@@ -202,16 +202,19 @@ class QLearningAgent():
         #     return 1
         if (not action.get_wants_to_wear()):
             return -10
+        maxReward = self.findMaxReward(goodOutfits, state)
+        return maxReward
+
+    def findMaxReward(self, goodOutfits, state):
         maxReward = -np.inf
         for outfit in goodOutfits:
             formalityReward = util.formalDistance(state, outfit)
             weatherDistance = util.weatherDistance(state, outfit)
             color_Distance = util.colorDistanceWrapperLearning(state, outfit)
-            sum  = formalityReward + weatherDistance + color_Distance
-            if (sum>maxReward):
+            sum = formalityReward + weatherDistance + color_Distance
+            if (sum > maxReward):
                 maxReward = sum
         return maxReward
-
 
     def apply_action(self, state, action):
         isWear = action.get_wants_to_wear()
