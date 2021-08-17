@@ -8,6 +8,7 @@ import State
 import qLearningAgent
 import time
 
+
 def parseArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument("--algorithm",
@@ -27,6 +28,13 @@ def parseArgs():
 
 
 def findSolutions(problem, type=2):
+    """
+    Finds all the CSP solutions and creates tuples of every pair
+    in every solution triple.
+    :param problem: CSP Problem object.
+    :param type: the type of algorithm for solving the problem.
+    :return: all possible solutions list.
+    """
     solutions_dictionary_list = problem.getSolutions()
     if (type == CSP_AND_QLEARNING):
         shirtAndPantsTuples = []
@@ -40,36 +48,47 @@ def findSolutions(problem, type=2):
     else:
         solutions_list = []
         for sol in solutions_dictionary_list:
-            solutions_list.append(State.State(sol['shirt'],sol['pants'],sol['shoes']))
+            solutions_list.append(
+                State.State(sol['shirt'], sol['pants'], sol['shoes']))
     return solutions_list
 
 
 def learnAndPredict(db_shirts, db_pants, db_shoes, possibleSolutions,
                     goodOutfit):
     """
-    create and train a qLearning agent to suggest an outfit that is:
-    1. in the possibleSolutions extracted from the CSP solver
-    2. as close as it can to the celeb outfit (goodOutfit)
+    Creates and trains a qLearning agent to suggest an outfit that is:
+    1. One of the possibleSolutions extracted from the CSP solver
+    2. As close as it can to the trendy (celeb) outfit (goodOutfit)
 
-    :param db_shirts:
-    :param db_pants:
-    :param possibleSolutions:
-    :param goodOutfit:
-    :return:
+    :param db_shirts: list of shirts.
+    :param db_pants: list of pants.
+    :param db_shoes: list of shoes.
+    :param possibleSolutions: list of all solutions given by the CSP Solver.
+    :param goodOutfit: the trendy outfit.
+    :return: the resulted state.
     """
     qLearner = qLearningAgent.QLearningAgent(db_shirts, db_pants, db_shoes,
                                              possibleSolutions, goodOutfit)
     qLearner.learn()
     s = State.State(None, None, None)
-    while not qLearner.isTerminalState(s):
+    counter = 0
+    while not qLearner.isTerminalState(s) and counter < 100:
         action1 = qLearner.getPolicy(s)
         if (not action1 is None):
             s = qLearner.apply_action(s, action1)
+        counter += 1
+
     return s.stateToResult()
 
 
 def findCspBestSolution(goodOutfits, solution_list):
-    bestSolution = State.State(None,None,None)
+    """
+    Finds the CSP solution that is the closest one to the trendy outfits.
+    :param goodOutfits: trendy outfits states.
+    :param solution_list: list of possible CSP solutions.
+    :return: best solution details, the closest trendy outfit details, award accordingly.
+    """
+    bestSolution = State.State(None, None, None)
     celeb = None
     maxReward = -np.inf
     for outfit in goodOutfits:
@@ -84,13 +103,14 @@ def findCspBestSolution(goodOutfits, solution_list):
                 celeb = outfit
     return bestSolution.stateToResult(), celeb.stateToResult(), maxReward
 
+
 def main():
     alg, style, temperature = parseArgs()
 
     # filter the outfits that meet the temperature and the style the user has chosen
-    res_db_shirts = Item.filter_db(int(temperature), style, db_shirts)
-    res_db_pants = Item.filter_db(int(temperature), style, db_pants)
-    res_db_shoes = Item.filter_db(int(temperature), style, db_shoes)
+    res_db_shirts = Item.filter_db(int(temperature), style, DB_SHIRTS)
+    res_db_pants = Item.filter_db(int(temperature), style, DB_PANTS)
+    res_db_shoes = Item.filter_db(int(temperature), style, DB_SHOES)
     # solve the csp problem to get all possible solutions that fulfill the constraints and the user needs
     problem = Problem()
     try:
@@ -112,16 +132,19 @@ def main():
                                      solutions_list,
                                      goodOutfits)
         endTime = time.time()
-        print(finalState + "\n Running Time: "+str(endTime-startTime))
+        print(finalState + "\n Running Time: " + str(endTime - startTime))
     else:
         solutions_list = findSolutions(problem)
-        finalState,closetCeleb, maxReward = findCspBestSolution(goodOutfits,solutions_list)
+        finalState, closetCeleb, maxReward = findCspBestSolution(goodOutfits,
+                                                                 solutions_list)
         if (closetCeleb):
             endTime = time.time()
             print(
-                "Based on the given parameters, This is our best recommendation: \n " + finalState +"\nThis outfit is as close as you can get to " + closetCeleb +"\n Running Time: "+str(endTime-startTime))
+                "Based on the given parameters, This is our best recommendation: \n " + finalState + "\nThis outfit is as close as you can get to " + closetCeleb + "\n Running Time: " + str(
+                    endTime - startTime))
         else:
             print("There is no celeb outfit that fits your closet")
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':

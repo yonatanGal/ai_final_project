@@ -15,7 +15,14 @@ import State
 import Constants
 
 
+# For more information about the distance calculations see project report (p. 5-6)
 def formalDistance(state1: State, state2: State):
+    """
+    Calculates the distance in the formality values.
+    :param state1: State object.
+    :param state2: State object.
+    :return: distance calculated.
+    """
     formal1_shirt = state1.getShirt()
     formal1_pants = state1.getPants()
     formal1_shoes = state1.getShoes()
@@ -52,6 +59,12 @@ def formalDistance(state1: State, state2: State):
 
 
 def weatherDistance(state1: State, state2):
+    """
+    Calculates the distance in the weather values.
+    :param state1: State object.
+    :param state2: State object.
+    :return: distance calculated.
+    """
     shirts_distance = 0
     pants_distance = 0
     shoes_distance = 0
@@ -76,6 +89,12 @@ def weatherDistance(state1: State, state2):
 
 
 def itemWeatherDistance(temp1, temp2):
+    """
+    Calculates the distance in the weather values.
+    :param temp1: a tuple representing the temperature range of the first item.
+    :param temp2: a tuple representing the temperature range of the second item.
+    :return: distance calculated.
+    """
     temp1_set = set(np.arange(temp1[0], temp1[1] + 1))
     temp2_set = set(np.arange(temp2[0], temp2[1] + 1))
     size_temp1 = len(temp1_set)
@@ -96,6 +115,13 @@ def itemWeatherDistance(temp1, temp2):
 
 
 def colorDistanceWrapperLearning(state1, state2):
+    """
+
+    A wrapper for the color distance calculator.
+    :param state1: State object.
+    :param state2: State object.
+    :return: distance calculated.
+    """
     shirts_distance = 0
     pants_distance = 0
     shoes_distance = 0
@@ -120,6 +146,12 @@ def colorDistanceWrapperLearning(state1, state2):
 
 
 def colors_distance_for_qLearning(color1, color2):
+    """
+    Calculates color distance for the q learning algorithm.
+    :param color1: the first item color as a tuple of size 3 (R,G,B).
+    :param color2: the second item color as a tuple of size 3 (R,G,B).
+    :return: color distance as reward for the q learner.
+    """
     (r1, g1, b1) = color1
     (r2, g2, b2) = color2
     try:
@@ -130,6 +162,12 @@ def colors_distance_for_qLearning(color1, color2):
 
 
 def colors_distance_for_cspSolver(color1, color2):
+    """
+    Calculates colors distance for the CSP Solver.
+    :param color1: the first item color as a tuple of size 3 (R,G,B).
+    :param color2: the second item color as a tuple of size 3 (R,G,B).
+    :return: the colors distance.
+    """
     (r1, g1, b1) = color1
     (r2, g2, b2) = color2
     return np.sqrt((r1 - r2) ^ 2 + (g1 - g2) ^ 2 + (b1 - b2) ^ 2)
@@ -137,59 +175,15 @@ def colors_distance_for_cspSolver(color1, color2):
 
 def get_all_actions(db):
     """
-    returns all the possible actions regarding the given dataBase
+    Returns all the possible actions regarding the given dataBase
     :param db: list of shirts and pants
-    :return:
+    :return: list of all possible actions.
     """
     all_pos_actions = []
     for item in db:
         all_pos_actions.append(Action(item, False))
         all_pos_actions.append(Action(item, True))
     return all_pos_actions
-
-
-# def initQvalues(db_shirts, db_pants, all_states: dict):
-#     allActions = get_all_actions(db_shirts+db_pants)
-#     db_shirts = [None] + db_shirts
-#     db_pants = [None] + db_pants
-#     for shirt in db_shirts:
-#         for pants in db_pants:
-#             state = State.State(shirt,pants)
-#             for action in getLegalActions(state,allActions):
-#                 all_states[(state,action)] = 0
-#     return all_states
-
-# def getLegalActions(state,allActions):
-#     shirt = state.getState()[0]
-#     pants = state.getState()[1]
-#     legalActions = []
-#     if (shirt is None):
-#         if (pants is None):
-#             for action in allActions:
-#                 if action.get_wants_to_wear():
-#                     legalActions.append(action)
-#         else:
-#             # get all shirts putting and one pants removing
-#             for action in allActions:
-#                 if action.get_item().getType() == Constants.SHIRT and action.get_wants_to_wear():
-#                     legalActions.append(action)
-#                 elif action.get_item() == state.getPants() and not action.get_wants_to_wear():
-#                     legalActions.append(action)
-#
-#     elif (pants is None):
-#         # get all pants puting and one shirt removing
-#         for action in allActions:
-#             if action.get_item().getType() == Constants.PANTS and action.get_wants_to_wear():
-#                 legalActions.append(action)
-#             elif action.get_item() == state.getShirt() and not action.get_wants_to_wear():
-#                 legalActions.append(action)
-#     else:
-#         # get all removing
-#         for action in allActions:
-#             if action.get_item() == state.getShirt() or action.get_item() == state.getPants():
-#                 legalActions.append(action)
-#     return legalActions
-
 
 class Counter(dict):
     """
@@ -404,63 +398,6 @@ class Counter(dict):
             addend[key] = -1 * y[key]
         return addend
 
-
-# def raiseNotDefined():
-#   print("Method not implemented: %s" % inspect.stack()[1][3])
-#   sys.exit(1)
-#
-# def normalize(vectorOrCounter):
-#   """
-#   normalize a vector or counter by dividing each value by the sum of all values
-#   """
-#   normalizedCounter = Counter()
-#   if type(vectorOrCounter) == type(normalizedCounter):
-#     counter = vectorOrCounter
-#     total = float(counter.totalCount())
-#     if total == 0: return counter
-#     for key in counter.keys():
-#       value = counter[key]
-#       normalizedCounter[key] = value / total
-#     return normalizedCounter
-#   else:
-#     vector = vectorOrCounter
-#     s = float(sum(vector))
-#     if s == 0: return vector
-#     return [el / s for el in vector]
-
-# def nSample(distribution, values, n):
-#   if sum(distribution) != 1:
-#     distribution = normalize(distribution)
-#   rand = [random.random() for i in range(n)]
-#   rand.sort()
-#   samples = []
-#   samplePos, distPos, cdf = 0,0, distribution[0]
-#   while samplePos < n:
-#     if rand[samplePos] < cdf:
-#       samplePos += 1
-#       samples.append(values[distPos])
-#     else:
-#       distPos += 1
-#       cdf += distribution[distPos]
-#   return samples
-#
-# def sample(distribution, values = None):
-#   if type(distribution) == Counter:
-#     items = distribution.items()
-#     distribution = [i[1] for i in items]
-#     values = [i[0] for i in items]
-#   if sum(distribution) != 1:
-#     distribution = normalize(distribution)
-#   choice = random.random()
-#   i, total= 0, distribution[0]
-#   while choice > total:
-#     i += 1
-#     total += distribution[i]
-#   return values[i]
-#
-# def sampleFromCounter(ctr):
-#   items = ctr.items()
-#   return sample([v for k,v in items], [k for k,v in items])
 
 def getProbability(value, distribution, values):
     """
