@@ -4,11 +4,15 @@ import Item
 
 
 class State:
+    """
+    a class representing a state of the q learning agent.
+    """
     def __init__(self, shirt_: Shirt, pants_: Pants, shoes_: Item.Shoes):
         self.shirt = shirt_
         self.pants = pants_
         self.shoes = shoes_
 
+    # getters and setters
     def getShirt(self):
         return self.shirt
 
@@ -31,18 +35,17 @@ class State:
         return self.shirt, self.pants, self.shoes
 
     def is_state_terminal(self):
+        """
+        checks if the current state is a terminal state.
+        :return: True if current state is a terminal state, False otherwise.
+        """
         return self.getShirt() is not None and self.getPants() is not None and self.getShoes() is not None
 
-    # def __eq__(self, other):
-    #     if (other == None):
-    #         return False
-    #     return (
-    #             self.getShirt() == other.getShirt() and self.getPants() == other.getPants())
-    #
-    # def __hash__(self):
-    #     return id(self)
-
     def __str__(self):
+        """
+        Parse the state into a string.
+        :return: state in string representation.
+        """
         if (self.getShirt() is None):
             if (self.getPants() is None):
                 if (self.getShoes() is None):
@@ -64,14 +67,24 @@ class State:
             return self.getShirt().__str__() + "#" + self.getPants().__str__() + "#" + self.getShoes().__str__()
 
     def stateToResult(self):
-        shirt = "Shirt: " + self.getShirt().getName() + ", Temp: " + str(self.getShirt().getTemperture()) + "\n"
-        pants = "Pants: " + self.getPants().getName() + ", Temp: " + str(self.getPants().getTemperture()) + "\n"
-        shoes = "Shoes: " + self.getShoes().getName() + ", Temp: " + str(self.getShoes().getTemperture())
+        """
+        Wrapper for printing the state.
+        :return: string representation of the current state details.
+        """
+        try:
+            shirt = "Shirt: " + self.getShirt().getName() + ", Temp: " + str(self.getShirt().getTemperture()) + "\n"
+            pants = "Pants: " + self.getPants().getName() + ", Temp: " + str(self.getPants().getTemperture()) + "\n"
+            shoes = "Shoes: " + self.getShoes().getName() + ", Temp: " + str(self.getShoes().getTemperture())
+        except(AttributeError):
+            return "Couldn't find a full outfit for you to wear."
         return shirt + pants + shoes
 
 
 
 class CelebState(State):
+    """
+    a class representing garments of a trendy person (Celeb).
+    """
     def __init__(self, shirt_: Shirt, pants_: Pants, shoes_: Item.Shoes,
                  celeb_: str):
         super().__init__(shirt_, pants_, shoes_)
@@ -81,6 +94,10 @@ class CelebState(State):
         return self.celeb
 
     def stateToResult(self):
+        """
+        Wrapper for printing the state.
+        :return: string representation of the current state details.
+        """
         celeb = self.getCeleb()
         shirt = "Shirt: " + self.getShirt().getName() + ", Temp: " + str(self.getShirt().getTemperture()) + "\n"
         pants = "Pants: " + self.getPants().getName() + ", Temp: " + str(self.getPants().getTemperture()) + "\n"

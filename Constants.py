@@ -24,6 +24,9 @@ HOT = 2
 
 
 class Color():
+    """
+    a class for the colors the solver deals with
+    """
     BLUE = (0, 0, 255)
     RED = (255, 0, 0)
     YELLOW = (255, 255, 0)
@@ -37,9 +40,9 @@ class Color():
     WHITE = (255, 255, 255)
 
 
-color_lst = [Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.BROWN,
-             Color.ORANGE, Color.PINK, Color.PURPLE,
-             Color.GRAY, Color.BLACK, Color.WHITE]
+COLORS_LIST = [Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.BROWN,
+               Color.ORANGE, Color.PINK, Color.PURPLE,
+               Color.GRAY, Color.BLACK, Color.WHITE]
 
 CELEBS = {'Justin Bieber': State.State(
     Shirt("Kind of long shirt", 4, (5, 24), Color.WHITE),
@@ -309,7 +312,7 @@ UNMATCHINGCOLORS = {Color.BLUE: {Color.RED,
                     Color.WHITE: {}
                     }
 
-db_shoes = [Shoes("Black Sneakers", 3, (0, 35), Color.BLACK),
+DB_SHOES = [Shoes("Black Sneakers", 3, (0, 35), Color.BLACK),
             Shoes("Black Winter Boots", 4, (0, 12), Color.BLACK),
             Shoes("White Nike Sports Shoes", 2, (0, 35), Color.WHITE),
             Shoes("White Slippers", 1, (0, 35), Color.WHITE),
@@ -327,7 +330,7 @@ db_shoes = [Shoes("Black Sneakers", 3, (0, 35), Color.BLACK),
             Shoes("White Nike Air", 3, (0, 35), Color.WHITE)
             ]
 
-db_shirts = [Shirt("Black T Shirt", 3, (15, 35), Color.BLACK),
+DB_SHIRTS = [Shirt("Black T Shirt", 3, (15, 35), Color.BLACK),
              Shirt("White T Shirt", 3, (15, 35), Color.WHITE),
              Shirt("Green Buttoned Long Shirt", 4, (5, 25), Color.GREEN),
              Shirt("White Blouse", 4, (15, 35), Color.WHITE),
@@ -358,7 +361,7 @@ db_shirts = [Shirt("Black T Shirt", 3, (15, 35), Color.BLACK),
              Shirt("White Blazer", 5, (0, 20), Color.WHITE),
              Shirt("Pink Puffy Sleeve", 4, (20, 35), Color.PINK)]
 
-db_pants = [Pants("Black Long Jeans", 4, (0, 35), Color.BLACK),
+DB_PANTS = [Pants("Black Long Jeans", 4, (0, 35), Color.BLACK),
             Pants("Blue Long Jeans", 4, (0, 35), Color.BLUE),
             Pants("Brown Tailored Pants", 5, (0, 25), Color.BROWN),
             Pants("White Tailored Pants", 5, (0, 25), Color.WHITE),
@@ -381,23 +384,3 @@ db_pants = [Pants("Black Long Jeans", 4, (0, 35), Color.BLACK),
             Pants("Black Short sports pants", 2, (25, 35), Color.BLACK),
             Pants("White Short sports pants", 2, (25, 35), Color.WHITE)
             ]
-
-# db_shirts = [Shirt("my_black_T_shirt", 3, (18, 30), Color.BLACK),
-#              Shirt("button long shirt", 5, (5, 20), Color.GREEN),
-#              Shirt("blouse", 7, (15, 35), Color.WHITE)]
-#
-# db_pants = [Pants("jeans_long", 5, (-5, 25), Color.BLACK),
-#             Pants("tailored pants", 9, (-5, 25), Color.BROWN),
-#             Pants("tights", 2, (2, 27), Color.GRAY)]
-
-# db_good_outfit = [Good_Outfit(Shirt("cool button shirt", formality=6, temperature_range=(5, 25), color=Color.BLACK),
-#                               Pants("tights black pants", formality=5, temperature_range= (8, 28), color= Color.BLACK)),
-#                   Good_Outfit(Shirt("pyjama shirt", formality=0, temperature_range=(15, 28), color=Color.BLACK),
-#                               Pants("pyjama pants", formality=0, temperature_range=(15, 28), color=Color.BLACK)),
-#                   Good_Outfit(Shirt("black sport hoodie", formality=2, temperature_range=(2, 20), color=Color.BLACK),
-#                               Pants("black sport training", formality=2, temperature_range=(2, 20), color=Color.BLACK)),
-#                   Good_Outfit(Shirt("silk shirt", formality=9, temperature_range=(10, 28), color=Color.BLACK),
-#                               Pants("silk tailored pants", formality=9, temperature_range=(10, 28), color=Color.BLACK)),
-#                   Good_Outfit(Shirt("cotton black shirt", formality=3, temperature_range=(5, 18), color=Color.BLACK),
-#                               Pants("black jeans pants", formality=4, temperature_range=(5, 18), color=Color.BLACK))
-#                   ]

@@ -8,33 +8,19 @@ import copy
 
 class QLearningAgent():
     """
-      Q-Learning Agent
+    Q learning agent.
 
-      Functions you should fill in:
-        - getQValue
-        - getAction
-        - getValue
-        - getPolicy
-        - update
-
-      Instance variables you have access to
-        - self.epsilon (exploration prob)
-        - self.alpha (learning rate)
-        - self.discount (discount rate)
-
-      Functions you should use
-        - self.getLegalActions(state)
-          which returns legal actions
-          for a state
+    self.goodOutFits is a list of State objects representing the contemporary
+    trends.
+    self.possibleSolutions is a list of terminal states that are solution
+    for the csp problem.
     """
 
     def __init__(self, db_shirts, db_pants, db_shoes, possibleSolutions,
                  goodOutFits: list, gamma=0.8, learningRate=1, epsilon=0.3,
                  numTraining=100):
-        "You can initialize Q-values here..."
 
         self.qValue = util.Counter()
-        # self.qValue = util.initQvalues(db_shirts, db_pants, dict())
         self.learningRate = float(learningRate)
         self.epsilon = float(epsilon)
         self.discount = float(gamma)
@@ -44,6 +30,11 @@ class QLearningAgent():
         self.possibleSolutions = possibleSolutions
 
     def isTerminalState(self, state):
+        """
+        a state is a terminal state if all its 3 fields are filled.
+        :param state: state representing the current appearance.
+        :return: true if state is terminal state, false otherwise.
+        """
         if (state.getShirt() and state.getPants() and state.getShoes()):
             return True
         return False
@@ -60,23 +51,19 @@ class QLearningAgent():
     def getValue(self, state):
         """
           Returns max_action Q(state,action)
-          where the max is over legal actions.  Note that if
-          there are no legal actions, which is the case at the
-          terminal state, you should return a value of 0.0.
+          where the max is over legal actions.
         """
         actions = self.getLegalActions(state)
         if not actions:
             return 1  # because the only state where you have no legal action to make is a terminal state
-        # maxAction = max(actions, key=lambda a: self.getQValue(state, a))
         maxAction = self.findMaxAction(actions, state)
 
         return self.getQValue(state, maxAction)
 
     def getPolicy(self, state):
         """
-          Compute the best action to take in a state.  Note that if there
-          are no legal actions, which is the case at the terminal state,
-          you should return None.
+          Computes the best action to take in a state.
+          if there is no legal action it returns None.
         """
         actions = self.getLegalActions(state)
         if (not actions):
@@ -86,8 +73,11 @@ class QLearningAgent():
         return maxAction
 
     def getLegalActions(self, state):
-        # todo: add only the actions that do not violate the csp constraints!
-
+        """
+        find all the legal actions the agent can take in a given state.
+        :param state: State object.
+        :return: a list of all the legal actions.
+        """
         shirt = state.getState()[0]
         pants = state.getState()[1]
         shoes = state.getState()[2]
@@ -103,13 +93,13 @@ class QLearningAgent():
                     # get all shirts putting, pants putting and one shoes removing
                     for action in self.allActions:
                         if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear() and {
-                                action.get_item(),
-                                shoes} in self.possibleSolutions:
+                            action.get_item(),
+                            shoes} in self.possibleSolutions:
                             legalActions.append(action)
 
                         elif action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and {
-                                action.get_item(),
-                                shoes} in self.possibleSolutions:
+                            action.get_item(),
+                            shoes} in self.possibleSolutions:
                             legalActions.append(action)
                         elif (
                                 action.get_item() == shoes and not action.get_wants_to_wear()):
@@ -118,13 +108,13 @@ class QLearningAgent():
                 # get all shirts putting, one pants removing and all shoes putting
                 for action in self.allActions:
                     if action.get_item().getType() == consts.SHIRT and action.get_wants_to_wear() and {
-                            action.get_item(),
-                            pants} in self.possibleSolutions:
+                        action.get_item(),
+                        pants} in self.possibleSolutions:
                         legalActions.append(action)
                     elif (
                             action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and {
-                            action.get_item(),
-                            pants} in self.possibleSolutions):
+                        action.get_item(),
+                        pants} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
                             action.get_item() == pants and not action.get_wants_to_wear()):
@@ -134,10 +124,10 @@ class QLearningAgent():
                 for action in self.allActions:
                     if (
                             action.get_item().getType == consts.SHIRT and action.get_wants_to_wear() and {
-                            action.get_item(),
-                            pants} in self.possibleSolutions and {
-                            action.get_item(),
-                            shoes} in self.possibleSolutions):
+                        action.get_item(),
+                        pants} in self.possibleSolutions and {
+                        action.get_item(),
+                        shoes} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
                             action.get_item() == shoes and not action.get_wants_to_wear()):
@@ -149,11 +139,11 @@ class QLearningAgent():
                 for action in self.allActions:
                     if (
                             action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and {
-                    action.get_item(), shirt} in self.possibleSolutions):
+                        action.get_item(), shirt} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
                             action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and {
-                    action.get_item(), shirt} in self.possibleSolutions):
+                        action.get_item(), shirt} in self.possibleSolutions):
                         legalActions.append(action)
                     elif (
                             action.get_item() == shirt and not action.get_wants_to_wear()):
@@ -163,20 +153,23 @@ class QLearningAgent():
                 for action in self.allActions:
                     if (
                             action.get_item().getType() == consts.PANTS and action.get_wants_to_wear() and {
-                    action.get_item(), shirt} in self.possibleSolutions and {
-                    action.get_item(), shoes} in self.possibleSolutions):
+                        action.get_item(),
+                        shirt} in self.possibleSolutions and {
+                        action.get_item(), shoes} in self.possibleSolutions):
                         legalActions.append(action)
-                    elif (action.get_item()==shirt and not action.get_wants_to_wear()):
+                    elif (
+                            action.get_item() == shirt and not action.get_wants_to_wear()):
                         legalActions.append(action)
-                    elif (action.get_item()==shoes and not action.get_wants_to_wear()):
+                    elif (
+                            action.get_item() == shoes and not action.get_wants_to_wear()):
                         legalActions.append(action)
         elif (shoes is None):
-        # get one shirt removing, one pants removing and all shoes putting
+            # get one shirt removing, one pants removing and all shoes putting
             for action in self.allActions:
                 if (
                         action.get_item().getType() == consts.SHOES and action.get_wants_to_wear() and {
-                        action.get_item(), shirt} in self.possibleSolutions and {
-                        action.get_item(), pants} in self.possibleSolutions):
+                    action.get_item(), shirt} in self.possibleSolutions and {
+                    action.get_item(), pants} in self.possibleSolutions):
                     legalActions.append(action)
                 elif (
                         action.get_item() == shirt and not action.get_wants_to_wear()):
@@ -191,15 +184,20 @@ class QLearningAgent():
                     legalActions.append(action)
                 elif action.get_item() == shirt and not action.get_wants_to_wear():
                     legalActions.append(action)
-                elif(action.get_item()== shoes and not action.get_wants_to_wear()):
+                elif (
+                        action.get_item() == shoes and not action.get_wants_to_wear()):
                     legalActions.append(action)
 
         return legalActions
 
-
     def getReward(self, state, goodOutfits, action):
-        # if (self.isTerminalState(state)):
-        #     return 1
+        """
+        Computes the reward of the pair (state,action).
+        :param state: State object.
+        :param goodOutfits: list of states.
+        :param action: Action object.
+        :return: The reward.
+        """
         if (not action.get_wants_to_wear()):
             return -10
         maxReward = self.findMaxReward(goodOutfits, state)
@@ -217,6 +215,12 @@ class QLearningAgent():
         return maxReward
 
     def apply_action(self, state, action):
+        """
+        makes an action in the current state.
+        :param state: State object.
+        :param action: Action object.
+        :return: The new state.
+        """
         isWear = action.get_wants_to_wear()
         itemType = action.get_item().getType()
         state = copy.deepcopy(state)
@@ -237,19 +241,14 @@ class QLearningAgent():
 
         return state
 
-
     def getAction(self, state):
         """
-          Compute the action to take in the current state.  With
-          probability self.epsilon, we should take a random action and
-          take the best policy action otherwise.  Note that if there are
-          no legal actions, which is the case at the terminal state, you
-          should choose None as the action.
+          Compute the action to take in the current state.
+          With probability self.epsilon, we should take a random action and
+          take the best policy action otherwise.
+          If there are no legal actions, it returns None.
 
-          HINT: You might want to use util.flipCoin(prob)
-          HINT: To pick randomly from a list, use random.choice(list)
         """
-        # Pick Action
         legalActions = self.getLegalActions(state)
         action = None
         if (not legalActions):
@@ -260,27 +259,23 @@ class QLearningAgent():
             action = self.getPolicy(state)
         return action
 
-
     def update(self, state, action, nextState, reward):
         """
-          The parent class calls this to observe a
-          state = action => nextState and reward transition.
-          You should do your Q-Value update here
-
-          NOTE: You should never call this function,
-          it will be called on your behalf
+          This method updates the Q value.
         """
         key = self.stateActionToKey(state, action)
         self.qValue[key] = self.qValue[key] + self.learningRate * (
                 reward + self.discount * self.getValue(
             nextState) - self.qValue[key])
 
-
     def learn(self):
+        """
+        Runs the Q learning algorithm.
+        """
         for epoch in range(self.numTraining):
             s = State.State(None, None, None)
-            # counter = 0
-            while (not self.isTerminalState(s)):
+            counter = 0
+            while (not self.isTerminalState(s) and counter < 100):
                 a = self.getAction(s)
                 if (a is None):
                     return
@@ -288,10 +283,15 @@ class QLearningAgent():
                 self.update(s, a, nextState,
                             self.getReward(nextState, self.goodOutFits, a))
                 s = nextState
-                # counter += 1
-
+                counter += 1
 
     def findMaxAction(self, actions, state):
+        """
+        Finds the action that maximizes the Q value.
+        :param actions: list of actions.
+        :param state: State object.
+        :return: the action that was found or None if there is no legal action.
+        """
         maxQValue = -np.inf
         maxAction = None
         for a in actions:
@@ -300,6 +300,12 @@ class QLearningAgent():
                 maxAction = a
         return maxAction
 
-
     def stateActionToKey(self, state, action):
+        """
+        Converting the pair (state,action) to string that will serve as the key
+        for the Q values dictionary - self.qValue .
+        :param state: State object.
+        :param action: Action object.
+        :return: The representing String.
+        """
         return state.__str__() + "#" + action.__str__()
