@@ -1,0 +1,1556 @@
+Trends for the first 5 scenarios(Celebs):
+
+HOME_LIST = [State.CelebState(Shirt("White Hoodie", 1, (0, 15), Color.WHITE),
+                              Pants("Red Long Pants", 1, (0, 15), Color.RED),
+                              Shoes("Nike Air", 1, (0, 15), Color.WHITE),
+                              "Justin Bieber"),
+             State.CelebState(
+                 Shirt("White Long Sleeve Shirt", 1, (0, 15), Color.WHITE),
+                 Pants("White Long Sleeve Pants", 1, (0, 15), Color.RED),
+                 Shoes("Slippers", 1, (0, 15), Color.WHITE),
+                 "Eliana Tidhar"), State.CelebState(
+        Shirt("Brown PJ Tank Top", 1, (16, 25), Color.BROWN),
+        Pants("Brown Long Sleeve Pants", 1, (16, 25), Color.BROWN),
+        Shoes("Slippers", 1, (16, 25), Color.WHITE),
+        "Eliana Tidhar"), State.CelebState(
+        Shirt("White T Shirt", 1, (16, 25), Color.WHITE),
+        Pants("Black Long Sweat Pants", 1, (16, 25), Color.BLACK),
+        Shoes("Black Slippers", 1, (16, 25), Color.BLACK),
+        "Delta Model Male"), State.CelebState(
+        Shirt("Yellow T Shirt", 1, (26, 35), Color.YELLOW),
+        Pants("Yellow Short PJ Pants", 1, (26, 35), Color.YELLOW),
+        Shoes("White Slippers", 1, (26, 35), Color.WHITE),
+        "Eliana Tidhar"), State.CelebState(
+        Shirt("Gray PJ Tank Top", 1, (26, 35), Color.GRAY),
+        Pants("Gray Short PJ Pants", 1, (26, 35), Color.GRAY),
+        Shoes("Pink Slippers", 1, (26, 35), Color.PINK),
+        "Delta Model Male")]
+
+SPORTS_LIST = [
+    State.CelebState(
+        Shirt("Blue Long Sleeve Sweat Shirt Cropped Top", 2, (0, 15),
+              Color.BLUE),
+        Pants("Blue Long Sweat Pants", 2, (0, 15), Color.BLUE),
+        Shoes("White Nike Sports Shoes", 2, (0, 15), Color.WHITE),
+        "Liel Eli"), State.CelebState(
+        Shirt("Yellow Long Sleeve Sweat Shirt", 2, (0, 15), Color.BLUE),
+        Pants("Black Tights", 2, (0, 15), Color.BLACK),
+        Shoes("Black Sport Shoes", 2, (0, 15), Color.BLACK),
+        "Dana Frider"), State.CelebState(
+        Shirt("White Adidas SeeThrough Tank Top", 2, (16, 25), Color.WHITE),
+        Pants("Red Wide Training Pants", 2, (16, 25), Color.RED),
+        Shoes("Red Sport Shoes", 2, (16, 25), Color.RED),
+        "Maya Wertheimer"), State.CelebState(
+        Shirt("Brown Training Top", 2, (16, 25), Color.BROWN),
+        Pants("Brown Tights", 2, (16, 25), Color.BROWN),
+        Shoes("White Sport Shoes", 2, (16, 25), Color.WHITE),
+        "Yarden Visel"), State.CelebState(
+        Shirt("Black Training Tank Top", 2, (26, 35), Color.BLACK),
+        Pants("Black Short Training Pants", 2, (26, 35), Color.BLACK),
+        Shoes("Pink Sport Shoes", 2, (26, 35), Color.PINK),
+        "Yarden Jerbi"), State.CelebState(
+        Shirt("Pink Training Top", 2, (26, 35), Color.PINK),
+        Pants("White Short Training Pants", 2, (26, 35), Color.WHITE),
+        Shoes("White Sport Shoes", 2, (26, 35), Color.WHITE),
+        "Yarden Visel")]
+
+CASUAL_LIST = [State.CelebState(
+    Shirt("White Long Hoodie", 3, (0, 15),
+          Color.WHITE),
+    Pants("Blue Long Jeans", 3, (0, 15), Color.BLUE),
+    Shoes("Black Sneaker", 3, (0, 15), Color.BLACK),
+    "Anne Zivi"), State.CelebState(
+    Shirt("Gray Long Knit", 3, (0, 15),
+          Color.GRAY),
+    Pants("Black Mom Jeans", 3, (0, 15), Color.BLACK),
+    Shoes("Black Short Boots", 3, (0, 15), Color.BLACK),
+    "Roni Sheinkman"), State.CelebState(
+    Shirt("Pink Polo", 3, (16, 25),
+          Color.PINK),
+    Pants("Black Short Jeans", 3, (16, 25), Color.BLACK),
+    Shoes("White Sandals", 3, (16, 25), Color.WHITE),
+    "Maya Wertheimer"), State.CelebState(
+    Shirt("Black Strapless Shirt", 3, (16, 25),
+          Color.BLACK),
+    Pants("Pink Paddlephone Pants", 3, (16, 25), Color.PINK),
+    Shoes("Black Sandals", 3, (16, 25), Color.BLACK),
+    "Anne Zivi"), State.CelebState(
+    Shirt("Black Fila T Shirt", 3, (26, 35),
+          Color.BLACK),
+    Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+    Shoes("White Sneakers", 3, (26, 35), Color.WHITE),
+    "Noa Kirel"), State.CelebState(
+    Shirt("Purple Tank Top", 3, (26, 35),
+          Color.PURPLE),
+    Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+    Shoes("Brown Sandals", 3, (26, 35), Color.BROWN),
+    "Avishag Samberg")]
+
+CASUAL_ELEGANT_LIST = [State.CelebState(
+    Shirt("Black Long Elegant Hoodie", 4, (0, 15),
+          Color.BLACK),
+    Pants("Black Leather Skirt", 4, (0, 15), Color.BLACK),
+    Shoes("Black Short Boots", 4, (0, 15), Color.BLACK),
+    "Roni Sheinkman"), State.CelebState(
+    Shirt("White CK Long Sleeve Shirt", 4, (0, 15),
+          Color.WHITE),
+    Pants("Red Paddlephone Pants", 4, (0, 15), Color.RED),
+    Shoes("White Nike Air", 4, (0, 15), Color.WHITE),
+    "Bar Refaeli"), State.CelebState(
+    Shirt("White T Shirt", 4, (16, 25),
+          Color.WHITE),
+    Pants("Midi Black Skirt", 4, (16, 25), Color.BLACK),
+    Shoes("Black Short Boots", 4, (16, 25), Color.BLACK),
+    "Adi Himelbloy"), State.CelebState(
+    Shirt("Blue One Sleeve Shirt", 4, (16, 25),
+          Color.BLUE),
+    Pants("Blue Jeans", 4, (16, 25), Color.BLUE),
+    Shoes("Brown Sandals", 4, (16, 25), Color.BROWN),
+    "Maya Wertheimer"), State.CelebState(
+    Shirt("White Cropped Tank Top", 4, (26, 35),
+          Color.WHITE),
+    Pants("White Short Skirt", 4, (26, 35), Color.WHITE),
+    Shoes("Yellow Sandals", 4, (26, 35), Color.YELLOW),
+    "Neta Alchimister"), State.CelebState(
+    Shirt("Purple Puffy Sleeves Shirt", 4, (26, 35),
+          Color.PURPLE),
+    Pants("Gray Short Skirt", 4, (26, 35), Color.GRAY),
+    Shoes("White Sandals", 4, (26, 35), Color.WHITE),
+    "Anna Aronov")]
+
+FORMAL_LIST = [State.CelebState(
+    Shirt("Green Blazer", 5, (0, 15),
+          Color.GREEN),
+    Pants("Green Tailored Pants", 5, (0, 15), Color.GREEN),
+    Shoes("Black Short Boots", 5, (0, 15), Color.BLACK),
+    "Roni Sheinkman"), State.CelebState(
+    Shirt("Red Blazer", 5, (0, 15),
+          Color.RED),
+    Pants("Red Tailored Pants", 5, (0, 15), Color.RED),
+    Shoes("Black Pointy High Heels", 5, (0, 15), Color.BLACK),
+    "Gal Gadot"), State.CelebState(
+    Shirt("Pink Blazer", 5, (16, 25),
+          Color.PINK),
+    Pants("Pink Skirt", 5, (16, 25), Color.PINK),
+    Shoes("White High Heels", 5, (16, 25), Color.WHITE),
+    "Yarden Jerbi"), State.CelebState(
+    Shirt("White Strapless Cropped Long Crochet", 5, (16, 25),
+          Color.WHITE),
+    Pants("White Long Paddlephone Crochet", 5, (16, 25), Color.WHITE),
+    Shoes("Red High Heels", 5, (16, 25), Color.RED),
+    "Neta Alchimister"), State.CelebState(
+    Shirt("Black One Sleeve Tank Top", 5, (26, 35),
+          Color.BLACK),
+    Pants("Black Tailored Pants", 5, (26, 35), Color.BLACK),
+    Shoes("Yellow High Heels", 5, (26, 35), Color.YELLOW),
+    "Agam Rudberg"), State.CelebState(
+    Shirt("Pink Puffy Sleeves Shirt", 5, (26, 35),
+          Color.PINK),
+    Pants("White Skirt", 5, (26, 35), Color.WHITE),
+    Shoes("White Low Heels", 5, (26, 35), Color.WHITE),
+    "Anna Aronov")]
+
+###############################################################################
+Senario 1:
+
+Data base:
+
+DB_SHOES = [Shoes("Black Sneakers", 3, (0, 35), Color.BLACK),
+            Shoes("Black Winter Boots", 4, (0, 12), Color.BLACK),
+            Shoes("White Nike Sports Shoes", 2, (0, 35), Color.WHITE),
+            Shoes("White Slippers", 1, (0, 35), Color.WHITE),
+            Shoes("Black Slippers", 1, (0, 35), Color.BLACK),
+            Shoes("Brown Oxford Shoes", 4, (0, 35), Color.BROWN),
+            Shoes("Red High Heels", 5, (0, 35), Color.RED),
+            Shoes("Black High Heels", 5, (0, 35), Color.BLACK),
+            Shoes("White High Heels", 5, (0, 35), Color.WHITE),
+            Shoes("Brown Blundstone", 3, (0, 35), Color.BROWN),
+            Shoes("Shoresh Sandals", 3, (25, 35), Color.PURPLE),
+            Shoes("Black Elegant Sandals", 4, (22, 35), Color.BLACK),
+            Shoes("White Elegant Sandals", 4, (22, 35), Color.WHITE),
+            Shoes("Brown Elegant Sandals", 4, (22, 35), Color.BROWN),
+            Shoes("Blue Sneakers", 3, (0, 35), Color.BLUE),
+            Shoes("White Nike Air", 3, (0, 35), Color.WHITE)
+            ]
+
+DB_SHIRTS = [Shirt("Black T Shirt", 3, (15, 35), Color.BLACK),
+             Shirt("White T Shirt", 3, (15, 35), Color.WHITE),
+             Shirt("Green Buttoned Long Shirt", 4, (5, 25), Color.GREEN),
+             Shirt("White Blouse", 4, (15, 35), Color.WHITE),
+             Shirt("Black Sport T Shirt", 2, (15, 35), Color.BLACK),
+             Shirt("White Sport T Shirt", 2, (15, 35), Color.WHITE),
+             Shirt("Black Sport Top", 2, (15, 35), Color.BLACK),
+             Shirt("White Sport Top", 2, (15, 35), Color.WHITE),
+             Shirt("Black Tank Top", 2, (20, 35), Color.BLACK),
+             Shirt("Blue Long Sleeve Sweat Shirt Cropped Top", 2, (0, 15),
+                   Color.BLUE),
+             Shirt("White Tank Top", 2, (20, 35), Color.WHITE),
+             Shirt("White Short Pyjama", 1, (20, 35), Color.WHITE),
+             Shirt("Black Short Pyjama", 1, (20, 35), Color.BLACK),
+             Shirt("White Long Pyjama", 1, (0, 19), Color.WHITE),
+             Shirt("Black Long Pyjama", 1, (0, 19), Color.BLACK),
+             Shirt("Black Thermal Shirt", 1, (0, 12), Color.BLACK),
+             Shirt("Blue Casual T Shirt", 3, (12, 35), Color.BLUE),
+             Shirt("Blue Jeans Tank Top", 3, (15, 35), Color.BLUE),
+             Shirt("Orange Buttoned Short Shirt", 6, (20, 35), Color.ORANGE),
+             Shirt("Yellow Sweater", 2, (0, 15), Color.YELLOW),
+             Shirt("White Sweater", 2, (0, 15), Color.WHITE),
+             Shirt("Black Sweater", 2, (0, 15), Color.BLACK),
+             Shirt("White Hoodie", 2, (0, 20), Color.WHITE),
+             Shirt("Black Hoodie", 2, (0, 20), Color.BLACK),
+             Shirt("White Strapless", 2, (20, 35), Color.WHITE),
+             Shirt("Black Strapless", 2, (20, 35), Color.BLACK),
+             Shirt("Red Blazer", 5, (0, 20), Color.RED),
+             Shirt("White Blazer", 5, (0, 20), Color.WHITE),
+             Shirt("Pink Puffy Sleeve", 4, (20, 35), Color.PINK)]
+
+DB_PANTS = [Pants("Black Long Jeans", 4, (0, 35), Color.BLACK),
+            Pants("Blue Long Jeans", 4, (0, 35), Color.BLUE),
+            Pants("Brown Tailored Pants", 5, (0, 25), Color.BROWN),
+            Pants("White Tailored Pants", 5, (0, 25), Color.WHITE),
+            Pants("Black Tailored Pants", 5, (0, 25), Color.BLACK),
+            Pants("Gray Tights", 2, (0, 30), Color.GRAY),
+            Pants("Black Tights", 2, (0, 30), Color.BLACK),
+            Pants("White Short Skirt", 4, (18, 35), Color.WHITE),
+            Pants("Black Short Skirt", 4, (18, 35), Color.BLACK),
+            Pants("Yellow Business Casual Pants", 4, (0, 25), Color.YELLOW),
+            Pants("Red Long PJ Pants", 1, (0, 13), Color.RED),
+            Pants("Gray Long PJ Pants", 1, (0, 13), Color.GRAY),
+            Pants("Black Short PJ Pants", 1, (0, 13), Color.BLACK),
+            Pants("Gray Short PJ Pants", 1, (0, 13), Color.GRAY),
+            Pants("Red Tailored Pants", 4, (0, 30), Color.RED),
+            Pants("Black Tailored Pants", 4, (0, 30), Color.BLACK),
+            Pants("White Tailored Pants", 4, (0, 30), Color.WHITE),
+            Pants("Blue Long loose pants", 2, (0, 20), Color.BLUE),
+            Pants("Pink Paddlephone Pants", 3, (15, 30), Color.PINK),
+            Pants("Blue Short Jeans", 4, (25, 35), Color.BLUE),
+            Pants("Black Short sports pants", 2, (25, 35), Color.BLACK),
+            Pants("White Short sports pants", 2, (25, 35), Color.WHITE)
+            ]
+
+style = 3
+temperature = 25
+
+celebs to fit To:
+1. State.CelebState(
+    Shirt("Pink Polo", 3, (16, 25),
+          Color.PINK),
+    Pants("Black Short Jeans", 3, (16, 25), Color.BLACK),
+    Shoes("White Sandals", 3, (16, 25), Color.WHITE),
+    "Maya Wertheimer")
+
+2. State.CelebState(
+    Shirt("Black Strapless Shirt", 3, (16, 25),
+          Color.BLACK),
+    Pants("Pink Paddlephone Pants", 3, (16, 25), Color.PINK),
+    Shoes("Black Sandals", 3, (16, 25), Color.BLACK),
+    "Anne Zivi")
+
+3. State.CelebState(
+    Shirt("Black Fila T Shirt", 3, (26, 35),
+          Color.BLACK),
+    Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+    Shoes("White Sneakers", 3, (26, 35), Color.WHITE),
+    "Noa Kirel")
+
+4. State.CelebState(
+    Shirt("Purple Tank Top", 3, (26, 35),
+          Color.PURPLE),
+    Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+    Shoes("Brown Sandals", 3, (26, 35), Color.BROWN),
+    "Avishag Samberg")
+
+Results:
+Runtime:
+
+CSP only with random choice over solutions: 0.001994609832763672 sec
+
+solution:
+Based on the given parameters, This is our random recommendation:
+Shirt: Blue Casual T Shirt, Temp: (12, 35)
+Pants: Pink Paddlephone Pants, Temp: (15, 30)
+Shoes: Black Sneakers, Temp: (0, 35)
+########################################################
+CSP only with best match: 0.004960060119628906 sec
+
+solution:
+Based on the given parameters, This is our best recommendation:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+
+This outfit is as close as you can get to Anne Zivi:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.1874370574951172 sec
+ Prediction Running Time: 0.0 sec
+solution:
+Shirt: Black T Shirt, Temp: (15, 35)
+Pants: Pink Paddlephone Pants, Temp: (15, 30)
+Shoes: Black Sneakers, Temp: (0, 35)
+
+########################################################
+Best Match:
+
+CSP only with random choice over solutions:
+matchScore: 28.0000153787005
+
+This outfit is closer to Anne Zivi:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+#################################################
+CSP only with best match:
+matchScore: 33.0
+
+This outfit is as close as you can get to Anne Zivi:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+#################################################
+CSP + Qlearning:
+matchScore: 33.0
+This outfit is closer to Anne Zivi:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+
+###############################################################################
+
+Senario 2:
+
+Database: The same as Senario 1
+
+style = 2
+temperature = 25
+
+celebs to fit To:
+
+State.CelebState(
+        Shirt("White Adidas SeeThrough Tank Top", 2, (16, 25), Color.WHITE),
+        Pants("Red Wide Training Pants", 2, (16, 25), Color.RED),
+        Shoes("Red Sport Shoes", 2, (16, 25), Color.RED),
+        "Maya Wertheimer")
+State.CelebState(
+        Shirt("Brown Training Top", 2, (16, 25), Color.BROWN),
+        Pants("Brown Tights", 2, (16, 25), Color.BROWN),
+        Shoes("White Sport Shoes", 2, (16, 25), Color.WHITE),
+        "Yarden Visel")
+State.CelebState(
+        Shirt("Black Training Tank Top", 2, (26, 35), Color.BLACK),
+        Pants("Black Short Training Pants", 2, (26, 35), Color.BLACK),
+        Shoes("Pink Sport Shoes", 2, (26, 35), Color.PINK),
+        "Yarden Jerbi")
+State.CelebState(
+        Shirt("Pink Training Top", 2, (26, 35), Color.PINK),
+        Pants("White Short Training Pants", 2, (26, 35), Color.WHITE),
+        Shoes("White Sport Shoes", 2, (26, 35), Color.WHITE),
+        "Yarden Visel")
+
+
+results:
+Runtime:
+
+CSP only with random choice over solutions: 0.0 sec
+
+solution:
+
+Based on the given parameters, This is our random recommendation:
+Shirt: White Tank Top, Temp: (20, 35)
+Pants: Gray Tights, Temp: (0, 30)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+########################################################
+CSP only with best match: 0.015620946884155273 sec
+
+solution:
+
+Based on the given parameters, This is our best recommendation:
+ Shirt: Black Strapless, Temp: (20, 35)
+Pants: Black Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+This outfit is as close as you can get to Yarden Jerbi:
+Shirt: Black Training Tank Top, Temp: (26, 35)
+Pants: Black Short Training Pants, Temp: (26, 35)
+Shoes: Pink Sport Shoes, Temp: (26, 35)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.15621209144592285 sec
+Predictiong Running Time: 0.0 sec
+
+solution:
+
+Shirt: Black Sport T Shirt, Temp: (15, 35)
+Pants: Black Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+########################################################
+Best Match:
+
+CSP only with random choice over solutions:
+matchScore: 22.600071994925194
+
+This outfit is as close as you can get to Yarden Visel:
+Shirt: Brown Training Top, Temp: (16, 25)
+Pants: Brown Tights, Temp: (16, 25)
+Shoes: White Sport Shoes, Temp: (16, 25)
+#################################################
+
+CSP only with best match:
+matchScore: 28.000149857635247
+
+This outfit is as close as you can get to Yarden Jerbi:
+Shirt: Black Training Tank Top, Temp: (26, 35)
+Pants: Black Short Training Pants, Temp: (26, 35)
+Shoes: Pink Sport Shoes, Temp: (26, 35)
+
+CSP + Qlearning:
+matchScore: 28.000149857635247
+
+This outfit is closer to Yarden Jerbi:
+Shirt: Black Training Tank Top, Temp: (26, 35)
+Pants: Black Short Training Pants, Temp: (26, 35)
+Shoes: Pink Sport Shoes, Temp: (26, 35)
+###############################################################################
+
+Senario 3:
+
+Database: The same as Senario 1
+
+style = 4
+temperature = 25
+
+celebs to fit To:
+
+State.CelebState(
+    Shirt("Black Long Elegant Hoodie", 4, (0, 15),
+          Color.BLACK),
+    Pants("Black Leather Skirt", 4, (0, 15), Color.BLACK),
+    Shoes("Black Short Boots", 4, (0, 15), Color.BLACK),
+    "Roni Sheinkman")
+
+State.CelebState(
+    Shirt("White CK Long Sleeve Shirt", 4, (0, 15),
+          Color.WHITE),
+    Pants("Red Paddlephone Pants", 4, (0, 15), Color.RED),
+    Shoes("White Nike Air", 4, (0, 15), Color.WHITE),
+    "Bar Refaeli")
+
+State.CelebState(
+    Shirt("White T Shirt", 4, (16, 25),
+          Color.WHITE),
+    Pants("Midi Black Skirt", 4, (16, 25), Color.BLACK),
+    Shoes("Black Short Boots", 4, (16, 25), Color.BLACK),
+    "Adi Himelbloy")
+
+State.CelebState(
+    Shirt("Blue One Sleeve Shirt", 4, (16, 25),
+          Color.BLUE),
+    Pants("Blue Jeans", 4, (16, 25), Color.BLUE),
+    Shoes("Brown Sandals", 4, (16, 25), Color.BROWN),
+    "Maya Wertheimer")
+
+Results:
+Runtime:
+
+CSP only with random choice over solutions: 0.015606880187988281 sec
+
+solution:
+Based on the given parameters, This is our random recommendation:
+Shirt: Pink Puffy Sleeve, Temp: (20, 35)
+Pants: Black Short Skirt, Temp: (18, 35)
+Shoes: Brown Elegant Sandals, Temp: (22, 35)
+########################################################
+CSP only with best match: 0.031249046325683594 sec
+
+solution:
+Based on the given parameters, This is our best recommendation:
+ Shirt: White Blouse, Temp: (15, 35)
+Pants: Black Tailored Pants, Temp: (0, 30)
+Shoes: Black Elegant Sandals, Temp: (22, 35)
+This outfit is as close as you can get to Adi Himelbloy:
+Shirt: White T Shirt, Temp: (16, 25)
+Pants: Midi Black Skirt, Temp: (16, 25)
+Shoes: Black Short Boots, Temp: (16, 25)
+########################################################
+CSP + Qlearning:
+ Learning Running Time: 0.25931549072265625sec
+ Predictiong Running Time: 0.00099945068359375 sec
+
+solution:
+Shirt: White Blouse, Temp: (15, 35)
+Pants: Black Long Jeans, Temp: (0, 35)
+Shoes: Black Elegant Sandals, Temp: (22, 35)
+########################################################
+Best Match:
+
+CSP only with random choice over solutions:
+matchScore: 21.800182374788044
+
+This outfit is as close as you can get to Adi Himelbloy:
+Shirt: White T Shirt, Temp: (16, 25)
+Pants: Midi Black Skirt, Temp: (16, 25)
+Shoes: Black Short Boots, Temp: (16, 25)
+
+#################################################
+
+CSP only with best match:
+matchScore: 32.4
+
+This outfit is as close as you can get to Adi Himelbloy:
+Shirt: White T Shirt, Temp: (16, 25)
+Pants: Midi Black Skirt, Temp: (16, 25)
+Shoes: Black Short Boots, Temp: (16, 25)
+#################################################
+CSP + Qlearning:
+matchScore: 32.4
+
+This outfit is closer to Adi Himelbloy:
+Shirt: White T Shirt, Temp: (16, 25)
+Pants: Midi Black Skirt, Temp: (16, 25)
+Shoes: Black Short Boots, Temp: (16, 25)
+###############################################################################
+Senario 4:
+
+Database: The same as Senario 1
+
+style = 5
+temperature = 20
+
+celebs to fit To:
+
+State.CelebState(
+    Shirt("Green Blazer", 5, (0, 15),
+          Color.GREEN),
+    Pants("Green Tailored Pants", 5, (0, 15), Color.GREEN),
+    Shoes("Black Short Boots", 5, (0, 15), Color.BLACK),
+    "Roni Sheinkman")
+
+State.CelebState(
+    Shirt("Red Blazer", 5, (0, 15),
+          Color.RED),
+    Pants("Red Tailored Pants", 5, (0, 15), Color.RED),
+    Shoes("Black Pointy High Heels", 5, (0, 15), Color.BLACK),
+    "Gal Gadot")
+
+State.CelebState(
+    Shirt("Pink Blazer", 5, (16, 25),
+          Color.PINK),
+    Pants("Pink Skirt", 5, (16, 25), Color.PINK),
+    Shoes("White High Heels", 5, (16, 25), Color.WHITE),
+    "Yarden Jerbi")
+
+State.CelebState(
+    Shirt("White Strapless Cropped Long Crochet", 5, (16, 25),
+          Color.WHITE),
+    Pants("White Long Paddlephone Crochet", 5, (16, 25), Color.WHITE),
+    Shoes("Red High Heels", 5, (16, 25), Color.RED),
+    "Neta Alchimister")
+
+Results:
+Runtime:
+
+CSP only with random choice over solutions: 0.00196075439453125 sec
+
+solution:
+Based on the given parameters, This is our random recommendation:
+Shirt: Red Blazer, Temp: (0, 20)
+Pants: Brown Tailored Pants, Temp: (0, 25)
+Shoes: Red High Heels, Temp: (0, 35)
+########################################################
+CSP only with best match: 0.003992319107055664 sec
+
+solution:
+Based on the given parameters, This is our best recommendation:
+ Shirt: White Blazer, Temp: (0, 20)
+Pants: White Tailored Pants, Temp: (0, 25)
+Shoes: Red High Heels, Temp: (0, 35)
+This outfit is as close as you can get to Neta Alchimister:
+Shirt: White Strapless Cropped Long Crochet, Temp: (16, 25)
+Pants: White Long Paddlephone Crochet, Temp: (16, 25)
+Shoes: Red High Heels, Temp: (16, 25)
+########################################################
+CSP + Qlearning:
+ Learning Running Time: 0.13866329193115234sec
+ Predictiong Running Time: 0.0009615421295166016 sec
+
+solution:
+Shirt: White Blazer, Temp: (0, 20)
+Pants: White Tailored Pants, Temp: (0, 25)
+Shoes: Red High Heels, Temp: (0, 35)
+########################################################
+Best Match:
+
+CSP only with random choice over solutions:
+matchScore: 23.000101378012506
+
+This outfit is as close as you can get to Gal Gadot:
+Shirt: Red Blazer, Temp: (0, 15)
+Pants: Red Tailored Pants, Temp: (0, 15)
+Shoes: Black Pointy High Heels, Temp: (0, 15)
+#################################################
+
+CSP only with best match:
+matchScore: 32.5
+
+This outfit is as close as you can get to Neta Alchimister:
+Shirt: White Strapless Cropped Long Crochet, Temp: (16, 25)
+Pants: White Long Paddlephone Crochet, Temp: (16, 25)
+Shoes: Red High Heels, Temp: (16, 25)
+#################################################
+
+CSP + Qlearning:
+matchScore: 32.5
+
+This outfit is closer to Neta Alchimister:
+Shirt: White Strapless Cropped Long Crochet, Temp: (16, 25)
+Pants: White Long Paddlephone Crochet, Temp: (16, 25)
+Shoes: Red High Heels, Temp: (16, 25)
+###############################################################################
+Senario 5:
+
+Database: The same as Senario 1
+
+style = 1
+temperature = 10
+
+celebs to fit to:
+
+State.CelebState(Shirt("White Hoodie", 1, (0, 15), Color.WHITE),
+                              Pants("Red Long Pants", 1, (0, 15), Color.RED),
+                              Shoes("Nike Air", 1, (0, 15), Color.WHITE),
+                              "Justin Bieber"),
+
+State.CelebState(
+                 Shirt("White Long Sleeve Shirt", 1, (0, 15), Color.WHITE),
+                 Pants("White Long Sleeve Pants", 1, (0, 15), Color.RED),
+                 Shoes("Slippers", 1, (0, 15), Color.WHITE),
+                 "Eliana Tidhar")
+
+Results:
+Runtime:
+
+CSP only with random choice over solutions: 0.0019960403442382812 sec
+
+solution:
+Based on the given parameters, This is our random recommendation:
+Shirt: Black Long Pyjama, Temp: (0, 19)
+Pants: Gray Long PJ Pants, Temp: (0, 13)
+Shoes: Black Slippers, Temp: (0, 35)
+########################################################
+CSP only with best match: 0.015657901763916016 sec
+
+solution:
+
+Based on the given parameters, This is our best recommendation:
+ Shirt: White Long Pyjama, Temp: (0, 19)
+Pants: Red Long PJ Pants, Temp: (0, 13)
+Shoes: White Slippers, Temp: (0, 35)
+This outfit is as close as you can get to Justin Bieber:
+Shirt: White Hoodie, Temp: (0, 15)
+Pants: Red Long Pants, Temp: (0, 15)
+Shoes: Nike Air, Temp: (0, 15)
+########################################################
+CSP + Qlearning:
+ Learning Running Time: 0.1316819190979004sec
+ Predictiong Running Time: 0.0 sec
+
+solution:
+
+Shirt: White Long Pyjama, Temp: (0, 19)
+Pants: Red Long PJ Pants, Temp: (0, 13)
+Shoes: White Slippers, Temp: (0, 35)
+########################################################
+Best Match:
+
+CSP only with random choice over solutions:
+matchScore: 18.000030703619423
+
+This outfit is as close as you can get to Justin Bieber:
+Shirt: Black Long Pyjama, Temp: (0, 19)
+Pants: Gray Long PJ Pants, Temp: (0, 13)
+Shoes: Black Slippers, Temp: (0, 35)
+#################################################
+
+CSP only with best match:
+matchScore: 33.0
+
+This outfit is as close as you can get to Justin Bieber:
+Shirt: White Hoodie, Temp: (0, 15)
+Pants: Red Long Pants, Temp: (0, 15)
+Shoes: Nike Air, Temp: (0, 15)
+#################################################
+
+CSP + Qlearning:
+matchScore: 33.0
+
+This outfit is closer to Justin Bieber:
+Shirt: White Hoodie, Temp: (0, 15)
+Pants: Red Long Pants, Temp: (0, 15)
+Shoes: Nike Air, Temp: (0, 15)
+###############################################################################
+Trends for the following 5 scenarios(Celebs):
+
+HOME_LIST = [State.CelebState(Shirt("White Hoodie", 1, (0, 15), Color.WHITE),
+                              Pants("Red Long Pants", 1, (0, 15), Color.RED),
+                              Shoes("White Nike Air", 1, (0, 15), Color.WHITE),
+                              "Justin Bieber"),
+             State.CelebState(
+                 Shirt("White Long Sleeve Shirt", 1, (0, 15), Color.WHITE),
+                 Pants("White Long Sleeve Pants", 1, (0, 15), Color.RED),
+                 Shoes("Slippers", 1, (0, 15), Color.WHITE),
+                 "Eliana Tidhar"),
+             State.CelebState(
+                 Shirt("Gray hoodie", 1, (0, 15), Color.GRAY),
+                 Pants("Gray Long tights", 1, (0, 15), Color.GRAY),
+                 Shoes("Slippers", 1, (0, 15), Color.GRAY),
+                 "Coral Simanovich"),
+             State.CelebState(
+                 Shirt("Brown PJ Tank Top", 1, (16, 25), Color.BROWN),
+                 Pants("Brown Long Sleeve Pants", 1, (16, 25), Color.BROWN),
+                 Shoes("Slippers", 1, (16, 25), Color.WHITE),
+                 "Eliana Tidhar"), State.CelebState(
+        Shirt("White T Shirt", 1, (16, 25), Color.WHITE),
+        Pants("Black Long Sweat Pants", 1, (16, 25), Color.BLACK),
+        Shoes("Black Slippers", 1, (16, 25), Color.BLACK),
+        "Delta Model Male"),
+             State.CelebState(
+                 Shirt("White T Shirt", 1, (16, 25), Color.WHITE),
+                 Pants("Black Long Tights", 1, (16, 25), Color.BLACK),
+                 Shoes("White Slippers", 1, (16, 25), Color.WHITE),
+                 "Roni Sheinkman"),
+             State.CelebState(
+                 Shirt("Yellow T Shirt", 1, (26, 35), Color.YELLOW),
+                 Pants("Yellow Short PJ Pants", 1, (26, 35), Color.YELLOW),
+                 Shoes("White Slippers", 1, (26, 35), Color.WHITE),
+                 "Eliana Tidhar"), State.CelebState(
+        Shirt("Gray PJ Tank Top", 1, (26, 35), Color.GRAY),
+        Pants("Gray Short PJ Pants", 1, (26, 35), Color.GRAY),
+        Shoes("Pink Slippers", 1, (26, 35), Color.PINK),
+        "Delta Model Male"), State.CelebState(
+        Shirt("White T shirt", 1, (26, 35), Color.WHITE),
+        Pants("White Short PJ Pants", 1, (26, 35), Color.WHITE),
+        Shoes("Brown Slippers", 1, (26, 35), Color.BROWN),
+        "Danit Greenberg")]
+
+SPORTS_LIST = [
+    State.CelebState(
+        Shirt("Blue Long Sleeve Sweat Shirt Cropped Top", 2, (0, 15),
+              Color.BLUE),
+        Pants("Blue Long Sweat Pants", 2, (0, 15), Color.BLUE),
+        Shoes("White Nike Sports Shoes", 2, (0, 15), Color.WHITE),
+        "Liel Eli"), State.CelebState(
+        Shirt("Yellow Long Sleeve Sweat Shirt", 2, (0, 15), Color.BLUE),
+        Pants("Black Tights", 2, (0, 15), Color.BLACK),
+        Shoes("Black Sport Shoes", 2, (0, 15), Color.BLACK),
+        "Dana Frider"),
+
+    State.CelebState(
+        Shirt("Black long sleeve shirt", 1, (0, 15), Color.BLACK),
+        Pants("Black Long tights", 1, (0, 15), Color.BLACK),
+        Shoes("White nike shoes", 1, (0, 15), Color.WHITE),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Pink hoodie", 1, (0, 15), Color.PINK),
+        Pants("Pink Long tights", 1, (0, 15), Color.PINK),
+        Shoes("White nike shoes", 1, (0, 15), Color.WHITE),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("White Adidas SeeThrough Tank Top", 2, (16, 25), Color.WHITE),
+        Pants("Red Wide Training Pants", 2, (16, 25), Color.RED),
+        Shoes("Red Sport Shoes", 2, (16, 25), Color.RED),
+        "Maya Wertheimer"), State.CelebState(
+        Shirt("Brown Training Top", 2, (16, 25), Color.BROWN),
+        Pants("Brown Tights", 2, (16, 25), Color.BROWN),
+        Shoes("White Sport Shoes", 2, (16, 25), Color.WHITE),
+        "Yarden Visel"),
+
+    State.CelebState(
+        Shirt("Black Training Top", 2, (16, 25), Color.BLACK),
+        Pants("Black Tights", 2, (16, 25), Color.BLACK),
+        Shoes("Black Sport Shoes", 2, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("Pink Training Top", 2, (16, 25), Color.PINK),
+        Pants("Pink Tights", 2, (16, 25), Color.PINK),
+        Shoes("White Sport Shoes", 2, (16, 25), Color.WHITE),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Black Training Tank Top", 2, (26, 35), Color.BLACK),
+        Pants("Black Short Training Pants", 2, (26, 35), Color.BLACK),
+        Shoes("Pink Sport Shoes", 2, (26, 35), Color.PINK),
+        "Yarden Jerbi"), State.CelebState(
+        Shirt("Pink Training Top", 2, (26, 35), Color.PINK),
+        Pants("White Short Training Pants", 2, (26, 35), Color.WHITE),
+        Shoes("White Sport Shoes", 2, (26, 35), Color.WHITE),
+        "Yarden Visel"), State.CelebState(
+        Shirt("White wide T shirt", 2, (26, 35), Color.WHITE),
+        Pants("Black Short Training Pants", 2, (26, 35), Color.BLACK),
+        Shoes("White Sport Shoes", 2, (26, 35), Color.WHITE),
+        "Liel Eli")]
+
+CASUAL_LIST = [State.CelebState(
+    Shirt("White Long Hoodie", 3, (0, 15),
+          Color.WHITE),
+    Pants("Blue Long Jeans", 3, (0, 15), Color.BLUE),
+    Shoes("Black Sneaker", 3, (0, 15), Color.BLACK),
+    "Anne Zivi"), State.CelebState(
+    Shirt("Gray Long Knit", 3, (0, 15),
+          Color.GRAY),
+    Pants("Black Mom Jeans", 3, (0, 15), Color.BLACK),
+    Shoes("Black Short Boots", 3, (0, 15), Color.BLACK),
+    "Roni Sheinkman"),
+    State.CelebState(
+        Shirt("Black Long Hoodie", 3, (0, 15), Color.BLACK),
+        Pants("Blue Long Jeans", 3, (0, 15), Color.BLUE),
+        Shoes("White allstar", 3, (0, 15), Color.WHITE),
+        "Liel Eli"),
+    State.CelebState(
+        Shirt("White Long shirt", 3, (0, 15), Color.WHITE),
+        Pants("Black Long Jeans", 3, (0, 15), Color.BLACK),
+        Shoes("Black short boots", 3, (0, 15), Color.BLACK),
+        "Danit Greenberg"),
+    State.CelebState(
+        Shirt("White Long sweeter", 3, (0, 15), Color.WHITE),
+        Pants("Blue Long Jeans", 3, (0, 15), Color.BLUE),
+        Shoes("White jordens", 3, (0, 15), Color.WHITE),
+        "Coral Simanovich"),
+    State.CelebState(
+        Shirt("Pink Polo", 3, (16, 25),
+              Color.PINK),
+        Pants("Black Short Jeans", 3, (16, 25), Color.BLACK),
+        Shoes("White Sandals", 3, (16, 25), Color.WHITE),
+        "Maya Wertheimer"), State.CelebState(
+        Shirt("Black Strapless Shirt", 3, (16, 25),
+              Color.BLACK),
+        Pants("Pink Paddlephone Pants", 3, (16, 25), Color.PINK),
+        Shoes("Black Sandals", 3, (16, 25), Color.BLACK),
+        "Anne Zivi"),
+    State.CelebState(
+        Shirt("Brown strapless", 3, (16, 25), Color.BROWN),
+        Pants("Blue Long Jeans", 3, (16, 25), Color.BLUE),
+        Shoes("White adidas sneakers", 3, (16, 25), Color.WHITE),
+        "Liel Eli"),
+    State.CelebState(
+        Shirt("White T shirt", 3, (16, 25), Color.WHITE),
+        Pants("Blue Long Jeans", 3, (16, 25), Color.BLUE),
+        Shoes("Black allstar", 3, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White tank top", 3, (16, 25), Color.WHITE),
+        Pants("Blue Long Jeans", 3, (16, 25), Color.BLUE),
+        Shoes("Pink flip flops", 3, (16, 25), Color.PINK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("Black Fila T Shirt", 3, (26, 35),
+              Color.BLACK),
+        Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+        Shoes("White Sneakers", 3, (26, 35), Color.WHITE),
+        "Noa Kirel"), State.CelebState(
+        Shirt("Purple Tank Top", 3, (26, 35),
+              Color.PURPLE),
+        Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+        Shoes("Brown Sandals", 3, (26, 35), Color.BROWN),
+        "Avishag Samberg"),
+    State.CelebState(
+        Shirt("Pink T shirt", 3, (26, 35), Color.PINK),
+        Pants("Pink Short tights", 3, (26, 35), Color.PINK),
+        Shoes("White fila sneakers", 3, (26, 35), Color.WHITE),
+        "Danit Greenberg")]
+
+CASUAL_ELEGANT_LIST = [State.CelebState(
+    Shirt("Black Long Elegant Hoodie", 4, (0, 15),
+          Color.BLACK),
+    Pants("Black Leather Skirt", 4, (0, 15), Color.BLACK),
+    Shoes("Black Short Boots", 4, (0, 15), Color.BLACK),
+    "Roni Sheinkman"), State.CelebState(
+    Shirt("White CK Long Sleeve Shirt", 4, (0, 15),
+          Color.WHITE),
+    Pants("Red Paddlephone Pants", 4, (0, 15), Color.RED),
+    Shoes("White Nike Air", 4, (0, 15), Color.WHITE),
+    "Bar Refaeli"),
+    State.CelebState(
+        Shirt("White long sleeve shirt", 4, (0, 15), Color.WHITE),
+        Pants("Brown Paddlephone Pants", 1, (0, 15), Color.BROWN),
+        Shoes("Black short boots", 1, (0, 15), Color.BLACK),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Yellow strapless", 4, (16, 25),
+              Color.YELLOW),
+        Pants("Brown tailored pants", 4, (16, 25), Color.BROWN),
+        Shoes("Brown elegant flip flops", 4, (16, 25), Color.BROWN),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White long sleeve shirt", 4, (16, 25),
+              Color.WHITE),
+        Pants("Black short jeans", 4, (16, 25), Color.BLACK),
+        Shoes("Black short boots", 4, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White T shirt", 4, (16, 25),
+              Color.WHITE),
+        Pants("Black Paddlephone Pants", 4, (16, 25), Color.BLACK),
+        Shoes("Black short boots", 4, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White T Shirt", 4, (16, 25),
+              Color.WHITE),
+        Pants("Midi Black Skirt", 4, (16, 25), Color.BLACK),
+        Shoes("Black Short Boots", 4, (16, 25), Color.BLACK),
+        "Adi Himelbloy"), State.CelebState(
+        Shirt("Blue One Sleeve Shirt", 4, (16, 25),
+              Color.BLUE),
+        Pants("Blue Jeans", 4, (16, 25), Color.BLUE),
+        Shoes("Brown Sandals", 4, (16, 25), Color.BROWN),
+        "Maya Wertheimer"), State.CelebState(
+        Shirt("White Cropped Tank Top", 4, (26, 35),
+              Color.WHITE),
+        Pants("White Short Skirt", 4, (26, 35), Color.WHITE),
+        Shoes("Yellow Sandals", 4, (26, 35), Color.YELLOW),
+        "Neta Alchimister"), State.CelebState(
+        Shirt("Purple Puffy Sleeves Shirt", 4, (26, 35),
+              Color.PURPLE),
+        Pants("Gray Short Skirt", 4, (26, 35), Color.GRAY),
+        Shoes("White Sandals", 4, (26, 35), Color.WHITE),
+        "Anna Aronov"),
+
+    State.CelebState(
+        Shirt("White strapless", 4, (26, 35),
+              Color.WHITE),
+        Pants("Brown Paddlephone pants", 4, (16, 25), Color.BROWN),
+        Shoes("Brown elegant flip flops", 4, (16, 25), Color.BROWN),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Red crop t shirt", 4, (26, 35),
+              Color.RED),
+        Pants("Red skirt", 4, (16, 25), Color.RED),
+        Shoes("White elegant flip flops", 4, (16, 25), Color.WHITE),
+        "Danit Greenberg")
+]
+
+FORMAL_LIST = [State.CelebState(
+    Shirt("Green Blazer", 5, (0, 15),
+          Color.GREEN),
+    Pants("Green Tailored Pants", 5, (0, 15), Color.GREEN),
+    Shoes("Black Short Boots", 5, (0, 15), Color.BLACK),
+    "Roni Sheinkman"), State.CelebState(
+    Shirt("Red Blazer", 5, (0, 15),
+          Color.RED),
+    Pants("Red Tailored Pants", 5, (0, 15), Color.RED),
+    Shoes("Black Pointy High Heels", 5, (0, 15), Color.BLACK),
+    "Gal Gadot"),
+    State.CelebState(
+        Shirt("Gray Blazer", 5, (0, 15),
+              Color.GRAY),
+        Pants("Blue jeans", 5, (0, 15), Color.BLUE),
+        Shoes("Black Pointy High Heels", 5, (0, 15), Color.BLACK),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Pink Blazer", 5, (16, 25),
+              Color.PINK),
+        Pants("Pink Skirt", 5, (16, 25), Color.PINK),
+        Shoes("White High Heels", 5, (16, 25), Color.WHITE),
+        "Yarden Jerbi"), State.CelebState(
+        Shirt("White Strapless Cropped Long Crochet", 5, (16, 25),
+              Color.WHITE),
+        Pants("White Long Paddlephone Crochet", 5, (16, 25), Color.WHITE),
+        Shoes("Red High Heels", 5, (16, 25), Color.RED),
+        "Neta Alchimister"),
+
+    State.CelebState(
+        Shirt("White one shoulder shirt", 5, (16, 25),
+              Color.WHITE),
+        Pants("White Long Paddlephone with drawings", 5, (16, 25), Color.WHITE),
+        Shoes("Brown crochet platform", 5, (16, 25), Color.BROWN),
+        "Coral Simanovich"),
+    State.CelebState(
+        Shirt("Black One Sleeve Tank Top", 5, (26, 35),
+              Color.BLACK),
+        Pants("Black Tailored Pants", 5, (26, 35), Color.BLACK),
+        Shoes("Yellow High Heels", 5, (26, 35), Color.YELLOW),
+        "Agam Rudberg"), State.CelebState(
+        Shirt("Pink Puffy Sleeves Shirt", 5, (26, 35),
+              Color.PINK),
+        Pants("White Skirt", 5, (26, 35), Color.WHITE),
+        Shoes("White Low Heels", 5, (26, 35), Color.WHITE),
+        "Anna Aronov"),
+    State.CelebState(
+        Shirt("Black elegant tank top", 5, (26, 35),
+              Color.BLACK),
+        Pants("Black Skirt", 5, (26, 35), Color.BLACK),
+        Shoes("Black high Heels", 5, (26, 35), Color.BLACK),
+        "Liel Eli")
+]
+
+Senario 6:
+
+Database: The same as Senario 1
+
+style = 2
+temperature = 30
+
+celebs to fit to:
+
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.004987001419067383 sec
+matchScore: 28.000149857635247
+
+Based on the given parameters, This is our random recommendation:
+Shirt: White Sport Top, Temp: (15, 35)
+Pants: White Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is as close as you can get to Yarden Visel:
+Shirt: Pink Training Top, Temp: (26, 35)
+Pants: White Short Training Pants, Temp: (26, 35)
+Shoes: White Sport Shoes, Temp: (26, 35)
+########################################################
+CSP only with best match:
+ Running Time: 0.009964704513549805 sec
+matchScore: 33.0
+
+Based on the given parameters, This is our best recommendation:
+ Shirt: White Strapless, Temp: (20, 35)
+Pants: Black Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is as close as you can get to Liel Eli:
+Shirt: White wide T shirt, Temp: (26, 35)
+Pants: Black Short Training Pants, Temp: (26, 35)
+Shoes: White Sport Shoes, Temp: (26, 35)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.21869921684265137 sec
+Prediction Running Time: 0.000997304916381836 sec
+matchScore: 33.0
+
+Shirt: White Tank Top, Temp: (20, 35)
+Pants: Black Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is closer to Liel Eli:
+Shirt: White wide T shirt, Temp: (26, 35)
+Pants: Black Short Training Pants, Temp: (26, 35)
+Shoes: White Sport Shoes, Temp: (26, 35)
+###############################################################################
+Senario 7:
+
+Database: The same as Senario 1
+
+style = 2
+temperature = 10
+
+celebs to fit to:
+
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.0020275115966796875 sec
+matchScore: 23.00002814050267
+
+solution:
+Shirt: White Sweater, Temp: (0, 15)
+Pants: Gray Tights, Temp: (0, 30)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is as close as you can get to Liel Eli:
+Shirt: Blue Long Sleeve Sweat Shirt Cropped Top, Temp: (0, 15)
+Pants: Blue Long Sweat Pants, Temp: (0, 15)
+Shoes: White Nike Sports Shoes, Temp: (0, 15)
+########################################################
+CSP only with best match:
+Running Time: 0.004986286163330078 sec
+matchScore: 33.0
+
+solution:
+Shirt: Blue Long Sleeve Sweat Shirt Cropped Top, Temp: (0, 15)
+Pants: Blue Long loose pants, Temp: (0, 20)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is as close as you can get to Liel Eli:
+Shirt: Blue Long Sleeve Sweat Shirt Cropped Top, Temp: (0, 15)
+Pants: Blue Long Sweat Pants, Temp: (0, 15)
+Shoes: White Nike Sports Shoes, Temp: (0, 15)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.24998831748962402sec
+Predictiong Running Time: 0.0 sec
+matchScore: 33.0
+
+solution:
+Shirt: Blue Long Sleeve Sweat Shirt Cropped Top, Temp: (0, 15)
+Pants: Blue Long loose pants, Temp: (0, 20)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is closer to Liel Eli:
+Shirt: Blue Long Sleeve Sweat Shirt Cropped Top, Temp: (0, 15)
+Pants: Blue Long Sweat Pants, Temp: (0, 15)
+Shoes: White Nike Sports Shoes, Temp: (0, 15)
+###############################################################################
+Senario 8:
+
+Database: The same as Senario 1
+
+style = 4
+temperature = 7
+
+celebs to fit to:
+
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.0009968280792236328 sec
+matchScore: 22.687530757401
+
+solution:
+Shirt: Green Buttoned Long Shirt, Temp: (5, 25)
+Pants: Blue Long Jeans, Temp: (0, 35)
+Shoes: Black Winter Boots, Temp: (0, 12)
+
+This outfit is as close as you can get to Roni Sheinkman:
+Shirt: Black Long Elegant Hoodie, Temp: (0, 15)
+Pants: Black Leather Skirt, Temp: (0, 15)
+Shoes: Black Short Boots, Temp: (0, 15)
+########################################################
+CSP only with best match:
+Running Time: 0.015572071075439453 sec
+matchScore: 27.6875153787005
+
+solution:
+Shirt: Green Buttoned Long Shirt, Temp: (5, 25)
+Pants: Black Tailored Pants, Temp: (0, 30)
+Shoes: Black Winter Boots, Temp: (0, 12)
+
+This outfit is as close as you can get to Roni Sheinkman:
+Shirt: Black Long Elegant Hoodie, Temp: (0, 15)
+Pants: Black Leather Skirt, Temp: (0, 15)
+Shoes: Black Short Boots, Temp: (0, 15)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.147169828414917sec
+Predictiong Running Time: 0.0 sec
+matchScore: 22.687530757401
+
+solution:
+Shirt: Green Buttoned Long Shirt, Temp: (5, 25)
+Pants: Red Tailored Pants, Temp: (0, 30)
+Shoes: Black Winter Boots, Temp: (0, 12)
+
+This outfit is closer to Roni Sheinkman:
+Shirt: Black Long Elegant Hoodie, Temp: (0, 15)
+Pants: Black Leather Skirt, Temp: (0, 15)
+Shoes: Black Short Boots, Temp: (0, 15)
+########################################################
+Senario 9:
+
+Database: The same as Senario 1
+
+style = 5
+temperature = 5
+
+celebs to fit to:
+
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.001972198486328125 sec
+matchScore: 18.000041171642
+
+solution:
+Shirt: White Blazer, Temp: (0, 20)
+Pants: Black Tailored Pants, Temp: (0, 25)
+Shoes: White High Heels, Temp: (0, 35)
+
+This outfit is as close as you can get to Coral Simanovich:
+Shirt: Gray Blazer, Temp: (0, 15)
+Pants: Blue jeans, Temp: (0, 15)
+Shoes: Black Pointy High Heels, Temp: (0, 15)
+########################################################
+CSP only with best match:
+Running Time: 0.01562190055847168 sec
+matchScore: 28.000085999312006
+
+solution:
+Shirt: Red Blazer, Temp: (0, 20)
+Pants: Brown Tailored Pants, Temp: (0, 25)
+Shoes: Black High Heels, Temp: (0, 35)
+
+This outfit is as close as you can get to Gal Gadot:
+Shirt: Red Blazer, Temp: (0, 15)
+Pants: Red Tailored Pants, Temp: (0, 15)
+Shoes: Black Pointy High Heels, Temp: (0, 15)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.14055490493774414sec
+Predictiong Running Time: 0.0 sec
+matchScore: 28.000085999312006
+
+solution:
+Shirt: Red Blazer, Temp: (0, 20)
+Pants: Brown Tailored Pants, Temp: (0, 25)
+Shoes: Black High Heels, Temp: (0, 35)
+
+This outfit is closer to Gal Gadot:
+Shirt: Red Blazer, Temp: (0, 15)
+Pants: Red Tailored Pants, Temp: (0, 15)
+Shoes: Black Pointy High Heels, Temp: (0, 15)
+########################################################
+Senario 10:
+
+Database: The same as Senario 1
+
+style = 1
+temperature = 27
+
+celebs to fit to:
+
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.01564764976501465 sec
+matchScore: 18.00006293087182
+
+solution:
+Shirt: Black Nightdress Shirt, Temp: (20, 35)
+Pants: Blue Nightdress Pants, Temp: (20, 35)
+Shoes: Yellow Slippers, Temp: (0, 35)
+
+This outfit is as close as you can get to Delta Model Male:
+Shirt: Gray PJ Tank Top, Temp: (26, 35)
+Pants: Gray Short PJ Pants, Temp: (26, 35)
+Shoes: Pink Slippers, Temp: (26, 35)
+########################################################
+CSP only with best match:
+Running Time: 0.010970592498779297 sec
+matchScore: 32.2
+
+solution:
+Shirt: White Short Pyjama, Temp: (20, 35)
+Pants: Black Nightdress Pants, Temp: (20, 35)
+Shoes: Black Slippers, Temp: (0, 35)
+
+This outfit is as close as you can get to Delta Model Male:
+Shirt: White T Shirt, Temp: (16, 25)
+Pants: Black Long Sweat Pants, Temp: (16, 25)
+Shoes: Black Slippers, Temp: (16, 25)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.20844268798828125sec
+Predictiong Running Time: 0.0 sec
+matchScore: 32.2
+
+solution:
+Shirt: White Short Pyjama, Temp: (20, 35)
+Pants: Black Nightdress Pants, Temp: (20, 35)
+Shoes: White Slippers, Temp: (0, 35)
+
+This outfit is closer to Roni Sheinkman:
+Shirt: White T Shirt, Temp: (16, 25)
+Pants: Black Long Tights, Temp: (16, 25)
+Shoes: White Slippers, Temp: (16, 25)
+###############################################################################
+All the Following scenarios were being taken with respect to a bigger trendy databse
+and are the same as the previous  1-5 scenarios
+###############################################################################
+scenario 1
+
+style = 3
+temperature = 25
+
+celebs to fit To:
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.0 sec
+matchScore: 28.0000051262335
+
+solution:
+Shirt: Black T Shirt, Temp: (15, 35)
+Pants: Pink Paddlephone Pants, Temp: (15, 30)
+Shoes: White Nike Air, Temp: (0, 35)
+
+This outfit is as close as you can get to Anne Zivi:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+########################################################
+CSP only with best match:
+Running Time: 0.0 sec
+matchScore: 33.0
+
+solution:
+Shirt: Black T Shirt, Temp: (15, 35)
+Pants: Pink Paddlephone Pants, Temp: (15, 30)
+Shoes: Black Sneakers, Temp: (0, 35)
+
+This outfit is as close as you can get to Anne Zivi:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.22536444664001465sec
+Predictiong Running Time: 0.0 sec
+matchScore: 33.0
+
+solution:
+
+Shirt: Black T Shirt, Temp: (15, 35)
+Pants: Pink Paddlephone Pants, Temp: (15, 30)
+Shoes: Black Sneakers, Temp: (0, 35)
+
+This outfit is closer to Anne Zivi:
+Shirt: Black Strapless Shirt, Temp: (16, 25)
+Pants: Pink Paddlephone Pants, Temp: (16, 25)
+Shoes: Black Sandals, Temp: (16, 25)
+###############################################################################
+scenario 2
+
+style = 2
+temperature = 25
+
+celebs to fit To:
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.0 sec
+matchScore: 28.000006988217866
+
+solution:
+Shirt: Black Sport T Shirt, Temp: (15, 35)
+Pants: White Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is as close as you can get to Yarden Visel:
+Shirt: Pink Training Top, Temp: (26, 35)
+Pants: White Short Training Pants, Temp: (26, 35)
+Shoes: White Sport Shoes, Temp: (26, 35)
+########################################################
+CSP only with best match:
+Running Time: 0.010971307754516602 sec
+matchScore: 33.0
+
+solution:
+Shirt: White Strapless, Temp: (20, 35)
+Pants: Black Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is as close as you can get to Liel Eli:
+Shirt: White wide T shirt, Temp: (26, 35)
+Pants: Black Short Training Pants, Temp: (26, 35)
+Shoes: White Sport Shoes, Temp: (26, 35)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.2030792236328125sec
+Predictiong Running Time: 0.0 sec
+matchScore: 28.000149857635247
+
+solution:
+
+Shirt: Black Sport T Shirt, Temp: (15, 35)
+Pants: Black Short sports pants, Temp: (25, 35)
+Shoes: White Nike Sports Shoes, Temp: (0, 35)
+
+This outfit is closer to Yarden Jerbi:
+Shirt: Black Training Tank Top, Temp: (26, 35)
+Pants: Black Short Training Pants, Temp: (26, 35)
+Shoes: Pink Sport Shoes, Temp: (26, 35)
+###############################################################################
+scenario 3
+
+style = 4
+temperature = 25
+
+celebs to fit To:
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.015611648559570312 sec
+matchScore: 27.4000153787005
+
+solution:
+
+Shirt: White Blouse, Temp: (15, 35)
+Pants: Blue Long Jeans, Temp: (0, 35)
+Shoes: Black Elegant Sandals, Temp: (22, 35)
+
+This outfit is as close as you can get to Danit Greenberg:
+Shirt: White long sleeve shirt, Temp: (16, 25)
+Pants: Black short jeans, Temp: (16, 25)
+Shoes: Black short boots, Temp: (16, 25)
+########################################################
+CSP only with best match:
+Running Time: 0.04683804512023926 sec
+matchScore: 32.4
+
+solution:
+
+Shirt: White Blouse, Temp: (15, 35)
+Pants: Black Tailored Pants, Temp: (0, 30)
+Shoes: Black Elegant Sandals, Temp: (22, 35)
+
+This outfit is as close as you can get to Danit Greenberg:
+Shirt: White long sleeve shirt, Temp: (16, 25)
+Pants: Black short jeans, Temp: (16, 25)
+Shoes: Black short boots, Temp: (16, 25)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.5335988998413086sec
+Predictiong Running Time: 0.0 sec
+matchScore: 28.000085999312006
+
+solution:
+
+Shirt: White Blouse, Temp: (15, 35)
+Pants: Red Tailored Pants, Temp: (0, 30)
+Shoes: Brown Oxford Shoes, Temp: (0, 35)
+
+This outfit is closer to Coral Simanovich:
+Shirt: White strapless, Temp: (26, 35)
+Pants: Brown Paddlephone pants, Temp: (16, 25)
+Shoes: Brown elegant flip flops, Temp: (16, 25)
+###############################################################################
+scenario 4
+
+style = 5
+temperature = 20
+
+celebs to fit To:
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.0 sec
+matchScore: 23.00001281558375
+
+solution:
+
+Shirt: Red Blazer, Temp: (0, 20)
+Pants: White Tailored Pants, Temp: (0, 25)
+Shoes: White High Heels, Temp: (0, 35)
+
+This outfit is as close as you can get to Gal Gadot:
+Shirt: Red Blazer, Temp: (0, 15)
+Pants: Red Tailored Pants, Temp: (0, 15)
+Shoes: Black Pointy High Heels, Temp: (0, 15)
+########################################################
+CSP only with best match:
+Running Time: 0.005986213684082031 sec
+matchScore: 32.5
+
+solution:
+
+Shirt: White Blazer, Temp: (0, 20)
+Pants: White Tailored Pants, Temp: (0, 25)
+Shoes: Red High Heels, Temp: (0, 35)
+
+This outfit is as close as you can get to Neta Alchimister:
+Shirt: White Strapless Cropped Long Crochet, Temp: (16, 25)
+Pants: White Long Paddlephone Crochet, Temp: (16, 25)
+Shoes: Red High Heels, Temp: (16, 25)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.17186784744262695sec
+Predictiong Running Time: 0.0 sec
+matchScore: 32.5
+
+solution:
+
+Shirt: White Blazer, Temp: (0, 20)
+Pants: White Tailored Pants, Temp: (0, 25)
+Shoes: Red High Heels, Temp: (0, 35)
+
+This outfit is closer to Neta Alchimister:
+Shirt: White Strapless Cropped Long Crochet, Temp: (16, 25)
+Pants: White Long Paddlephone Crochet, Temp: (16, 25)
+Shoes: Red High Heels, Temp: (16, 25)
+###############################################################################
+scenario 5
+
+style = 1
+temperature = 10
+
+celebs to fit To:
+
+########################################################
+Results:
+########################################################
+CSP only with random choice over solutions:
+Running time: 0.005984067916870117 sec
+matchScore: 28.0000051262335
+
+solution:
+
+Shirt: White Long Pyjama, Temp: (0, 19)
+Pants: Red Long PJ Pants, Temp: (0, 13)
+Shoes: Black Slippers, Temp: (0, 35)
+
+This outfit is as close as you can get to Justin Bieber:
+Shirt: White Hoodie, Temp: (0, 15)
+Pants: Red Long Pants, Temp: (0, 15)
+Shoes: White Nike Air, Temp: (0, 15)
+########################################################
+CSP only with best match:
+Running Time: 0.010938882827758789 sec
+matchScore: 33.0
+
+solution:
+
+Shirt: White Long Pyjama, Temp: (0, 19)
+Pants: Red Long PJ Pants, Temp: (0, 13)
+Shoes: White Slippers, Temp: (0, 35)
+
+This outfit is as close as you can get to Justin Bieber:
+Shirt: White Hoodie, Temp: (0, 15)
+Pants: Red Long Pants, Temp: (0, 15)
+Shoes: White Nike Air, Temp: (0, 15)
+########################################################
+CSP + Qlearning:
+Learning Running Time: 0.23435258865356445sec
+Predictiong Running Time: 0.0 sec
+matchScore: 33.0
+
+solution:
+
+Shirt: White Long Pyjama, Temp: (0, 19)
+Pants: Red Long PJ Pants, Temp: (0, 13)
+Shoes: White Slippers, Temp: (0, 35)
+
+This outfit is closer to Justin Bieber:
+Shirt: White Hoodie, Temp: (0, 15)
+Pants: Red Long Pants, Temp: (0, 15)
+Shoes: White Nike Air, Temp: (0, 15)
+###############################################################################

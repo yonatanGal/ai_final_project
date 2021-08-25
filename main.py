@@ -7,13 +7,16 @@ from Action import Action
 import State
 import qLearningAgent
 import time
+import random
+
+ITER_LIMIT = 300
 
 
 def parseArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument("--algorithm",
-                        help=f"choose algorithm to use: 1 - CSP + QLearning\n2 - CSP only",
-                        default=1, type=int, choices=range(1, 3))
+                        help=f"choose algorithm to use: 1 - CSP + QLearning\n2 - CSP only with best match\n3 - CSP only with random choice",
+                        default=1, type=int, choices=range(1, 4))
     parser.add_argument("--style",
                         help=f"choose a style: 1 - Home\n2 - Sport\n3 - Casual\n4 - Casual Elegant\n5 - Formal",
                         default=5, type=int, choices=range(1, 6))
@@ -70,15 +73,16 @@ def learnAndPredict(db_shirts, db_pants, db_shoes, possibleSolutions,
     qLearner = qLearningAgent.QLearningAgent(db_shirts, db_pants, db_shoes,
                                              possibleSolutions, goodOutfit)
     qLearner.learn()
+    end_learning_time = time.time()
     s = State.State(None, None, None)
     counter = 0
-    while not qLearner.isTerminalState(s) and counter < 100:
+    while not qLearner.isTerminalState(s) and counter < ITER_LIMIT:
         action1 = qLearner.getPolicy(s)
         if (not action1 is None):
             s = qLearner.apply_action(s, action1)
         counter += 1
 
-    return s.stateToResult()
+    return s,end_learning_time
 
 
 def findCspBestSolution(goodOutfits, solution_list):
@@ -101,7 +105,7 @@ def findCspBestSolution(goodOutfits, solution_list):
                 maxReward = sum
                 bestSolution = sol
                 celeb = outfit
-    return bestSolution.stateToResult(), celeb.stateToResult(), maxReward
+    return bestSolution, celeb, maxReward
 
 
 def main():
@@ -116,36 +120,64 @@ def main():
     try:
         createCspSolver(problem, res_db_shirts, res_db_pants, res_db_shoes)
     except ValueError as e:
-        print("Error! \n" + str(e))
+        print(
+            "you haven't got any outfit that fits the current constraints! Go and get some cloths!")
         return
     if (problem.getSolutions() is None):
-        print("you haven't got any outfit that fits the current constraints")
+        print(
+            "you haven't got any outfit that fits the current constraints! Go and get some cloths!")
         return
 
     goodOutfits = State.filter_from_temperature(temperature, STYLES[style])
 
+    print(f'style - {style}, temperature - {temperature} , algorithm - {alg}')
     startTime = time.time()
     if (alg == CSP_AND_QLEARNING):
         solutions_list = findSolutions(problem, CSP_AND_QLEARNING)
         # train the qLearner and suggest a solution meeting all constraints and as close as it can to the "good" outfit
-        finalState = learnAndPredict(res_db_shirts, res_db_pants, res_db_shoes,
+        finalState,end_learning_time = learnAndPredict(DB_SHIRTS, DB_PANTS, DB_SHOES,
                                      solutions_list,
                                      goodOutfits)
+
         endTime = time.time()
-        print(finalState + "\n Running Time: " + str(endTime - startTime))
-    else:
-        solutions_list = findSolutions(problem)
-        finalState, closetCeleb, maxReward = findCspBestSolution(goodOutfits,
+        s, closest_celeb, matchScore = findCspBestSolution(goodOutfits,
+                                                           [finalState])
+
+        if (s.getShirt() and s.getPants() and s.getShoes()):
+            print(finalState.stateToResult() + "\n Learning Running Time: " + str(end_learning_time - startTime) +"sec\n Predictiong Running Time: "+ str(endTime-end_learning_time) + " sec")
+            print(f'matchScore: {matchScore}\nThis outfit is closer to {closest_celeb.stateToResult()}')
+        else:
+            print("Qlearner couldn't find a solution!")
+    elif (alg == CSP_ONLY_BEST_MATCH):
+        solutions_list = findSolutions(problem, CSP_ONLY_BEST_MATCH)
+        finalState, closest_celeb, matchScore = findCspBestSolution(goodOutfits,
                                                                  solutions_list)
-        if (closetCeleb):
+        if (closest_celeb):
             endTime = time.time()
             print(
-                "Based on the given parameters, This is our best recommendation: \n " + finalState + "\nThis outfit is as close as you can get to " + closetCeleb + "\n Running Time: " + str(
-                    endTime - startTime))
+                "Based on the given parameters, This is our best recommendation: \n " + finalState.stateToResult() + "\n Running Time: " + str(
+                    endTime - startTime) +" sec")
+            print(
+                f'matchScore: {matchScore}\nThis outfit is as close as you can get to {closest_celeb.stateToResult()}')
         else:
-            print("There is no celeb outfit that fits your closet")
+            print(
+                "There is no celeb outfit that fits your closet. What is wrong with you?")
+    elif (alg == CSP_ONLY_RANDOM_CHOICE):
+        solutions_list = findSolutions(problem, CSP_ONLY_RANDOM_CHOICE)
+        if (solutions_list != []):
+            finalState = random.choice(solutions_list)
+            endTime=time.time()
+            s, closest_celeb, matchScore = findCspBestSolution(goodOutfits,
+                                                               [finalState])
+            print("Based on the given parameters, This is our random recommendation: \n" + finalState.stateToResult() + "\n Running time: " + str(
+                    endTime - startTime) + " sec")
+            print(
+                f'matchScore: {matchScore}\nThis outfit is as close as you can get to {closest_celeb.stateToResult()}')
+
+
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main()
+

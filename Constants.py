@@ -11,6 +11,8 @@ PANTS = "pants"
 SHOES = "shoes"
 
 CSP_AND_QLEARNING = 1
+CSP_ONLY_BEST_MATCH = 2
+CSP_ONLY_RANDOM_CHOICE = 3
 
 HOME = 1
 SPORT = 2
@@ -44,73 +46,47 @@ COLORS_LIST = [Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.BROWN,
                Color.ORANGE, Color.PINK, Color.PURPLE,
                Color.GRAY, Color.BLACK, Color.WHITE]
 
-CELEBS = {'Justin Bieber': State.State(
-    Shirt("Kind of long shirt", 4, (5, 24), Color.WHITE),
-    Pants("Long loose pants", 4, (-5, 25), Color.RED),
-    Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Noa Kirel': State.State(
-        Shirt("Fila sports shirt", 3, (15, 35), Color.BLACK),
-        Pants("Short sports pants", 3, (20, 35), Color.BLACK),
-        Shoes("Nike Sports Shoes", 2, (8, 30), Color.WHITE)),
-    'Yuval Kaspit': State.State(
-        Shirt("Loose long sleeves", 6, (15, 30), Color.YELLOW),
-        Pants("Loose long pants", 6, (20, 30), Color.WHITE),
-        Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Barack Obama': State.State(
-        Shirt("formal suite", 10, (8, 25), Color.BLUE),
-        Pants("formal suite pants", 10, (8, 25), Color.BLUE),
-        Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Ofer Shechter': State.State(
-        Shirt("casual T shirt", 5, (12, 30), Color.BLUE),
-        Pants("casual jeans", 6, (13, 28), Color.GRAY),
-        Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Gal Gadot': State.State(
-        Shirt("Jeans Tank top", 7, (15, 30), Color.BLUE),
-        Pants("Short jeans", 6, (13, 32), Color.BLUE),
-        Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Morgan Freeman': State.State(
-        Shirt("Buttoned shirt", 9, (9, 27), Color.GRAY),
-        Pants("Tailored pants", 9, (9, 27), Color.BLACK),
-        Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Arthur Read': State.State(
-        Shirt("Sweater", 9, (9, 27), Color.YELLOW),
-        Pants("Jeans", 9, (9, 27), Color.BLUE),
-        Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Or Shpitz': State.State(Shirt("T shirt", 5, (12, 30), Color.PINK),
-                             Pants("Loose Pants", 7, (9, 27),
-                                   Color.WHITE),
-                             Shoes("shoes", 6, (12, 30), Color.BLACK)),
-    'Assi Azar': State.State(Shirt("Sweater", 5, (8, 25), Color.PURPLE),
-                             Pants("Jeans", 7, (9, 29), Color.BLUE),
-                             Shoes("shoes", 6, (12, 30), Color.BLACK)),
-
-}
-
 HOME_LIST = [State.CelebState(Shirt("White Hoodie", 1, (0, 15), Color.WHITE),
                               Pants("Red Long Pants", 1, (0, 15), Color.RED),
-                              Shoes("Nike Air", 1, (0, 15), Color.WHITE),
+                              Shoes("White Nike Air", 1, (0, 15), Color.WHITE),
                               "Justin Bieber"),
              State.CelebState(
                  Shirt("White Long Sleeve Shirt", 1, (0, 15), Color.WHITE),
                  Pants("White Long Sleeve Pants", 1, (0, 15), Color.RED),
-                 Shoes("Slippers", 1, (0, 15), Color.WHITE),
+                 Shoes("White Slippers", 1, (0, 15), Color.WHITE),
+                 "Eliana Tidhar"),
+             State.CelebState(
+                 Shirt("Gray hoodie", 1, (0, 15), Color.GRAY),
+                 Pants("Gray Long tights", 1, (0, 15), Color.GRAY),
+                 Shoes("Slippers", 1, (0, 15), Color.GRAY),
+                 "Coral Simanovich"),
+             State.CelebState(
+                 Shirt("Brown PJ Tank Top", 1, (16, 25), Color.BROWN),
+                 Pants("Brown Long Sleeve Pants", 1, (16, 25), Color.BROWN),
+                 Shoes("Slippers", 1, (16, 25), Color.WHITE),
                  "Eliana Tidhar"), State.CelebState(
-        Shirt("Brown PJ Tank Top", 1, (16, 25), Color.BROWN),
-        Pants("Brown Long Sleeve Pants", 1, (16, 25), Color.BROWN),
-        Shoes("Slippers", 1, (16, 25), Color.WHITE),
-        "Eliana Tidhar"), State.CelebState(
         Shirt("White T Shirt", 1, (16, 25), Color.WHITE),
         Pants("Black Long Sweat Pants", 1, (16, 25), Color.BLACK),
         Shoes("Black Slippers", 1, (16, 25), Color.BLACK),
-        "Delta Model Male"), State.CelebState(
-        Shirt("Yellow T Shirt", 1, (26, 35), Color.YELLOW),
-        Pants("Yellow Short PJ Pants", 1, (26, 35), Color.YELLOW),
-        Shoes("White Slippers", 1, (26, 35), Color.WHITE),
-        "Eliana Tidhar"), State.CelebState(
+        "Delta Model Male"),
+             State.CelebState(
+                 Shirt("White T Shirt", 1, (16, 25), Color.WHITE),
+                 Pants("Black Long Tights", 1, (16, 25), Color.BLACK),
+                 Shoes("White Slippers", 1, (16, 25), Color.WHITE),
+                 "Roni Sheinkman"),
+             State.CelebState(
+                 Shirt("Yellow T Shirt", 1, (26, 35), Color.YELLOW),
+                 Pants("Yellow Short PJ Pants", 1, (26, 35), Color.YELLOW),
+                 Shoes("White Slippers", 1, (26, 35), Color.WHITE),
+                 "Eliana Tidhar"), State.CelebState(
         Shirt("Gray PJ Tank Top", 1, (26, 35), Color.GRAY),
         Pants("Gray Short PJ Pants", 1, (26, 35), Color.GRAY),
         Shoes("Pink Slippers", 1, (26, 35), Color.PINK),
-        "Delta Model Male")]
+        "Delta Model Male"), State.CelebState(
+        Shirt("White T shirt", 1, (26, 35), Color.WHITE),
+        Pants("White Short PJ Pants", 1, (26, 35), Color.WHITE),
+        Shoes("Brown Slippers", 1, (26, 35), Color.BROWN),
+        "Danit Greenberg")]
 
 SPORTS_LIST = [
     State.CelebState(
@@ -122,7 +98,21 @@ SPORTS_LIST = [
         Shirt("Yellow Long Sleeve Sweat Shirt", 2, (0, 15), Color.BLUE),
         Pants("Black Tights", 2, (0, 15), Color.BLACK),
         Shoes("Black Sport Shoes", 2, (0, 15), Color.BLACK),
-        "Dana Frider"), State.CelebState(
+        "Dana Frider"),
+
+    State.CelebState(
+        Shirt("Black long sleeve shirt", 1, (0, 15), Color.BLACK),
+        Pants("Black Long tights", 1, (0, 15), Color.BLACK),
+        Shoes("White nike shoes", 1, (0, 15), Color.WHITE),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Pink hoodie", 1, (0, 15), Color.PINK),
+        Pants("Pink Long tights", 1, (0, 15), Color.PINK),
+        Shoes("White nike shoes", 1, (0, 15), Color.WHITE),
+        "Coral Simanovich"),
+
+    State.CelebState(
         Shirt("White Adidas SeeThrough Tank Top", 2, (16, 25), Color.WHITE),
         Pants("Red Wide Training Pants", 2, (16, 25), Color.RED),
         Shoes("Red Sport Shoes", 2, (16, 25), Color.RED),
@@ -130,7 +120,21 @@ SPORTS_LIST = [
         Shirt("Brown Training Top", 2, (16, 25), Color.BROWN),
         Pants("Brown Tights", 2, (16, 25), Color.BROWN),
         Shoes("White Sport Shoes", 2, (16, 25), Color.WHITE),
-        "Yarden Visel"), State.CelebState(
+        "Yarden Visel"),
+
+    State.CelebState(
+        Shirt("Black Training Top", 2, (16, 25), Color.BLACK),
+        Pants("Black Tights", 2, (16, 25), Color.BLACK),
+        Shoes("Black Sport Shoes", 2, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("Pink Training Top", 2, (16, 25), Color.PINK),
+        Pants("Pink Tights", 2, (16, 25), Color.PINK),
+        Shoes("White Sport Shoes", 2, (16, 25), Color.WHITE),
+        "Coral Simanovich"),
+
+    State.CelebState(
         Shirt("Black Training Tank Top", 2, (26, 35), Color.BLACK),
         Pants("Black Short Training Pants", 2, (26, 35), Color.BLACK),
         Shoes("Pink Sport Shoes", 2, (26, 35), Color.PINK),
@@ -138,7 +142,11 @@ SPORTS_LIST = [
         Shirt("Pink Training Top", 2, (26, 35), Color.PINK),
         Pants("White Short Training Pants", 2, (26, 35), Color.WHITE),
         Shoes("White Sport Shoes", 2, (26, 35), Color.WHITE),
-        "Yarden Visel")]
+        "Yarden Visel"), State.CelebState(
+        Shirt("White wide T shirt", 2, (26, 35), Color.WHITE),
+        Pants("Black Short Training Pants", 2, (26, 35), Color.BLACK),
+        Shoes("White Sport Shoes", 2, (26, 35), Color.WHITE),
+        "Liel Eli")]
 
 CASUAL_LIST = [State.CelebState(
     Shirt("White Long Hoodie", 3, (0, 15),
@@ -150,27 +158,66 @@ CASUAL_LIST = [State.CelebState(
           Color.GRAY),
     Pants("Black Mom Jeans", 3, (0, 15), Color.BLACK),
     Shoes("Black Short Boots", 3, (0, 15), Color.BLACK),
-    "Roni Sheinkman"), State.CelebState(
-    Shirt("Pink Polo", 3, (16, 25),
-          Color.PINK),
-    Pants("Black Short Jeans", 3, (16, 25), Color.BLACK),
-    Shoes("White Sandals", 3, (16, 25), Color.WHITE),
-    "Maya Wertheimer"), State.CelebState(
-    Shirt("Black Strapless Shirt", 3, (16, 25),
-          Color.BLACK),
-    Pants("Pink Paddlephone Pants", 3, (16, 25), Color.PINK),
-    Shoes("Black Sandals", 3, (16, 25), Color.BLACK),
-    "Anne Zivi"), State.CelebState(
-    Shirt("Black Fila T Shirt", 3, (26, 35),
-          Color.BLACK),
-    Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
-    Shoes("White Sneakers", 3, (26, 35), Color.WHITE),
-    "Noa Kirel"), State.CelebState(
-    Shirt("Purple Tank Top", 3, (26, 35),
-          Color.PURPLE),
-    Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
-    Shoes("Brown Sandals", 3, (26, 35), Color.BROWN),
-    "Avishag Samberg")]
+    "Roni Sheinkman"),
+    State.CelebState(
+        Shirt("Black Long Hoodie", 3, (0, 15), Color.BLACK),
+        Pants("Blue Long Jeans", 3, (0, 15), Color.BLUE),
+        Shoes("White allstar", 3, (0, 15), Color.WHITE),
+        "Liel Eli"),
+    State.CelebState(
+        Shirt("White Long shirt", 3, (0, 15), Color.WHITE),
+        Pants("Black Long Jeans", 3, (0, 15), Color.BLACK),
+        Shoes("Black short boots", 3, (0, 15), Color.BLACK),
+        "Danit Greenberg"),
+    State.CelebState(
+        Shirt("White Long sweeter", 3, (0, 15), Color.WHITE),
+        Pants("Blue Long Jeans", 3, (0, 15), Color.BLUE),
+        Shoes("White jordens", 3, (0, 15), Color.WHITE),
+        "Coral Simanovich"),
+    State.CelebState(
+        Shirt("Pink Polo", 3, (16, 25),
+              Color.PINK),
+        Pants("Black Short Jeans", 3, (16, 25), Color.BLACK),
+        Shoes("White Sandals", 3, (16, 25), Color.WHITE),
+        "Maya Wertheimer"), State.CelebState(
+        Shirt("Black Strapless Shirt", 3, (16, 25),
+              Color.BLACK),
+        Pants("Pink Paddlephone Pants", 3, (16, 25), Color.PINK),
+        Shoes("Black Sandals", 3, (16, 25), Color.BLACK),
+        "Anne Zivi"),
+    State.CelebState(
+        Shirt("Brown strapless", 3, (16, 25), Color.BROWN),
+        Pants("Blue Long Jeans", 3, (16, 25), Color.BLUE),
+        Shoes("White adidas sneakers", 3, (16, 25), Color.WHITE),
+        "Liel Eli"),
+    State.CelebState(
+        Shirt("White T shirt", 3, (16, 25), Color.WHITE),
+        Pants("Blue Long Jeans", 3, (16, 25), Color.BLUE),
+        Shoes("Black allstar", 3, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White tank top", 3, (16, 25), Color.WHITE),
+        Pants("Blue Long Jeans", 3, (16, 25), Color.BLUE),
+        Shoes("Pink flip flops", 3, (16, 25), Color.PINK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("Black Fila T Shirt", 3, (26, 35),
+              Color.BLACK),
+        Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+        Shoes("White Sneakers", 3, (26, 35), Color.WHITE),
+        "Noa Kirel"), State.CelebState(
+        Shirt("Purple Tank Top", 3, (26, 35),
+              Color.PURPLE),
+        Pants("Blue Short Jeans", 3, (26, 35), Color.BLUE),
+        Shoes("Brown Sandals", 3, (26, 35), Color.BROWN),
+        "Avishag Samberg"),
+    State.CelebState(
+        Shirt("Pink T shirt", 3, (26, 35), Color.PINK),
+        Pants("Pink Short tights", 3, (26, 35), Color.PINK),
+        Shoes("White fila sneakers", 3, (26, 35), Color.WHITE),
+        "Danit Greenberg")]
 
 CASUAL_ELEGANT_LIST = [State.CelebState(
     Shirt("Black Long Elegant Hoodie", 4, (0, 15),
@@ -182,27 +229,70 @@ CASUAL_ELEGANT_LIST = [State.CelebState(
           Color.WHITE),
     Pants("Red Paddlephone Pants", 4, (0, 15), Color.RED),
     Shoes("White Nike Air", 4, (0, 15), Color.WHITE),
-    "Bar Refaeli"), State.CelebState(
-    Shirt("White T Shirt", 4, (16, 25),
-          Color.WHITE),
-    Pants("Midi Black Skirt", 4, (16, 25), Color.BLACK),
-    Shoes("Black Short Boots", 4, (16, 25), Color.BLACK),
-    "Adi Himelbloy"), State.CelebState(
-    Shirt("Blue One Sleeve Shirt", 4, (16, 25),
-          Color.BLUE),
-    Pants("Blue Jeans", 4, (16, 25), Color.BLUE),
-    Shoes("Brown Sandals", 4, (16, 25), Color.BROWN),
-    "Maya Wertheimer"), State.CelebState(
-    Shirt("White Cropped Tank Top", 4, (26, 35),
-          Color.WHITE),
-    Pants("White Short Skirt", 4, (26, 35), Color.WHITE),
-    Shoes("Yellow Sandals", 4, (26, 35), Color.YELLOW),
-    "Neta Alchimister"), State.CelebState(
-    Shirt("Purple Puffy Sleeves Shirt", 4, (26, 35),
-          Color.PURPLE),
-    Pants("Gray Short Skirt", 4, (26, 35), Color.GRAY),
-    Shoes("White Sandals", 4, (26, 35), Color.WHITE),
-    "Anna Aronov")]
+    "Bar Refaeli"),
+    State.CelebState(
+        Shirt("White long sleeve shirt", 4, (0, 15), Color.WHITE),
+        Pants("Brown Paddlephone Pants", 1, (0, 15), Color.BROWN),
+        Shoes("Black short boots", 1, (0, 15), Color.BLACK),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Yellow strapless", 4, (16, 25),
+              Color.YELLOW),
+        Pants("Brown tailored pants", 4, (16, 25), Color.BROWN),
+        Shoes("Brown elegant flip flops", 4, (16, 25), Color.BROWN),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White long sleeve shirt", 4, (16, 25),
+              Color.WHITE),
+        Pants("Black short jeans", 4, (16, 25), Color.BLACK),
+        Shoes("Black short boots", 4, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White T shirt", 4, (16, 25),
+              Color.WHITE),
+        Pants("Black Paddlephone Pants", 4, (16, 25), Color.BLACK),
+        Shoes("Black short boots", 4, (16, 25), Color.BLACK),
+        "Danit Greenberg"),
+
+    State.CelebState(
+        Shirt("White T Shirt", 4, (16, 25),
+              Color.WHITE),
+        Pants("Midi Black Skirt", 4, (16, 25), Color.BLACK),
+        Shoes("Black Short Boots", 4, (16, 25), Color.BLACK),
+        "Adi Himelbloy"), State.CelebState(
+        Shirt("Blue One Sleeve Shirt", 4, (16, 25),
+              Color.BLUE),
+        Pants("Blue Jeans", 4, (16, 25), Color.BLUE),
+        Shoes("Brown Sandals", 4, (16, 25), Color.BROWN),
+        "Maya Wertheimer"), State.CelebState(
+        Shirt("White Cropped Tank Top", 4, (26, 35),
+              Color.WHITE),
+        Pants("White Short Skirt", 4, (26, 35), Color.WHITE),
+        Shoes("Yellow Sandals", 4, (26, 35), Color.YELLOW),
+        "Neta Alchimister"), State.CelebState(
+        Shirt("Purple Puffy Sleeves Shirt", 4, (26, 35),
+              Color.PURPLE),
+        Pants("Gray Short Skirt", 4, (26, 35), Color.GRAY),
+        Shoes("White Sandals", 4, (26, 35), Color.WHITE),
+        "Anna Aronov"),
+
+    State.CelebState(
+        Shirt("White strapless", 4, (26, 35),
+              Color.WHITE),
+        Pants("Brown Paddlephone pants", 4, (16, 25), Color.BROWN),
+        Shoes("Brown elegant flip flops", 4, (16, 25), Color.BROWN),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Red crop t shirt", 4, (26, 35),
+              Color.RED),
+        Pants("Red skirt", 4, (16, 25), Color.RED),
+        Shoes("White elegant flip flops", 4, (16, 25), Color.WHITE),
+        "Danit Greenberg")
+]
 
 FORMAL_LIST = [State.CelebState(
     Shirt("Green Blazer", 5, (0, 15),
@@ -214,27 +304,50 @@ FORMAL_LIST = [State.CelebState(
           Color.RED),
     Pants("Red Tailored Pants", 5, (0, 15), Color.RED),
     Shoes("Black Pointy High Heels", 5, (0, 15), Color.BLACK),
-    "Gal Gadot"), State.CelebState(
-    Shirt("Pink Blazer", 5, (16, 25),
-          Color.PINK),
-    Pants("Pink Skirt", 5, (16, 25), Color.PINK),
-    Shoes("White High Heels", 5, (16, 25), Color.WHITE),
-    "Yarden Jerbi"), State.CelebState(
-    Shirt("White Strapless Cropped Long Crochet", 5, (16, 25),
-          Color.WHITE),
-    Pants("White Long Paddlephone Crochet", 5, (16, 25), Color.WHITE),
-    Shoes("Red High Heels", 5, (16, 25), Color.RED),
-    "Neta Alchimister"), State.CelebState(
-    Shirt("Black One Sleeve Tank Top", 5, (26, 35),
-          Color.BLACK),
-    Pants("Black Tailored Pants", 5, (26, 35), Color.BLACK),
-    Shoes("Yellow High Heels", 5, (26, 35), Color.YELLOW),
-    "Agam Rudberg"), State.CelebState(
-    Shirt("Pink Puffy Sleeves Shirt", 5, (26, 35),
-          Color.PINK),
-    Pants("White Skirt", 5, (26, 35), Color.WHITE),
-    Shoes("White Low Heels", 5, (26, 35), Color.WHITE),
-    "Anna Aronov")]
+    "Gal Gadot"),
+    State.CelebState(
+        Shirt("Gray Blazer", 5, (0, 15),
+              Color.GRAY),
+        Pants("Blue jeans", 5, (0, 15), Color.BLUE),
+        Shoes("Black Pointy High Heels", 5, (0, 15), Color.BLACK),
+        "Coral Simanovich"),
+
+    State.CelebState(
+        Shirt("Pink Blazer", 5, (16, 25),
+              Color.PINK),
+        Pants("Pink Skirt", 5, (16, 25), Color.PINK),
+        Shoes("White High Heels", 5, (16, 25), Color.WHITE),
+        "Yarden Jerbi"), State.CelebState(
+        Shirt("White Strapless Cropped Long Crochet", 5, (16, 25),
+              Color.WHITE),
+        Pants("White Long Paddlephone Crochet", 5, (16, 25), Color.WHITE),
+        Shoes("Red High Heels", 5, (16, 25), Color.RED),
+        "Neta Alchimister"),
+
+    State.CelebState(
+        Shirt("White one shoulder shirt", 5, (16, 25),
+              Color.WHITE),
+        Pants("White Long Paddlephone with drawings", 5, (16, 25), Color.WHITE),
+        Shoes("Brown crochet platform", 5, (16, 25), Color.BROWN),
+        "Coral Simanovich"),
+    State.CelebState(
+        Shirt("Black One Sleeve Tank Top", 5, (26, 35),
+              Color.BLACK),
+        Pants("Black Tailored Pants", 5, (26, 35), Color.BLACK),
+        Shoes("Yellow High Heels", 5, (26, 35), Color.YELLOW),
+        "Agam Rudberg"), State.CelebState(
+        Shirt("Pink Puffy Sleeves Shirt", 5, (26, 35),
+              Color.PINK),
+        Pants("White Skirt", 5, (26, 35), Color.WHITE),
+        Shoes("White Low Heels", 5, (26, 35), Color.WHITE),
+        "Anna Aronov"),
+    State.CelebState(
+        Shirt("Black elegant tank top", 5, (26, 35),
+              Color.BLACK),
+        Pants("Black Skirt", 5, (26, 35), Color.BLACK),
+        Shoes("Black high Heels", 5, (26, 35), Color.BLACK),
+        "Liel Eli")
+]
 
 STYLES = {HOME: HOME_LIST, SPORT: SPORTS_LIST, CASUAL: CASUAL_LIST,
           CASUAL_ELEGANT: CASUAL_ELEGANT_LIST, FORMAL: FORMAL_LIST}
@@ -317,6 +430,8 @@ DB_SHOES = [Shoes("Black Sneakers", 3, (0, 35), Color.BLACK),
             Shoes("White Nike Sports Shoes", 2, (0, 35), Color.WHITE),
             Shoes("White Slippers", 1, (0, 35), Color.WHITE),
             Shoes("Black Slippers", 1, (0, 35), Color.BLACK),
+            Shoes("Pink Slippers", 1, (0, 35), Color.PINK),
+            Shoes("Yellow Slippers", 1, (0, 35), Color.YELLOW),
             Shoes("Brown Oxford Shoes", 4, (0, 35), Color.BROWN),
             Shoes("Red High Heels", 5, (0, 35), Color.RED),
             Shoes("Black High Heels", 5, (0, 35), Color.BLACK),
@@ -347,6 +462,8 @@ DB_SHIRTS = [Shirt("Black T Shirt", 3, (15, 35), Color.BLACK),
              Shirt("White Long Pyjama", 1, (0, 19), Color.WHITE),
              Shirt("Black Long Pyjama", 1, (0, 19), Color.BLACK),
              Shirt("Black Thermal Shirt", 1, (0, 12), Color.BLACK),
+             Shirt("Black Nightdress Shirt", 1, (20, 35), Color.BLACK),
+             Shirt("Blue Nightdress Shirt", 1, (20, 35), Color.BLUE),
              Shirt("Blue Casual T Shirt", 3, (12, 35), Color.BLUE),
              Shirt("Blue Jeans Tank Top", 3, (15, 35), Color.BLUE),
              Shirt("Orange Buttoned Short Shirt", 6, (20, 35), Color.ORANGE),
@@ -373,6 +490,8 @@ DB_PANTS = [Pants("Black Long Jeans", 4, (0, 35), Color.BLACK),
             Pants("Yellow Business Casual Pants", 4, (0, 25), Color.YELLOW),
             Pants("Red Long PJ Pants", 1, (0, 13), Color.RED),
             Pants("Gray Long PJ Pants", 1, (0, 13), Color.GRAY),
+            Pants("Black Nightdress Pants", 1, (20, 35), Color.BLACK),
+            Pants("Blue Nightdress Pants", 1, (20, 35), Color.BLUE),
             Pants("Black Short PJ Pants", 1, (0, 13), Color.BLACK),
             Pants("Gray Short PJ Pants", 1, (0, 13), Color.GRAY),
             Pants("Red Tailored Pants", 4, (0, 30), Color.RED),
