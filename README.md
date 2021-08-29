@@ -13,7 +13,7 @@
    python main.py --algorithm=x --style=y --tempertaure=z
    ```
 
-   for the algorithm param:
+   Parameters explanation:
    x varies from 1 to 3. 1 - CSP + Qlearner, 2 - CSP with best match,
    3 - CSP with random choice.
 
