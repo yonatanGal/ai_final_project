@@ -21,7 +21,7 @@ def parseArgs():
                         help=f"choose a style: 1 - Home\n2 - Sport\n3 - Casual\n4 - Casual Elegant\n5 - Formal",
                         default=5, type=int, choices=range(1, 6))
     parser.add_argument("--temperature", help="what is the temperature today?",
-                        default=18, type=int, choices=range(0, 36))
+                        default=7, type=int, choices=range(0, 36))
     args = parser.parse_args()
 
     alg = args.algorithm

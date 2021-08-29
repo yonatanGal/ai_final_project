@@ -1,1 +1,10 @@
 python-constraint==1.4.0
+numpy
+time
+random
+copy
+math
+enum
+matplotlib
+sys
+heapq
