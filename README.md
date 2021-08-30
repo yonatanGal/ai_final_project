@@ -10,7 +10,7 @@
 
 3. in order to run our code, you should follow the following format:
    ```
-   python main.py --algorithm=x --style=y --tempertaure=z
+   python main.py --algorithm=x --style=y --temperature=z
    ```
 
    Parameters explanation:
@@ -22,7 +22,7 @@
 
    z varies from 0 to 35 degrees (in celsius).
 
-   after running this command you'll get the best choice from out db, according
-   to your chosen parameters. enjoy!
+   after running this command, the best choice from our db, according
+   to your chosen parameters, will be printed. enjoy!
 
 
