@@ -129,7 +129,8 @@ def main():
         return
 
     goodOutfits = State.filter_from_temperature(temperature, STYLES[style])
-
+    print('**********************************************')
+    print('Running with the following parameters:')
     print(f'style - {style}, temperature - {temperature} , algorithm - {alg}')
     startTime = time.time()
     if (alg == CSP_AND_QLEARNING):
@@ -144,8 +145,11 @@ def main():
                                                            [finalState])
 
         if (s.getShirt() and s.getPants() and s.getShoes()):
-            print(finalState.stateToResult() + "\n Learning Running Time: " + str(end_learning_time - startTime) +"sec\n Predictiong Running Time: "+ str(endTime-end_learning_time) + " sec")
-            print(f'matchScore: {matchScore}\nThis outfit is closer to {closest_celeb.stateToResult()}')
+            print('\nThe best outfit we have found for you is:')
+            print(finalState.stateToResult() + "\n\nLearning Running Time: " + str(end_learning_time - startTime) +" "
+                                                                                                                 "sec\nPrediction Running Time: "+ str(endTime-end_learning_time) + " sec")
+            print(f'matchScore: {matchScore}\n\nThis outfit is closest to'
+                  f' {closest_celeb.stateToResult()}')
         else:
             print("Qlearner couldn't find a solution!")
     elif (alg == CSP_ONLY_BEST_MATCH):
@@ -155,10 +159,12 @@ def main():
         if (closest_celeb):
             endTime = time.time()
             print(
-                "Based on the given parameters, This is our best recommendation: \n " + finalState.stateToResult() + "\n Running Time: " + str(
+                "\nBased on the given parameters, This is our best recommendation: \n" + finalState.stateToResult() +
+                "\n\nRunning Time: " + str(
                     endTime - startTime) +" sec")
             print(
-                f'matchScore: {matchScore}\nThis outfit is as close as you can get to {closest_celeb.stateToResult()}')
+                f'matchScore: {matchScore}\n\nThis outfit is as close as you can get to'
+                f' {closest_celeb.stateToResult()}')
         else:
             print(
                 "There is no celeb outfit that fits your closet. What is wrong with you?")
@@ -169,10 +175,13 @@ def main():
             endTime=time.time()
             s, closest_celeb, matchScore = findCspBestSolution(goodOutfits,
                                                                [finalState])
-            print("Based on the given parameters, This is our random recommendation: \n" + finalState.stateToResult() + "\n Running time: " + str(
+            print("\nBased on the given parameters, This is our random recommendation: \n" + finalState.stateToResult(
+
+            ) + "\n\nRunning time: " + str(
                     endTime - startTime) + " sec")
             print(
-                f'matchScore: {matchScore}\nThis outfit is as close as you can get to {closest_celeb.stateToResult()}')
+                f'matchScore: {matchScore}\n\nThis outfit is as close as you can get to'
+                f' {closest_celeb.stateToResult()}')
 
 
 
