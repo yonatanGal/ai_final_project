@@ -10,7 +10,8 @@ import time
 import random
 
 ITER_LIMIT = 300
-
+NUMBER_TO_ALG = {1: "CSP with QLearning", 2: "CSP with best match", 3: "CSP with random choice"}
+NUMBER_TO_STYLE = {1: "Home", 2: "Sport", 3: "Casual", 4: "Casual Elegant", 5: "Formal"}
 
 def parseArgs():
     parser = argparse.ArgumentParser()
@@ -128,10 +129,13 @@ def main():
             "you haven't got any outfit that fits the current constraints! Go and get some cloths!")
         return
 
+    NUMBER_TO_ALG = {1: "CSP with QLearning", 2: "CSP with best match", 3: "CSP with random choice"}
+    NUMBER_TO_STYLE = {1: "Home", 2: "Sport", 3: "Casual", 4: "Casual Elegant", 5: "Formal"}
+
     goodOutfits = State.filter_from_temperature(temperature, STYLES[style])
     print('**********************************************')
     print('Running with the following parameters:')
-    print(f'style - {style}, temperature - {temperature} , algorithm - {alg}')
+    print(f'style - {NUMBER_TO_STYLE[style]}, temperature - {temperature} , algorithm - {NUMBER_TO_ALG[alg]}')
     startTime = time.time()
     if (alg == CSP_AND_QLEARNING):
         solutions_list = findSolutions(problem, CSP_AND_QLEARNING)
